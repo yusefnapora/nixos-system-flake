@@ -1,17 +1,11 @@
 { config, pkgs, ... }:
 {
-
   # Enable the X11 windowing system.
   services.xserver = { 
     enable = true;
-    displayManager.defaultSession = "xfce+i3";
+    displayManager.defaultSession = "none+i3";
     desktopManager = { 
       xterm.enable = false;
-      xfce = { 
-        enable = true;
-        noDesktop = true;
-        enableXfwm = false;
-      };
     };
     windowManager.i3 = { 
       enable = true;
@@ -22,6 +16,17 @@
       ];
     };
   };
+
+  # HiDPI settings for macbook pro 14"
+  # TODO: move this to per-system config
+  services.xserver.displayManager.sessionCommands = ''
+    ${pkgs.xorg.xrdb}/bin/xrdb -merge <${pkgs.writeText "Xresources" ''
+      Xft.dpi: 250
+      Xcursor.theme: Adwaita
+      Xcursor.size: 64
+      Xcursor.theme_core: 1
+    ''}
+  '';
 
   # Enable sound.
   sound.enable = true;

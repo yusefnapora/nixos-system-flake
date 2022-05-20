@@ -18,15 +18,13 @@
       specialArgs = attrs;
       modules =
         [ 
-          ./configuration.nix
+          ./hosts/macbook-vm/configuration.nix
 
           home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.yusef = {
               imports = [ ./home.nix ];
-              # programs.fish.enable = true;
-              # programs.htop.enable = true;
             };
           }
         ];
