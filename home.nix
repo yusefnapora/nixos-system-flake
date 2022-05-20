@@ -3,6 +3,7 @@
 {
 
   imports = [
+    ./programs/git.nix
     ./programs/non-free.nix
   ];
 
@@ -11,11 +12,7 @@
 
     fish.enable = true;  
 
-    git = { 
-      enable = true;
-      userName = "Yusef Napora";
-      userEmail = "yusef@napora.org";
-    };
+
 
     vscode = { 
       enable = true;
