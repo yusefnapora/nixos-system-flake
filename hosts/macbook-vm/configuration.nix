@@ -8,56 +8,30 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
 
-      # x11 stuff
-      ./gui.nix
+      ../common.nix
     ];
 
-  # allow unfree (vscode, etc)
-  nixpkgs.config.allowUnfree = true;
-
-  virtualisation.docker.enable = true;
+  # enable auto-resize of guest display when vm window resizes
   services.spice-vdagentd.enable = true;
 
-  nix.package = pkgs.nixUnstable;
-  nix.extraOptions = ''
-  experimental-features = nix-command flakes
+  # HiDPI settings for macbook pro 14"
+  services.xserver.displayManager.sessionCommands = ''
+    ${pkgs.xorg.xrdb}/bin/xrdb -merge <${pkgs.writeText "Xresources" ''
+      Xft.dpi: 250
+      Xcursor.theme: Adwaita
+      Xcursor.size: 64
+      Xcursor.theme_core: 1
+    ''}
   '';
+
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Set your time zone.
-  time.timeZone = "America/NewYork";
 
   networking.useDHCP = false;
   networking.interfaces.enp0s6.useDHCP = true;
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.yusef = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
-    shell = pkgs.fish;
-  };
-
-  environment.systemPackages = with pkgs; [
-    vim 
-    wget
-    firefox
-    fish
-    git
-  ];
-
-  services.openssh.enable = true;
-  system.stateVersion = "21.11"; # magic - don't touch without googling first
 }
 

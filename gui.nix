@@ -17,17 +17,6 @@
     };
   };
 
-  # HiDPI settings for macbook pro 14"
-  # TODO: move this to per-system config
-  services.xserver.displayManager.sessionCommands = ''
-    ${pkgs.xorg.xrdb}/bin/xrdb -merge <${pkgs.writeText "Xresources" ''
-      Xft.dpi: 250
-      Xcursor.theme: Adwaita
-      Xcursor.size: 64
-      Xcursor.theme_core: 1
-    ''}
-  '';
-
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
