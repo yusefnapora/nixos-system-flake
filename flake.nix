@@ -10,25 +10,25 @@
   outputs = { self, nixpkgs, home-manager, ... }@attrs: 
   let
     system = "aarch64-linux";
-
-    homeConfig = home-manager.lib.homeManagerConfiguration { 
-      system = system;
-      homeDirectory = "/home/yusef";
-      userName = "yusef";
-      stateVersion = "21.11";
-      configuration = { 
-        imports = [ ./home.nix ];
-      };
-    };
   in
   {
 
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      system = "aarch64-linux";
+      system = system;
       specialArgs = attrs;
       modules =
         [ 
           ./configuration.nix
+
+          home-manager.nixosModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.yusef = {
+              imports = [ ./home.nix ];
+              # programs.fish.enable = true;
+              # programs.htop.enable = true;
+            };
+          }
         ];
     };
 

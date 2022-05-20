@@ -9,15 +9,7 @@
   programs = {
     home-manager.enable = true;
 
-    fish.enable = true;
-    fzf.enable = true;
-    
-    direnv = {
-      enable = true;
-      nix-direnv = {
-        enable = true;
-      };
-    };
+    fish.enable = true;  
 
     git = { 
       enable = true;
@@ -27,19 +19,16 @@
 
     vscode = { 
       enable = true;
-      extensions = with pkgs.vscode-extensions; [ 
-        # yzhang.markdown-all-in-one
-      ];
     };
   };
 
-  home.stateVersion = "21.11";
-  home.packages = with pkgs; [
-    _1password
-    dmenu
-    nixFlakes
-    vscode
-    jq
-
-  ];
+  home = {
+    stateVersion = "21.11";
+    packages = with pkgs; [
+      dmenu
+      nixFlakes
+      vscode
+      jq
+    ];
+  };
 }
