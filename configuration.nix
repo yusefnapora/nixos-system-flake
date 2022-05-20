@@ -10,7 +10,7 @@
       ./hardware-configuration.nix
 
       # home manager config
-      ./home.nix
+      # ./home.nix
     ];
 
   # allow unfree (vscode, etc)
@@ -52,9 +52,9 @@
 
   # Enable the X11 windowing system.
   services.xserver = { 
-    enable = true; 
+    enable = true;
+    displayManager.defaultSession = "xfce+i3";
     desktopManager = { 
-      default = "xfce";
       xterm.enable = false;
       xfce = { 
         enable = true;
