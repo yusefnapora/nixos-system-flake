@@ -9,25 +9,34 @@
 
   outputs = { self, nixpkgs, home-manager, ... }@attrs: 
   let
-    system = "aarch64-linux";
+    mkSystemConfig = { system, hostConfigModule, ... }: nixpkgs.lib.nixosSystem { 
+      inherit system;
+      specialArgs = attrs;
+      modules = [ 
+        hostConfigModule
+        
+        home-manager.nixosModules.home-manager { 
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.yusef = { 
+            imports = [ ./home.nix ];
+          };
+        }
+      ];
+    };
   in
   {
 
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      system = system;
-      specialArgs = attrs;
-      modules =
-        [ 
-          ./hosts/macbook-vm/configuration.nix
+    # macbook via UTM virtual machine
+    nixosConfigurations.nixos = mkSystemConfig {
+      system = "aarch64-linux";
+      hostConfigModule = ./hosts/macbook-vm/configuration.nix;
+    };
 
-          home-manager.nixosModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.yusef = {
-              imports = [ ./home.nix ];
-            };
-          }
-        ];
+    # VMWare fusion guest (windows 11 host)
+    nixosConfigurations.fusion = mkSystemConfig { 
+      system = "x86_64";
+      hostConfigModule = ./hosts/fusion/configuration.nix;
     };
 
   };
