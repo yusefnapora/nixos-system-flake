@@ -35,7 +35,7 @@
 
     # VMWare fusion guest (windows 11 host)
     nixosConfigurations.fusion = mkSystemConfig { 
-      system = "x86_64";
+      system = "x86_64-linux";
       hostConfigModule = ./hosts/fusion/configuration.nix;
     };
 
