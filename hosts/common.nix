@@ -39,5 +39,5 @@
   ];
 
   services.openssh.enable = true;
-  system.stateVersion = "21.11"; # magic - don't touch without googling first
+  system.stateVersion = "22.05"; # magic - don't touch without googling first
 }

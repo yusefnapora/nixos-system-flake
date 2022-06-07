@@ -7,7 +7,8 @@ let
 
   bin = pkgs.wrapWine {
     name = "ade";
-    executable = "$WINEPREFIX/drive_c/Program\\ Files/Adobe/Adobe\\ Digital\\ Editions\\ 2.0/DigitalEditions.exe";
+    tricks = [ "corefonts" "dotnet35sp1" "windowscodecs" ];
+    executable = "$WINEPREFIX/drive_c/Program\ Files/Adobe/Adobe\ Digital\ Editions\ 2.0/DigitalEditions.exe";
     setupScript = ''
     wine ${source} /S
     '';
