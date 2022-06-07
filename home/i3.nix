@@ -8,7 +8,7 @@ in
         config = {
             modifier = mod;
 
-            keybindings = lib.mkOptionalDefault {
+            keybindings = {
                 "${mod}+p" = "exec ${pkgs.dmenu}/bin/dmenu_run";
                 "${mod}+Return" = "exec kitty";
             };
