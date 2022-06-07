@@ -5,11 +5,11 @@
     ../programs/non-free.nix
 
     ./i3.nix
+    ./fish.nix
   ];
 
   programs = {
     home-manager.enable = true;
-    fish.enable = true;
     vscode = { 
       enable = true;
     };
