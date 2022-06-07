@@ -10,8 +10,8 @@ in
 
             keybindings = lib.mkOptionalDefault {
                 "${mod}+p" = "exec ${pkgs.dmenu}/bin/dmenu_run";
-                "${mod}+Return" = "exec kitty"
+                "${mod}+Return" = "exec kitty";
             };
         };
-    }
+    };
 }
