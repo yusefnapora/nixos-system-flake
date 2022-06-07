@@ -12,8 +12,6 @@
 
       # remap capslock to ctrl/esc
       ../../modules/key-remap.nix
-
-      ../../programs/wineApps/adobe-digital-editions.nix
     ];
 
 

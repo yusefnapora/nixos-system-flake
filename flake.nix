@@ -9,10 +9,28 @@
 
   outputs = { self, nixpkgs, home-manager, ... }@attrs: 
   let
+    overlay = import ./overlay.nix;
+    
     mkSystemConfig = { system, hostConfigModule, ... }: nixpkgs.lib.nixosSystem { 
       inherit system;
       specialArgs = attrs;
+
       modules = [ 
+        { 
+          nixpkgs = { 
+            pkgs = import nixpkgs { 
+              inherit system;
+              overlays = [
+                overlay
+              ];
+
+              config = {
+                allowUnfree = true;
+              };
+            }; 
+          }; 
+        }
+
         hostConfigModule
         
         home-manager.nixosModules.home-manager { 
@@ -24,12 +42,8 @@
         }
       ];
     };
-  in
+in
   {
-
-    overlays = {
-      this = import ./overlay.nix self;
-    };
 
     # macbook via UTM virtual machine
     nixosConfigurations.nixos = mkSystemConfig {

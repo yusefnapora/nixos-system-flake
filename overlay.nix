@@ -1,17 +1,8 @@
-flake: final: prev:
+final: prev: 
 let
-  inherit (flake) inputs;
-  inherit (prev) lib callPackage writeShellScript;
-  inherit (flake.inputs) nix-option nixpkgs;
+  p = path: prev.callPackage path {};
 in
-let
-  cp = f: (callPackage f) {};
-in {
-    inherit flake;
-
-    wrapWine = cp ./packages/wrapWine.nix;
-
-    wineApps = {
-      ade = cp ./packages/wineApps/adobe-digital-editions.nix;
-    };
+{
+    wrapWine = p ./packages/wrapWine.nix;
+    wineApps.ade = p ./packages/wineApps/adobe-digital-editions.nix;
 }

@@ -3,7 +3,7 @@
   imports = [
     ../programs/git.nix
     ../programs/non-free.nix
-    
+
     ./i3.nix
     ./fish.nix
   ];
@@ -23,6 +23,7 @@
       nixFlakes
       vscode
       jq
+      wineApps.ade
     ];
   };
 }

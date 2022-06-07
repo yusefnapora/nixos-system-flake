@@ -7,11 +7,9 @@ let
 
   bin = pkgs.wrapWine {
     name = "ade";
-    executable = "$WINEPREFIX/drive_c/Program Files/FIXME";
+    executable = "$WINEPREFIX/drive_c/Program Files/Adobe/'Adobe Digital Editions 2.0'/DigitalEditions.exe";
     setupScript = ''
-    pushd "$WINEPREFIX/drive_c"
-      ${source} /S
-    popd
+    wine ${source} /S
     '';
   };
 
