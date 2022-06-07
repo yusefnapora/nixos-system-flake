@@ -19,7 +19,7 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.yusef = { 
-            imports = [ ./home.nix ];
+            imports = [ ./home/home.nix ];
           };
         }
       ];
