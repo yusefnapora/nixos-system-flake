@@ -27,6 +27,10 @@
   in
   {
 
+    overlays = {
+      this = import ./overlay.nix self;
+    };
+
     # macbook via UTM virtual machine
     nixosConfigurations.nixos = mkSystemConfig {
       system = "aarch64-linux";
