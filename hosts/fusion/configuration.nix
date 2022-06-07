@@ -9,6 +9,9 @@
       ./hardware-configuration.nix
 
       ../common.nix
+
+      # remap capslock to ctrl/esc
+      ../../modules/key-remap.nix
     ];
 
 
