@@ -26,6 +26,8 @@
       nixFlakes
       vscode
       jq
+      docker-compose
+      google-chrome-dev
     ];
   };
 }
