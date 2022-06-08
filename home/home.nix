@@ -5,6 +5,7 @@
     ../programs/non-free.nix
 
     # ./i3.nix
+    ./sway.nix
     ./fish.nix
   ];
 
