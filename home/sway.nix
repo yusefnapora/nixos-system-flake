@@ -25,10 +25,9 @@
         enable = true;
         wrapperFeatures.gtk = true;
 
-        terminal = "kitty";
-
         config = { 
           modifier = "Mod4";
+          terminal = "kitty";
           output."*" = { bg = "#aaaaaa solid_color"; };
         };
 
