@@ -10,5 +10,18 @@
             cm = "!git checkout $(git head-branch)";
             co = "checkout";
         };
+
+        ignores = [
+            ".env"
+            ".envrc"
+            ".direnv/"
+            "*.swp"
+            ".idea/"
+        ];
+
+        difftastic = { 
+          enable = true;
+          background = "dark"; 
+        };
     };
 }

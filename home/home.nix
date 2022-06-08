@@ -1,10 +1,9 @@
 { config, pkgs, nixpkgs, lib, ... }:
 {
   imports = [
-    ../programs/git.nix
     ../programs/non-free.nix
 
-    # ./i3.nix
+    ./git.nix
     ./sway.nix
     ./fish.nix
   ];
