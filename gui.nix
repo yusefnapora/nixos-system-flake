@@ -1,21 +1,25 @@
 { config, pkgs, ... }:
 {
-  # Enable the X11 windowing system.
-  services.xserver = { 
+
+  # enable sway (Wayland i3 thing)
+  programs.sway = {
     enable = true;
-    displayManager.defaultSession = "none+i3";
-    desktopManager = { 
-      xterm.enable = false;
-    };
-    windowManager.i3 = { 
-      enable = true;
-      extraPackages = with pkgs; [ 
-        dmenu
-        i3status
-        i3lock
-      ];
-    };
+    wrapperFeatures.gtk = true;
+    extraSessionCommands = ''
+      # SDL:
+      export SDL_VIDEODRIVER=wayland
+      # QT (needs qt5.qtwayland in systemPackages):
+      export QT_QPA_PLATFORM=wayland-egl
+      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+      # Fix for some Java AWT applications (e.g. Android Studio),
+      # use this if they aren't displayed properly:
+      export _JAVA_AWT_WM_NONREPARENTING=1
+    '';
   };
+
+  environment.systemPackages = with pkgs; [
+    qt5.qtwayland
+  ];
 
   # Enable sound.
   sound.enable = true;
