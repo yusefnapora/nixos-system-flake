@@ -29,6 +29,8 @@
       docker-compose
       google-chrome-dev
       droidcam
+      _1password-gui
+      _1password
     ];
   };
 }
