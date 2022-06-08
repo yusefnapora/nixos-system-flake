@@ -28,6 +28,7 @@
       jq
       docker-compose
       google-chrome-dev
+      droidcam
     ];
   };
 }
