@@ -13,6 +13,10 @@
     programs.fish.loginShellInit = ''
     # if running from tty1, start sway
     set TTY1 (tty)
+
+    # fix for black screen in vmware guest. TODO: move to vmware host config
+    set -x WLR_NO_HARDWARE_CURSORS 1
+
     [ "$TTY1" = "/dev/tty1" ] && exec sway
     '';
 
