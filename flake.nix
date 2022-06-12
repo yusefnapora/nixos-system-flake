@@ -9,18 +9,6 @@
 
   outputs = { self, nixpkgs, home-manager, ... }@attrs: 
   let
-    mkHomeManagerModule = { system, homeManagerFlags, ... }: 
-      home-manager.nixosModules.home-manager {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-
-        home-manager.users.yusef = import ./home-manager;
-
-        home-manager.extraSpecialArgs = {
-          inherit homeManagerFlags;
-        };
-      };
-
     defaultHomeManagerFlags = {
       withGUI = true;
       withSway = true;
@@ -37,9 +25,22 @@
         specialArgs = attrs;
 
         modules = modules ++ nixpkgs.lib.lists.optionals (useHomeManager) [
-          (mkHomeManagerModule { 
-            inherit system homeManagerFlags;
-          })
+          (
+            home-manager.nixosModules.home-manager {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+
+              home-manager.users.yusef = {
+                imports = [
+                  ./home-manager
+                ];
+              };
+
+              home-manager.extraSpecialArgs = {
+                inherit homeManagerFlags;
+              };
+            }
+          )
         ];
       };
 
