@@ -17,7 +17,6 @@
     sound.enable = true;
     sway.enable = true;
     key-remap.enable = true;
-    home-manager.enable = true;
     docker.enable = true;
     droidcam.enable = true;
   };
