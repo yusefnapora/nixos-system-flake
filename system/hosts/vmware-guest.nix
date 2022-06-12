@@ -6,14 +6,17 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      ./hardware/vmware-guest.nix
 
-      ../common.nix
-
-      # remap capslock to ctrl/esc
-      ../../modules/key-remap.nix
+      ../default.nix
     ];
 
+  # custom options
+  yusef = {
+    gui.enable = true;
+    sway.enable = true;
+    key-remap.enable = true;
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -26,19 +29,5 @@
 
   virtualisation.vmware.guest.enable = true;
 
-
-  # enable the v4l2loopback module, for droidcam, etc
-  boot.extraModulePackages = with config.boot.kernelPackages; [
-    v4l2loopback.out
-  ];
-
-  boot.kernelModules = [
-    "v4l2loopback"
-    "snd-aloop"
-  ];
-
-  boot.extraModprobeConfig = ''
-  options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
-  '';
 }
 

@@ -6,9 +6,9 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      ./hardware/aarch64-utm.nix
 
-      ../common.nix
+      ../default.nix
     ];
 
   # enable auto-resize of guest display when vm window resizes

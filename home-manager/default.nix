@@ -1,11 +1,16 @@
 { config, pkgs, nixpkgs, lib, ... }:
 {
   imports = [
-    ../programs/non-free.nix
-
     ./git.nix
     ./sway.nix
     ./fish.nix
+  ];
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+      "1password"
+      "1password-cli"
+      "vscode"
+      "vscode-with-extensions"        
   ];
 
   programs = {
