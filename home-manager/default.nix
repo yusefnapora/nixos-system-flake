@@ -6,7 +6,7 @@ let
   packages = with pkgs; [
     nixFlakes
     jq
-    _1password
+    # _1password
   ];
 
   guiPackages = with pkgs; [

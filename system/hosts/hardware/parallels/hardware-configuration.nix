@@ -47,7 +47,7 @@
     package = (config.boot.kernelPackages.callPackage ./prl-tools.nix { });
   };
 
-  environment.unfreePackages = [
-    "prl-tools"
-  ];
+#  environment.unfreePackages = [
+#    "prl-tools"
+#  ];
 }
