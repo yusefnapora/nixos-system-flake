@@ -9,31 +9,43 @@
 
   outputs = { self, nixpkgs, home-manager, ... }@attrs: 
   let
-    mkSystemConfig = { system, modules, ... }: nixpkgs.lib.nixosSystem { 
-      inherit system modules;
-      specialArgs = attrs;
+    mkHomeManagerModule = { system, homeManagerFlags, ... }: 
+      home-manager.nixosModules.home-manager {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+
+        home-manager.users.yusef = import ./home-manager;
+
+        home-manager.extraSpecialArgs = {
+          inherit homeManagerFlags;
+        };
+      };
+
+    defaultHomeManagerFlags = {
+      withGUI = true;
+      withSway = true;
     };
+
+    mkSystemConfig = { 
+      system, 
+      modules, 
+      homeManagerFlags ? defaultHomeManagerFlags, 
+      useHomeManager ? true, 
+      ... 
+    }: nixpkgs.lib.nixosSystem { 
+        inherit system;
+        specialArgs = attrs;
+
+        modules = modules ++ nixpkgs.lib.lists.optionals (useHomeManager) [
+          (mkHomeManagerModule { 
+            inherit system homeManagerFlags;
+          })
+        ];
+      };
+
+
   in
   {
-
-    # homeManagerConfigurations = {
-    #   "yusef-x86-gui" = home-manager.lib.homeManagerConfiguration {
-    #     configuration = ./home-manager/default.nix;
-    #     system = "x86_64-linux";
-    #     homeDirectory = "/home/yusef";
-    #     username = "yusef";
-    #     extraSpecialArgs = {
-    #       inherit nixpkgs;
-
-    #       featureFlags = {
-    #         enableGUI = true;
-    #         sound.enable = true;
-    #       };
-    #     };
-    #   };
-
-    # };
-
     # macbook via UTM virtual machine
     nixosConfigurations.nixos = mkSystemConfig {
       system = "aarch64-linux";
@@ -43,7 +55,7 @@
     };
 
     # VMWare guest (windows 11 host)
-    nixosConfigurations.fusion = mkSystemConfig { 
+    nixosConfigurations.virtualboy = mkSystemConfig { 
       system = "x86_64-linux";
       modules = [
         ./system/hosts/vmware-guest.nix

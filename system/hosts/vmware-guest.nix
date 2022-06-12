@@ -16,13 +16,16 @@
     gui.enable = true;
     sway.enable = true;
     key-remap.enable = true;
+    home-manager.enable = true;
+    docker.enable = true;
+    droidcam.enable = true;
   };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "fusion"; # Define your hostname.
+  networking.hostName = "virtualboy"; # Define your hostname.
 
   networking.useDHCP = false;
   networking.interfaces.ens33.useDHCP = true;

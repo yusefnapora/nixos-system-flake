@@ -11,10 +11,6 @@ with lib;
   ];
 
   config = {
-
-    # enable docker
-    virtualisation.docker.enable = true;
-
     # enable ssh server
     services.openssh.enable = true;
 

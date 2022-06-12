@@ -1,4 +1,22 @@
-{ config, pkgs, nixpkgs, lib, ... }:
+{ config, pkgs, nixpkgs, lib, homeManagerFlags, ... }:
+with lib;
+let
+  inherit (homeManagerFlags) withGUI withSway;
+
+  packages = with pkgs; [
+    nixFlakes
+    jq
+    _1password
+  ];
+
+  guiPackages = with pkgs; [
+    kitty
+    alacritty
+    dmenu
+    vscode
+    _1password-gui
+  ];
+in
 {
   imports = [
     ./git.nix
@@ -16,7 +34,7 @@
   programs = {
     home-manager.enable = true;
     vscode = { 
-      enable = true;
+      enable = withGUI;
     };
 
     direnv.enable = true;
@@ -25,17 +43,6 @@
 
   home = {
     stateVersion = "21.11";
-    packages = with pkgs; [
-      kitty
-      dmenu
-      nixFlakes
-      vscode
-      jq
-      docker-compose
-      google-chrome-dev
-      droidcam
-      _1password-gui
-      _1password
-    ];
+    packages = packages ++ lists.optionals (withGUI) guiPackages;
   };
 }
