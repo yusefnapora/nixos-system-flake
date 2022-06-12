@@ -55,6 +55,14 @@
       ];
     };
 
+    # macbook via Parallels VM
+    nixosConfigurations.parallels = mkSystemConfig { 
+      system = "aarch64-linux";
+      modules = [
+        ./system/hosts/parallels-guest.nix
+      ];
+    };
+
     # VMWare guest (windows 11 host)
     nixosConfigurations.virtualboy = mkSystemConfig { 
       system = "x86_64-linux";

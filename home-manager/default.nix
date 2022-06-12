@@ -14,7 +14,7 @@ let
     alacritty
     dmenu
     vscode
-    _1password-gui
+    # _1password-gui # TODO: skip on aarch64 (or figure out how to install beta)
   ];
 in
 {
