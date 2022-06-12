@@ -22,6 +22,6 @@
   networking.hostName = "parallels"; # Define your hostname.
 
   networking.useDHCP = false;
-  networking.interfaces.enp0s6.useDHCP = true;
+  networking.interfaces.enp0s5.useDHCP = true;
 }
 
