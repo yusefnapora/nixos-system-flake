@@ -1,7 +1,7 @@
 { config, pkgs, nixpkgs, lib, homeManagerFlags, ... }:
 with lib;
 let
-  inherit (homeManagerFlags) withGUI withSway;
+  inherit (homeManagerFlags) withGUI withSway system;
 
   packages = with pkgs; [
     nixFlakes
@@ -14,7 +14,9 @@ let
     alacritty
     dmenu
     vscode
-    # _1password-gui # TODO: skip on aarch64 (or figure out how to install beta)
+  ] ++ lists.optionals (system == "x86_64-linux") [
+    # TODO: figure out how to install ARM beta
+    _1password-gui
   ];
 in
 {

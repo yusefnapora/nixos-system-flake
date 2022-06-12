@@ -37,7 +37,7 @@
             };
 
             home-manager.extraSpecialArgs = {
-              inherit homeManagerFlags;
+              homeManagerFlags = homeManagerFlags // { inherit system; };
             };
           }
           
