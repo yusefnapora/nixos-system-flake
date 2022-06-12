@@ -14,6 +14,7 @@
   # custom options
   yusef = {
     gui.enable = true;
+    sound.enable = true;
     sway.enable = true;
     home-manager.enable = true;
     docker.enable = true;
