@@ -11,6 +11,14 @@
       ../default.nix
     ];
 
+  # custom options
+  yusef = {
+    gui.enable = true;
+    sway.enable = true;
+    home-manager.enable = true;
+    docker.enable = true;
+  };
+
   # enable auto-resize of guest display when vm window resizes
   services.spice-vdagentd.enable = true;
 
