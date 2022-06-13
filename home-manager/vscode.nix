@@ -21,6 +21,72 @@ let
       command = "workbench.action.quickOpen";
       when = null;
     }
+
+    # VSpaceCode
+    # Trigger vspacecode in empty editor group
+    {
+        key = "space";
+        command = "vspacecode.space";
+        when = "activeEditorGroupEmpty && focusedView == '' && !whichkeyActive && !inputFocus";
+    }
+    # Trigger vspacecode when sidebar is in focus
+    {
+        key = "space";
+        command = "vspacecode.space";
+        when = "sideBarFocus && !inputFocus && !whichkeyActive";
+    }
+    # Easy navigation in quick open/QuickPick
+    {
+        key = "ctrl+j";
+        command = "workbench.action.quickOpenSelectNext";
+        when = "inQuickOpen";
+    }
+    {
+        key = "ctrl+k";
+        command = "workbench.action.quickOpenSelectPrevious";
+        when = "inQuickOpen";
+    }
+    # Easy navigation in sugesstion/intellisense
+    # Cannot be added to package.json because of conflict with vim's default bindings
+    {
+        key = "ctrl+j";
+        command = "selectNextSuggestion";
+        when = "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus";
+    }
+    {
+        key = "ctrl+k";
+        command = "selectPrevSuggestion";
+        when = "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus";
+    }
+    {
+        key = "ctrl+l";
+        command = "acceptSelectedSuggestion";
+        when = "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus";
+    }
+    #  Easy navigation in parameter hint (i.e. traverse the hints when there's multiple overload for one method)
+    #  Cannot be added to package.json because of conflict with vim's default bindings
+    {
+        key = "ctrl+j";
+        command = "showNextParameterHint";
+        when = "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible";
+    }
+    {
+        key = "ctrl+k";
+        command = "showPrevParameterHint";
+        when = "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible";
+    }
+    #  Easy navigation in parameter hint (i.e. traverse the hints when there's multiple overload for one method)
+    # Cannot be added to package.json because of conflict with vim's default bindings
+    {
+        key = "ctrl+j";
+        command = "showNextParameterHint";
+        when = "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible";
+    }
+    {
+        key = "ctrl+k";
+        command = "showPrevParameterHint";
+        when = "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible";
+    }
   ];
 
   extensions = (with pkgs.vscode-extensions; [
@@ -28,6 +94,8 @@ let
     ms-azuretools.vscode-docker
     ms-vscode-remote.remote-ssh
     vscodevim.vim
+    vspacecode.vspacecode
+    vspacecode.whichkey
   ]) ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
     { # spacemacs color theme
       name = "spacemacs";
@@ -76,7 +144,43 @@ in
             after = ["Esc" "A"];
           }
         ];
-      };
+
+        # VSpaceCode settings
+        "vim.easymotion" = true;
+        "vim.useSystemClipboard" = true;
+        "vim.normalModeKeyBindingsNonRecursive" = [
+          {
+            before = ["<space>"];
+            commands = ["vspacecode.space"];
+          }
+          {
+            before = [","];
+            commands = [
+              "vspacecode.space"
+              {
+                command = "whichkey.triggerKey";
+                args = "m";
+              }
+            ];
+          }
+        ];
+      "vim.visualModeKeyBindingsNonRecursive" = [
+          {
+            before = ["<space>"];
+            commands = ["vspacecode.space"];
+          }
+          {
+            before = [","];
+            commands = [
+              "vspacecode.space"
+              {
+                command = "whichkey.triggerKey";
+                args = "m";
+              }
+            ];
+          }
+        ];
+      }; 
     };
   };
 }
