@@ -16,7 +16,7 @@ let
     }
   ];
   
-  defaultTheme = "spacemacs";
+  defaultTheme = "Spacemacs";
 in
 {
   config = mkIf (guiEnabled) {
@@ -26,7 +26,7 @@ in
       inherit extensions;
 
       userSettings = {
-        "workbench.colorTheme" = "Spacemacs";
+        "workbench.colorTheme" = "${defaultTheme}";
       };
     };
   };
