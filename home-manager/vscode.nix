@@ -44,6 +44,18 @@ in
         "terminal.integrated.fontFamily" = "Fira Mono for Powerline";
         "terminal.integrated.fontSize" = 16;
         "terminal.integrated.fontWeight" = 450;
+
+        # I'm addicted to the macOS "emacs-like" shortcuts, but just ctrl-a and ctrl-e
+        "vim.insertModeKeyBindings" = [
+          {
+            before = ["<C-a>"];
+            after = ["Esc" "I"];
+          }
+          {
+            before = ["<C-e>"];
+            after = ["Esc" "A"];
+          }
+        ];
       };
     };
   };
