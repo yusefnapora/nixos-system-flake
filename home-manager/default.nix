@@ -12,7 +12,6 @@ let
     kitty
     alacritty
     dmenu
-    vscode
   ];
 in
 {
@@ -20,6 +19,7 @@ in
     ./git.nix
     ./sway.nix
     ./fish.nix
+    ./vscode.nix
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
@@ -31,9 +31,6 @@ in
 
   programs = {
     home-manager.enable = true;
-    vscode = { 
-      enable = withGUI;
-    };
 
     direnv.enable = true;
     direnv.nix-direnv.enable = true;
