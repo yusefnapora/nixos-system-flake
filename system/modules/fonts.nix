@@ -6,6 +6,7 @@ in
 {
   config = mkIf (enable) {
     fonts.fonts = with pkgs; [
+      (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
       fira-code
       noto-fonts
       powerline-fonts

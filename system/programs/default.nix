@@ -8,6 +8,7 @@ let
       git
       tmux
       jq
+      sqlite
   ];
 
   guiPackages = with pkgs; [
@@ -46,6 +47,7 @@ in
       experimental-features = nix-command flakes
       '';
 
+      programs.fish.enable = true;
 
       environment.systemPackages = packages ++ 
         lists.optionals guiEnabled guiPackages;
