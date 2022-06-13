@@ -93,6 +93,7 @@ let
     bbenoist.nix
     ms-azuretools.vscode-docker
     ms-vscode-remote.remote-ssh
+    ms-vsliveshare.vsliveshare
     vscodevim.vim
     vspacecode.vspacecode
     vspacecode.whichkey
