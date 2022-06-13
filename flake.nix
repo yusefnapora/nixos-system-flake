@@ -25,7 +25,7 @@
         specialArgs = attrs;
 
         modules = modules ++ nixpkgs.lib.lists.optionals (useHomeManager) [
-          
+
           home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
@@ -40,7 +40,7 @@
               homeManagerFlags = homeManagerFlags // { inherit system; };
             };
           }
-          
+  
         ];
       };
 

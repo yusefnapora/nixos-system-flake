@@ -1,10 +1,15 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, homeManagerFlags, ... }:
+with lib;
+let
+  inherit (homeManagerFlags) withGUI;
+in
 {
 
   home.packages = with pkgs; [
       exa
-      xclip
       starship
+  ] ++ lists.optionals (withGUI) [
+    xclip
   ];
 
   programs.fish = {
@@ -12,6 +17,7 @@
 
       shellAliases = {
           ls = "exa";
+      } // attrsets.optionalAttrs (withGUI) {
           pbcopy = "xclip -selection clipboard";
           pbpaste = "xclip -selection clipboard -o";
       };
