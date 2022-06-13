@@ -12,4 +12,18 @@
 
     users.users.root.openssh.authorizedKeys.keys =
       config.users.users.yusef.openssh.authorizedKeys.keys;
+
+    # allow running nixos-rebuild as root without a password.
+    # requires us to explicitly pull in nixos-rebuild from pkgs, so
+    # we get the right path in the sudo config
+    environment.systemPackages = [ pkgs.nixos-rebuild ];
+    security.sudo.extraRules = [
+        {  users = [ "yusef" ];
+            commands = [
+            { command = "${pkgs.nixos-rebuild}/bin/nixos-rebuild" ;
+                options= [ "NOPASSWD" "SETENV" ];
+            }
+            ];
+        }
+    ];
 }

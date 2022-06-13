@@ -3,6 +3,26 @@ with lib;
 let
   guiEnabled = homeManagerFlags.withGUI;
 
+  keybindings = [
+    {
+      key = "ctrl+a";
+      command = "cursorHome";
+      when = "textInputFocus";
+    }
+
+    {
+      key = "ctrl+e";
+      command = "cursorEnd";
+      when = "textInputFocus";
+    }
+
+    {
+      key = "ctrl+shift+u";
+      command = "workbench.action.quickOpen";
+      when = null;
+    }
+  ];
+
   extensions = (with pkgs.vscode-extensions; [
     bbenoist.nix
     ms-azuretools.vscode-docker
