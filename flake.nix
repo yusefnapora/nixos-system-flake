@@ -5,9 +5,12 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-vscode-server.url = "github:msteen/nixos-vscode-server";
+    nixos-vscode-server.flake = false;
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@attrs: 
+  outputs = inputs@{ self, nixpkgs, home-manager, ... }: 
   let
     defaultHomeManagerFlags = {
       withGUI = true;
@@ -22,7 +25,7 @@
       ... 
     }: nixpkgs.lib.nixosSystem { 
         inherit system;
-        specialArgs = attrs;
+        specialArgs = inputs;
 
         modules = modules ++ nixpkgs.lib.lists.optionals (useHomeManager) [
 
@@ -37,7 +40,11 @@
             };
 
             home-manager.extraSpecialArgs = {
-              homeManagerFlags = homeManagerFlags // { inherit system; };
+              inherit system inputs;
+              
+              homeManagerFlags = homeManagerFlags // { 
+                inherit system; 
+              };
             };
           }
   
