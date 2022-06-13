@@ -6,7 +6,6 @@ let
   packages = with pkgs; [
     nixFlakes
     jq
-    # _1password
   ];
 
   guiPackages = with pkgs; [
@@ -14,9 +13,6 @@ let
     alacritty
     dmenu
     vscode
-  ] ++ lists.optionals (system == "x86_64-linux") [
-    # TODO: figure out how to install ARM beta
-    _1password-gui
   ];
 in
 {

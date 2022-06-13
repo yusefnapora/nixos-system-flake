@@ -13,6 +13,7 @@
 
   # custom options
   yusef = {
+    system = "aarch64-linux";
     gui.enable = true;
     sound.enable = true;
     sway.enable = true;

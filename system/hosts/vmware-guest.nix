@@ -14,6 +14,7 @@
   # custom options
   yusef = {
     gui.enable = true;
+    _1password.enable = true;
     sound.enable = true;
     sway.enable = true;
     key-remap.enable = true;
