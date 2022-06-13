@@ -7,6 +7,7 @@ let
     bbenoist.nix
     ms-azuretools.vscode-docker
     ms-vscode-remote.remote-ssh
+    vscodevim.vim
   ]) ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
     { # spacemacs color theme
       name = "spacemacs";
@@ -21,8 +22,6 @@ let
       version = "0.239.0";
       sha256 = "c967933a9ce8459faf275904275dda7808d7d45b476c2b8ca2af343e20b5c814";
     }
-
-
   ];
   
   defaultTheme = "Spacemacs";
