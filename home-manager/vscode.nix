@@ -43,6 +43,7 @@ in
         "editor.fontLigatures" = true;
 
         "terminal.integrated.fontFamily" = "Fira Mono for Powerline";
+        "terminal.integrated.fontSize" = 16;
         "terminal.integrated.fontWeight" = 450;
       };
     };
