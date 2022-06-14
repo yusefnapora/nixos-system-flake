@@ -97,9 +97,9 @@ let
     vspacecode.vspacecode
     vspacecode.whichkey
   ]) 
-  ++ lists.optionals (system == "x86_64-linux") [
+  ++ lists.optionals (system == "x86_64-linux") (with pkgs.vscode-extensions; [
     ms-vsliveshare.vsliveshare
-  ]
+  ])
   ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
     { # spacemacs color theme
       name = "spacemacs";
