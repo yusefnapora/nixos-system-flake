@@ -1,6 +1,7 @@
 { config, lib, pkgs, homeManagerFlags, ... }:
 with lib;
 let
+  inherit (homeManagerFlags) system;
   guiEnabled = homeManagerFlags.withGUI;
 
   keybindings = [
@@ -93,11 +94,14 @@ let
     bbenoist.nix
     ms-azuretools.vscode-docker
     ms-vscode-remote.remote-ssh
-    ms-vsliveshare.vsliveshare
     vscodevim.vim
     vspacecode.vspacecode
     vspacecode.whichkey
-  ]) ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+  ]) 
+  ++ lists.optionals (system == "x86_64-linux") [
+    ms-vsliveshare.vsliveshare
+  ]
+  ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
     { # spacemacs color theme
       name = "spacemacs";
       publisher = "rkwan94";
