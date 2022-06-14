@@ -135,6 +135,7 @@ in
       userSettings = {
         "workbench.colorTheme" = "${defaultTheme}";
 
+        "editor.tabSize" = 2;
         "editor.fontFamily" = "'Fira Code'";
         "editor.fontSize" = 16;
         "editor.fontWeight" = 450;
