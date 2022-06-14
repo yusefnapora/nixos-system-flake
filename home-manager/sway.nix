@@ -1,9 +1,9 @@
-{ config, homeManagerFlags, lib, pkgs, ... }:
+{ config, nixosConfig, lib, pkgs, ... }:
 with lib;
 let
-  inherit (homeManagerFlags) withSway;
+  cfg = nixosConfig.yusef.sway;
 in {
-  config = mkIf (withSway) {
+  config = mkIf (cfg.enable) {
     programs.fish.shellAliases = {
       # alias to set custom resolution on vmware guest.
       # TODO: move to vmware host config, or figure out why vmware tools isn't

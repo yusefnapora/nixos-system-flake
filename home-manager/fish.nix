@@ -1,7 +1,7 @@
-{ config, pkgs, lib, homeManagerFlags, ... }:
+{ config, nixosConfig, pkgs, lib, ... }:
 with lib;
 let
-  inherit (homeManagerFlags) withGUI;
+  withGUI = nixosConfig.yusef.gui.enable;
 in
 {
 

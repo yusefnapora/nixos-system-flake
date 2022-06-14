@@ -1,8 +1,7 @@
-{ config, lib, pkgs, homeManagerFlags, ... }:
+{ config, system, nixosConfig, lib, pkgs, ... }:
 with lib;
 let
-  inherit (homeManagerFlags) system;
-  guiEnabled = homeManagerFlags.withGUI;
+  guiEnabled = nixosConfig.yusef.gui.enable;
 
   keybindings = [
     {

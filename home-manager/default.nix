@@ -1,7 +1,8 @@
-{ config, pkgs, nixpkgs, lib, homeManagerFlags, ... }:
+{ config, nixosConfig, pkgs, nixpkgs, lib, ... }:
 with lib;
 let
-  inherit (homeManagerFlags) withGUI withSway system;
+  withGUI = nixosConfig.yusef.gui.enable;
+  withSway = nixosConfig.yusef.sway.enable;
 
   packages = with pkgs; [
     nixFlakes
