@@ -19,6 +19,10 @@
             ".idea/"
         ];
 
+        extraConfig = {
+            init.defaultBranch = "main";
+        };
+
         difftastic = { 
           enable = true;
           background = "dark"; 
