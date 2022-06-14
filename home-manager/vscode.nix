@@ -114,6 +114,13 @@ let
       version = "0.239.0";
       sha256 = "c967933a9ce8459faf275904275dda7808d7d45b476c2b8ca2af343e20b5c814";
     }
+
+    { # standard-js code style
+      name = "vscode-standard";
+      publisher = "standard";
+      version = "2.1.0";
+      sha256 = "f329e5097cd31b7823d006a659bb2da098b1b1b7c6a8affec869036ed5a5d601";
+    }
   ];
   
   defaultTheme = "Spacemacs";
