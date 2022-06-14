@@ -25,6 +25,8 @@ in
       shellInit = ''
       # init starship prompt
       ${pkgs.starship}/bin/starship init fish | source
+
+      set -x EDITOR vim
       '';
 
   };
