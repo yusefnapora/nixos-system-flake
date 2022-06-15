@@ -15,9 +15,9 @@ let
     kitty
     alacritty
     dmenu
-    slack
   ] ++ lists.optionals (isX86) [
     zoom-us
+    slack
   ];
 in
 {
