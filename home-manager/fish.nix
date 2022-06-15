@@ -17,6 +17,7 @@ in
 
       shellAliases = {
           ls = "exa";
+          nix-search = "nix-env -qaP"; 
       } // attrsets.optionalAttrs (withGUI) {
           pbcopy = "xclip -selection clipboard";
           pbpaste = "xclip -selection clipboard -o";
