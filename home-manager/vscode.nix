@@ -3,6 +3,47 @@ with lib;
 let
   guiEnabled = nixosConfig.yusef.gui.enable;
 
+  extensions = (with pkgs.vscode-extensions; [
+    bbenoist.nix
+    ms-azuretools.vscode-docker
+    ms-vscode-remote.remote-ssh
+    vscodevim.vim
+    vspacecode.vspacecode
+    vspacecode.whichkey
+  ]) 
+  ++ lists.optionals (system == "x86_64-linux") (with pkgs.vscode-extensions; [
+    ms-vsliveshare.vsliveshare
+  ])
+  ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+    { # spacemacs color theme
+      name = "spacemacs";
+      publisher = "rkwan94";
+      version = "0.0.2";
+      sha256 = "094d4ae114bd3479014cd4517570cd446e4333e34bc859642a0d28ddefa06a7e";
+    }
+
+    { # vscode remote containers
+      name = "remote-containers";
+      publisher = "ms-vscode-remote";
+      version = "0.239.0";
+      sha256 = "c967933a9ce8459faf275904275dda7808d7d45b476c2b8ca2af343e20b5c814";
+    }
+
+    { # standard-js code style
+      name = "vscode-standard";
+      publisher = "standard";
+      version = "2.1.0";
+      sha256 = "f329e5097cd31b7823d006a659bb2da098b1b1b7c6a8affec869036ed5a5d601";
+    }
+
+    { # nand2tetris
+      name = "nand2tetris";
+      publisher= "leafvmaple";
+      version = "1.1.1";
+      sha256 = "sha256-vfsVvXnW+LuUL93D07lHGlsOrGlMrwxoIJfQ9Ec0k38=";
+    }
+  ];
+
   keybindings = [
     {
       key = "ctrl+a";
@@ -89,40 +130,6 @@ let
     }
   ];
 
-  extensions = (with pkgs.vscode-extensions; [
-    bbenoist.nix
-    ms-azuretools.vscode-docker
-    ms-vscode-remote.remote-ssh
-    vscodevim.vim
-    vspacecode.vspacecode
-    vspacecode.whichkey
-  ]) 
-  ++ lists.optionals (system == "x86_64-linux") (with pkgs.vscode-extensions; [
-    ms-vsliveshare.vsliveshare
-  ])
-  ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-    { # spacemacs color theme
-      name = "spacemacs";
-      publisher = "rkwan94";
-      version = "0.0.2";
-      sha256 = "094d4ae114bd3479014cd4517570cd446e4333e34bc859642a0d28ddefa06a7e";
-    }
-
-    { # vscode remote containers
-      name = "remote-containers";
-      publisher = "ms-vscode-remote";
-      version = "0.239.0";
-      sha256 = "c967933a9ce8459faf275904275dda7808d7d45b476c2b8ca2af343e20b5c814";
-    }
-
-    { # standard-js code style
-      name = "vscode-standard";
-      publisher = "standard";
-      version = "2.1.0";
-      sha256 = "f329e5097cd31b7823d006a659bb2da098b1b1b7c6a8affec869036ed5a5d601";
-    }
-  ];
-  
   defaultTheme = "Spacemacs";
 in
 {
