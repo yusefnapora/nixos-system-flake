@@ -4,6 +4,8 @@ let
   withGUI = nixosConfig.yusef.gui.enable;
   withSway = nixosConfig.yusef.sway.enable;
 
+  isX86 = pkgs.stdenv.targetPlatform == "x86_64-linux";
+
   packages = with pkgs; [
     nixFlakes
     jq
@@ -13,6 +15,9 @@ let
     kitty
     alacritty
     dmenu
+    slack
+  ] ++ lists.optionals (isX86) [
+    zoom-us
   ];
 in
 {
