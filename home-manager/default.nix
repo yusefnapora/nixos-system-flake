@@ -1,10 +1,10 @@
-{ config, nixosConfig, pkgs, nixpkgs, lib, ... }:
+{ config, system, nixosConfig, pkgs, nixpkgs, lib, ... }:
 with lib;
 let
   withGUI = nixosConfig.yusef.gui.enable;
   withSway = nixosConfig.yusef.sway.enable;
 
-  isX86 = pkgs.stdenv.targetPlatform == "x86_64-linux";
+  isX86 = system == "x86_64-linux";
 
   packages = with pkgs; [
     nixFlakes
