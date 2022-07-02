@@ -78,5 +78,11 @@
       ];
     };
 
+
+    # Intel NUC (11th gen)
+    nixosConfigurations.nux = mkSystemConfig {
+      system = "x86_64-linux";
+      modules = [ ./system/hosts/nux.nix ];
+    };
   };
 }
