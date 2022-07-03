@@ -16,6 +16,7 @@
     gui.enable = true;
     _1password.enable = true;
     sound.enable = true;
+    bluetooth.enable = true;
     sway.enable = true;
     key-remap.enable = true;
     docker.enable = true;
