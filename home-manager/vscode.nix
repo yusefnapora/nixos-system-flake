@@ -10,6 +10,7 @@ let
     vscodevim.vim
     vspacecode.vspacecode
     vspacecode.whichkey
+    skyapps.fish-vscode
   ]) 
   ++ lists.optionals (system == "x86_64-linux") (with pkgs.vscode-extensions; [
     ms-vsliveshare.vsliveshare
