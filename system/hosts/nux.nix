@@ -18,7 +18,11 @@
     sound.enable = true;
     bluetooth.enable = true;
     sway.enable = true;
-    key-remap.enable = true;
+    key-remap = { 
+      enable = true; 
+      caps-to-ctrl-esc= true; 
+      swap-left-alt-and-super= true; 
+    };
     docker.enable = true;
     droidcam.enable = true;
   };

@@ -17,7 +17,10 @@
     _1password.enable = true;
     sound.enable = true;
     sway.enable = true;
-    key-remap.enable = true;
+    key-remap = { 
+      enable = true; 
+      caps-to-ctrl-esc= true; 
+    };
     docker.enable = true;
     droidcam.enable = true;
   };
