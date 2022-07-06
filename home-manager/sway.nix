@@ -2,6 +2,11 @@
 with lib;
 let
   cfg = nixosConfig.yusef.sway;
+
+  hardwareCursorsFix = strings.optionalString cfg.no-hardware-cursors-fix ''
+    # fix for black screen in vmware guest. TODO: move to vmware host config
+    set -x WLR_NO_HARDWARE_CURSORS 1
+  '';
 in {
   config = mkIf (cfg.enable) {
     programs.fish.shellAliases = {
@@ -18,8 +23,7 @@ in {
     # if running from tty1, start sway
     set TTY1 (tty)
 
-    # fix for black screen in vmware guest. TODO: move to vmware host config
-    set -x WLR_NO_HARDWARE_CURSORS 1
+    ${hardwareCursorsFix}
 
     [ "$TTY1" = "/dev/tty1" ] && exec sway
     '';
@@ -33,6 +37,10 @@ in {
           modifier = "Mod4";
           terminal = "kitty";
           output."*" = { bg = "#aaaaaa solid_color"; };
+
+          input."type:pointer" = mkIf cfg.natural-scrolling { 
+            natural_scroll = "enabled";
+          };
         };
 
         extraSessionCommands = ''

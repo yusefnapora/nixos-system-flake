@@ -6,6 +6,19 @@ let cfg = config.yusef.sway;
 in {
   options.yusef.sway = {
     enable = mkEnableOption "sway";
+
+    # options below are used in home-manager config
+    natural-scrolling = mkOption {
+      type = types.bool;
+      description = "Set all mouse inputs to \"natural\" (reversed) scrolling";
+      default = false;
+    };
+
+    no-hardware-cursors-fix = mkOption {
+      type = types.bool;
+      description = "Set WLR_NO_HARDWARE_CURSORS to fix issues with rendering in VM guests";
+      default = false;
+    };
   };
 
   config = mkIf cfg.enable {

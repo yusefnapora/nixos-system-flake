@@ -17,7 +17,10 @@
     _1password.enable = true;
     sound.enable = true;
     bluetooth.enable = true;
-    sway.enable = true;
+    sway = { 
+      enable = true; 
+      natural-scrolling = true;
+    };
     key-remap = { 
       enable = true; 
       caps-to-ctrl-esc= true; 
