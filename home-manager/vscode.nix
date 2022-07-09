@@ -3,6 +3,8 @@ with lib;
 let
   guiEnabled = nixosConfig.yusef.gui.enable;
 
+  home.packages = with pkgs; [ rust-analyzer ];
+
   extensions = (with pkgs.vscode-extensions; [
     bbenoist.nix
     ms-azuretools.vscode-docker
@@ -11,6 +13,7 @@ let
     vspacecode.vspacecode
     vspacecode.whichkey
     skyapps.fish-vscode
+    rust-lang.rust-analyzer
   ]) 
   ++ lists.optionals (system == "x86_64-linux") (with pkgs.vscode-extensions; [
     ms-vsliveshare.vsliveshare
@@ -141,6 +144,9 @@ in
       inherit extensions;
 
       userSettings = {
+        # fix server path for rust-analyzer plugin
+        "rust-analyzer.server.path" = "${pkgs.rust-analyzer}/bin/rust-analyzer";
+
         "workbench.colorTheme" = "${defaultTheme}";
 
         "editor.tabSize" = 2;
