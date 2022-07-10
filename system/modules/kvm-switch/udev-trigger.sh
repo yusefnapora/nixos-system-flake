@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+# pipe everything to logger
+exec 1> >(logger -s -t $(basename $0)) 2>&1
+
+echo "hello from udev script. here are my args: $@"
+echo "path: $PATH"
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# TODO: don't hardcode these
+OUR_INPUT="HDMI_3"
+OTHER_INPUT="HDMI_1"
+OTHER_MAC_ADDR="e0:d5:5e:d4:2a:4e"
+
+# config file for lgtv is in /root/.config/lgtv/config
+# need to set HOME when called by udev
+export HOME=/root
+
+function device_added() {
+  echo "switching TV to $OUR_INPUT"
+  $DIR/lgtv tv switchInput $OUR_INPUT
+}
+
+function device_removed() {
+  echo "switching TV to $OTHER_INPUT and sending WoL packet to $OTHER_MAC_ADDR"
+  $DIR/wakeonlan $OTHER_MAC_ADDR
+  $DIR/lgtv tv switchInput $OTHER_INPUT
+}
+
+if [ "$1" == "add" ]; then
+  device_added
+elif [ "$1" == "remove" ]; then
+  device_removed
+else
+  echo "usage: $0 [add|remove]"
+  exit 1
+fi

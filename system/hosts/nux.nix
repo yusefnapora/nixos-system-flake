@@ -28,6 +28,7 @@
     };
     docker.enable = true;
     droidcam.enable = true;
+    kvm-switch.enable = true;
   };
 
   # Use the systemd-boot EFI boot loader.
