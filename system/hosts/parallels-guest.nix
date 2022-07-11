@@ -17,7 +17,13 @@
     _1password.enable = true;
     gui.enable = true;
     sound.enable = true;
-    sway.enable = true;
+    sway = { 
+      enable = true;
+      no-hardware-cursors-fix = true;
+      startup-commands = [
+        { command = "swaymsg -- output Virtual-1 scale 2 mode --custom 3600x2252@120Hz"; always = true; }
+      ];
+    };
     docker.enable = true;
   };
 

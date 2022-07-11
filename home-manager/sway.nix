@@ -41,6 +41,9 @@ in {
           input."type:pointer" = mkIf cfg.natural-scrolling { 
             natural_scroll = "enabled";
           };
+
+          startup = cfg.startup-commands;
+
         };
 
         extraSessionCommands = ''

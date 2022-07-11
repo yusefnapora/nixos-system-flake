@@ -19,6 +19,12 @@ in {
       description = "Set WLR_NO_HARDWARE_CURSORS to fix issues with rendering in VM guests";
       default = false;
     };
+
+    startup-commands = mkOption {
+      type = types.listOf types.attrs;
+      description = "Extra stuff to add to home-manager's sway.extraSessionCommands option";
+      default = [];
+    };
   };
 
   config = mkIf cfg.enable {
