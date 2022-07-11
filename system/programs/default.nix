@@ -9,6 +9,7 @@ let
       tmux
       jq
       sqlite
+      htop
   ];
 
   guiPackages = with pkgs; [
