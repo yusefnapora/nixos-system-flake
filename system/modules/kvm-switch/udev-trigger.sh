@@ -3,8 +3,10 @@
 # pipe everything to logger
 exec 1> >(logger -s -t $(basename $0)) 2>&1
 
-echo "hello from udev script. here are my args: $@"
-echo "path: $PATH"
+if [ -f /tmp/yusef-kvm-ignore ];
+  echo "ignoring kvm event. remove /tmp/yusef-kvm-ignore to re-enable"
+  exit 0
+fi
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
