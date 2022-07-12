@@ -24,8 +24,11 @@
     security.sudo.extraRules = [
         {  users = [ "yusef" ];
             commands = [
-            { command = "${pkgs.nixos-rebuild}/bin/nixos-rebuild" ;
-                options= [ "NOPASSWD" "SETENV" ];
+            { command = "${pkgs.nixos-rebuild}/bin/nixos-rebuild";
+              options = [ "NOPASSWD" "SETENV" ];
+            }
+            { command = "${pkgs.systemd}/bin/systemctl";
+              options = [ "NOPASSWD" "SETENV" ];
             }
             ];
         }
