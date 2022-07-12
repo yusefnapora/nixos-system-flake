@@ -3,7 +3,7 @@
 # pipe everything to logger
 exec 1> >(logger -s -t $(basename $0)) 2>&1
 
-if [ -f /tmp/yusef-kvm-ignore ];
+if [ -f /tmp/yusef-kvm-ignore ]; then
   echo "ignoring kvm event. remove /tmp/yusef-kvm-ignore to re-enable"
   exit 0
 fi
