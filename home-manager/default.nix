@@ -26,6 +26,7 @@ in
     ./sway.nix
     ./fish.nix
     ./vscode.nix
+    ./kitty.nix
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
