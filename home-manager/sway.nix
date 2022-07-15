@@ -3,6 +3,8 @@ with lib;
 let
   cfg = nixosConfig.yusef.sway;
 
+  backgroundImage = (builtins.path { name = "jwst-carina.jpg"; path = ./backgrounds/jwst-carina.jpg; });
+
   hardwareCursorsFix = strings.optionalString cfg.no-hardware-cursors-fix ''
     # fix for black screen in vmware guest. TODO: move to vmware host config
     set -x WLR_NO_HARDWARE_CURSORS 1
@@ -36,7 +38,7 @@ in {
         config = { 
           modifier = "Mod4";
           terminal = "kitty";
-          output."*" = { bg = "#aaaaaa solid_color"; };
+          output."*" = { bg = "${backgroundImage} fill"; };
 
           input."type:pointer" = mkIf cfg.natural-scrolling { 
             natural_scroll = "enabled";
