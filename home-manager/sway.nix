@@ -43,23 +43,44 @@ in {
           ];
           modules-left = [ "sway/workspaces" "sway/mode" "wlr/taskbar" ];
           modules-center = [ "sway/window" ];
-          modules-right = [ "custom/clock" ];
+          modules-right = [ "clock" ];
 
           "sway/workspaces" = {
             disable-scroll = true;
             all-outputs = true;
           };
-          
-          # waybar's built-in clock module complains about
-          # some missing locale file. can't be bothered to
-          # track down the real fix.
-          "custom/clock" = {
-            format = "    {}    ";
-            exec = "date +'%I:%M %p'";
-            interval = 5;
+
+          "clock" = {
+            format = "{:%A %b %d%t%I:%M %p}";
           };
         };
-      }; 
+      };
+      style = ''
+      window#waybar {
+        background: rgba(43, 48, 59, 0.5);
+        color: white;
+      }
+
+      #workspaces button {
+          padding: 0 5px;
+          background: transparent;
+          color: white;
+          border-bottom: 3px solid transparent;
+      }
+
+      #workspaces button.focused {
+          background: #64727D;
+          border-bottom: 3px solid white;
+      }
+
+      #clock {
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-right: 10px;
+        border-radius: 10px;
+        background-color: rgba(100, 100, 100, 0.5);
+      }
+      '';
     };
 
     wayland.windowManager.sway = {
