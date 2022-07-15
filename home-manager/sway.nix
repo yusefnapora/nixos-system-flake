@@ -30,6 +30,29 @@ in {
     [ "$TTY1" = "/dev/tty1" ] && exec sway
     '';
 
+    programs.waybar = { 
+      enable = true;
+      settings = {
+        mainBar = {
+          layer = "top";
+          position = "bottom";
+          height = 34;
+          output = [
+            "DP-1"
+            "Virtual-1"
+          ];
+          modules-left = [ "sway/workspaces" "sway/mode" "wlr/taskbar" ];
+          modules-center = [ "sway/window" ];
+          modules-right = [ "clock" ];
+        };
+
+        "sway/workspaces" = {
+          disable-scroll = true;
+          all-outputs = true;
+        };
+
+      }; 
+    };
 
     wayland.windowManager.sway = {
         enable = true;
@@ -40,7 +63,14 @@ in {
           terminal = "kitty";
           output."*" = { bg = "${backgroundImage} fill"; };
 
+          gaps.inner = 2;
+          gaps.outer = 2;
 
+          bars = [
+            {
+              command = "waybar";
+            }
+          ];
 
           input."type:pointer" = mkIf cfg.natural-scrolling { 
             natural_scroll = "enabled";
