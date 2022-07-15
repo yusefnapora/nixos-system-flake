@@ -6,7 +6,7 @@ let
   backgroundImage = (builtins.path { name = "jwst-carina.jpg"; path = ./backgrounds/jwst-carina.jpg; });
 
   hardwareCursorsFix = strings.optionalString cfg.no-hardware-cursors-fix ''
-    # fix for black screen in vmware guest. TODO: move to vmware host config
+    # fix for black screen in vmware guest. 
     set -x WLR_NO_HARDWARE_CURSORS 1
   '';
 in {
@@ -39,6 +39,8 @@ in {
           modifier = "Mod4";
           terminal = "kitty";
           output."*" = { bg = "${backgroundImage} fill"; };
+
+
 
           input."type:pointer" = mkIf cfg.natural-scrolling { 
             natural_scroll = "enabled";
