@@ -10,6 +10,7 @@ let
       jq
       sqlite
       htop
+      killall
   ];
 
   guiPackages = with pkgs; [
