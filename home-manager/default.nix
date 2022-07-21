@@ -15,6 +15,7 @@ let
     kitty
     alacritty
     dmenu
+    logseq
   ] ++ lists.optionals (isX86) [
     zoom-us
     slack
