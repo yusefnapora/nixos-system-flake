@@ -25,6 +25,7 @@ in
         ./droidcam.nix
         ./docker.nix
         ./1password.nix
+        ./obs.nix
     ];
 
     options.yusef = {

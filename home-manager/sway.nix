@@ -105,7 +105,10 @@ in {
             natural_scroll = "enabled";
           };
 
-          startup = cfg.startup-commands;
+          startup = [
+            { command = "dbus-sway-environment"; }
+            { command = "configure-gtk"; }
+          ] ++ cfg.startup-commands;
 
         };
 

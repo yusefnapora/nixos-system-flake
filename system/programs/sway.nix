@@ -28,7 +28,24 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ wdisplays ];
-    programs.sway.enable = true;
+    environment.systemPackages = with pkgs; [ 
+      wdisplays 
+      glib
+      grim
+      slurp
+      wl-clipboard
+      mako 
+    ];
+    programs.sway = { 
+      enable = true;
+      wrapperFeatures.gtk = true; 
+    };
+
+    services.dbus.enable = true;
+    xdg.portal = {
+      enable = true;
+      wlr.enable = true;
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    };
   };
 }

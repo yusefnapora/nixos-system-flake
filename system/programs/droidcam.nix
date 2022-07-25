@@ -19,7 +19,7 @@ in {
         ];
 
         boot.extraModprobeConfig = ''
-        options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
+        options v4l2loopback exclusive_caps=1 video_nr=1 card_label="Virtual Camera (droidcam)"
         '';
 
         environment.systemPackages = [ pkgs.droidcam ];
