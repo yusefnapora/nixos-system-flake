@@ -24,7 +24,7 @@ in
 
     # 
     boot.extraModprobeConfig = ''
-    options v4l2loopback exclusive_caps=1 video_nr=0,1 card_label="${dev-0-label}","${dev-1-label}"
+    options v4l2loopback exclusive_caps=1 video_nr=0,1 card_label="${dev-0-label},${dev-1-label}"
     '';
   }; 
 }
