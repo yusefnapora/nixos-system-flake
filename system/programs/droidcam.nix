@@ -8,20 +8,8 @@ in {
     };
 
     config = mkIf (cfg.enable) {
-        # enable the v4l2loopback and snd-aloop modules
-        boot.extraModulePackages = with config.boot.kernelPackages; [
-            v4l2loopback.out
-        ];
-
-        boot.kernelModules = [
-            "v4l2loopback"
-            "snd-aloop"
-        ];
-
-        boot.extraModprobeConfig = ''
-        options v4l2loopback exclusive_caps=1 video_nr=1 card_label="Virtual Camera (droidcam)"
-        '';
-
+        # enable the snd-aloop module. video device setup is in ./v2l2loopback.nix
+        boot.kernelModules = [ "snd-aloop" ];
         environment.systemPackages = [ pkgs.droidcam ];
     };
 

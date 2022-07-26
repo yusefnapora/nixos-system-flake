@@ -8,18 +8,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # enable the v4l2loopback and snd-aloop modules
-    boot.extraModulePackages = with config.boot.kernelPackages; [
-        v4l2loopback.out
-    ];
-
-    boot.kernelModules = [
-        "v4l2loopback"
-    ];
-
-    boot.extraModprobeConfig = ''
-    options v4l2loopback exclusive_caps=1 video_nr=2 card_label="OBS Virtual camera"
-    '';
+    # See ./v4l2loopback.nix for virtual camera video device stuff
 
     environment.systemPackages = with pkgs; [
       obs-studio

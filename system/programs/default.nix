@@ -26,6 +26,7 @@ in
         ./docker.nix
         ./1password.nix
         ./obs.nix
+        ./v4l2loopback.nix
     ];
 
     options.yusef = {
