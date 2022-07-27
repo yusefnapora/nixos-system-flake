@@ -30,6 +30,15 @@
             { command = "${pkgs.systemd}/bin/systemctl";
               options = [ "NOPASSWD" "SETENV" ];
             }
+            # reboot and shutdown are symlinks to systemctl,
+            # but need to be authorized in addition to the systemctl binary
+            # to allow nopasswd sudo
+            { command = "/run/current-system/sw/bin/shutdown";
+              options = [ "NOPASSWD" "SETENV" ];
+            }
+            { command = "/run/current-system/sw/bin/reboot";
+              options = [ "NOPASSWD" "SETENV" ];
+            }           
             ];
         }
     ];
