@@ -37,6 +37,7 @@ in {
       mako 
       xdg-desktop-portal-gtk
       xdg-desktop-portal-wlr
+      xdg-utils
     ];
     programs.sway = { 
       enable = true;
