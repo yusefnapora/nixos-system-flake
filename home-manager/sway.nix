@@ -30,6 +30,11 @@ in {
     [ "$TTY1" = "/dev/tty1" ] && exec sway
     '';
 
+    programs.mako = {
+      enable = true;
+      font = "Fira Code Normal 9";
+    };
+
     programs.waybar = { 
       enable = true;
       settings = {
