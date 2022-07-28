@@ -144,6 +144,9 @@ in
       inherit extensions;
 
       userSettings = {
+        # disable auto-update notifications
+        "update.mode" = "none";
+        
         # fix server path for rust-analyzer plugin
         "rust-analyzer.server.path" = "${pkgs.rust-analyzer}/bin/rust-analyzer";
 
