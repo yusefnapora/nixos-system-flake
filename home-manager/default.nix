@@ -26,6 +26,7 @@ in
     ./git.nix
     ./sway.nix
     ./i3.nix
+    ./polybar.nix
     ./fish.nix
     ./vscode.nix
     ./kitty.nix

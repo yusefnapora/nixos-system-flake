@@ -26,6 +26,7 @@
     # };
     i3 = { 
       enable = true;
+      dpi-scale = 2.0;
       startup = [
         { command = "xrandr --output Virtual-1 --mode 3600x2252 --dpi 250"; }
       ];

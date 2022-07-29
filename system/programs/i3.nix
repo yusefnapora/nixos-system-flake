@@ -12,6 +12,12 @@ in
       description = "startup commands for i3 config";
       default = [];
     };
+
+    dpi-scale = mkOption {
+      type = types.float;
+      description = "dpi scale factor (affects polybar fonts, etc)";
+      default = 1.0;
+    };
   };
 
   config = mkIf cfg.enable {
