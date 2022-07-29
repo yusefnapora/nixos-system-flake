@@ -17,14 +17,39 @@
     _1password.enable = true;
     gui.enable = true;
     sound.enable = true;
-    sway = { 
+    # sway = { 
+    #   enable = true;
+    #   no-hardware-cursors-fix = true;
+    #   startup-commands = [
+    #     { command = "swaymsg -- output Virtual-1 scale 2 mode --custom 3600x2252@120Hz"; always = true; }
+    #   ];
+    # };
+    i3 = { 
       enable = true;
-      no-hardware-cursors-fix = true;
-      startup-commands = [
-        { command = "swaymsg -- output Virtual-1 scale 2 mode --custom 3600x2252@120Hz"; always = true; }
+      startup = [
+        { command = "xrandr --output Virtual-1 --mode 3600x2252 --dpi 250"; }
       ];
     };
     docker.enable = true;
+  };
+
+  # HiDPI settings for macbook pro 14"
+  services.xserver.displayManager.sessionCommands = ''
+    ${pkgs.xorg.xrdb}/bin/xrdb -merge <${pkgs.writeText "Xresources" ''
+      Xft.dpi: 250
+      Xcursor.theme: Adwaita
+      Xcursor.size: 64
+      Xcursor.theme_core: 1
+    ''}
+  '';
+  services.xserver = {
+    monitorSection = ''
+      Modeline "3600x2252"  696.00  3600 3896 4288 4976  2252 2255 2265 2332 -hsync +vsync
+    '';
+
+    deviceSection = ''
+      Option "ModeValidation" "AllowNonEdidModes"
+    '';
   };
 
   networking.hostName = "parallels"; # Define your hostname.

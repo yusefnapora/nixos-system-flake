@@ -34,7 +34,7 @@ in
                 startup = [
                   { command = "feh --bg-scale --zoom fill ${backgroundImage}"; }
                   { command = "i3-msg 'workspace 1'"; }
-                ];
+                ] ++ cfg.startup;
             };
         };
 
@@ -206,7 +206,7 @@ in
       inactiveOpacity = "0.8";
       menuOpacity = "0.8";
 
-      backend = "glx";
+      backend = "xrender";
       vSync = true;
 
       extraOptions = ''
