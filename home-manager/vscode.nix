@@ -46,6 +46,13 @@ let
       version = "1.1.1";
       sha256 = "sha256-vfsVvXnW+LuUL93D07lHGlsOrGlMrwxoIJfQ9Ec0k38=";
     }
+
+    { # svelte
+      name = "svelte-vscode";
+      publisher = "svelte";
+      version = "105.20.0";
+      sha256 = "sha256-+vYNgKVuknPROKTMMHugc9VrvYZ7GONr5SgYsb7l5rs=";
+    }
   ];
 
   keybindings = [
