@@ -29,6 +29,7 @@ in
         ./obs.nix
         ./v4l2loopback.nix
         ./streamdeck.nix
+        ./trilium.nix
     ];
 
     options.yusef = {
