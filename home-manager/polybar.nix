@@ -1,20 +1,24 @@
 { pkgs, lib, config, nixosConfig, ... }:
 with lib;
 let
-  inherit (lib.strings) floatToString;
+  inherit (lib.strings) floatToString concatStringsSep;
   enable = nixosConfig.yusef.i3.enable;
   dpi-scale = nixosConfig.yusef.i3.dpi-scale;
 
+  # polybar's font definition uses a trailing semicolon
+  # to separate the font spec from the vertical offset.
+  # `scaled` returns a float scaled by dpi-scale (converted to string)
+  # `size-and-offset` returns two scaled floats, separated by ";"
+  # note that this only works if the `size=` bit is at the end of the
+  # font spec.
   scaled = size: (floatToString (size * dpi-scale));
+  size-and-offset = size: offset: 
+    (concatStringsSep ";" [(scaled size) (scaled offset)]);
 
-  font-size-text-regular = (scaled 9.0);
-  font-size-text-large = (scaled 19.0);
-  font-size-material-icons = (scaled 11.0);
-  font-size-feather-icons = (scaled 10.4);
-  font-offset-text = (scaled 3.0);
-  font-offset-text-large = (scaled 5.0);
-  font-offset-feather-icons = (scaled 3.5);
-  font-offset-material-icons = (scaled 4.0);
+  font-size-text-regular = (size-and-offset 9.0 3.0);
+  font-size-text-large = (size-and-offset 19.0 5.0);
+  font-size-material-icons = (size-and-offset 11.0 4.0);
+  font-size-feather-icons = (size-and-offset 10.4 3.5);
 in
 {
   config = mkIf enable {
@@ -57,18 +61,18 @@ in
             modules-center = "round-left title round-right";
             modules-right = "round-left date";
 
-            font-0 = "JetBrainsMono Nerd Font:style=Normal:size=${font-size-text-regular};${font-offset-text}";
-            font-1 = "JetBrainsMono Nerd Font:style=Medium:size=${font-size-text-regular};${font-offset-text}";
-            font-2 = "JetBrainsMono Nerd Font:style=Bold:size=${font-size-text-regular};${font-offset-text}";
-            font-3 = "JetBrainsMono Nerd Font:style=Italic:size=${font-size-text-regular};${font-offset-text}";
-            font-4 = "JetBrainsMono Nerd Font:style=Medium Italic:size=${font-size-text-regular};${font-offset-text}";
-            font-5 = "JetBrainsMono Nerd Font:size=${font-size-text-large};${font-offset-text-large}";
-            font-6 = "feathericon:size=${font-size-feather-icons};${font-offset-feather-icons}";
-            font-7 = "Material Icons:size=${font-size-material-icons};${font-offset-material-icons}";
-            font-8 = "Material Icons Outlined:size=${font-size-material-icons};${font-offset-material-icons}";
-            font-9 = "Material Icons Round:size=${font-size-material-icons};${font-offset-material-icons}";
-            font-10 = "Material Icons Sharp:size=${font-size-material-icons};${font-offset-material-icons}";
-            font-11 = "Material Icons TwoTone:size=${font-size-material-icons};${font-offset-material-icons}";
+            font-0 = "JetBrainsMono Nerd Font:style=Normal:size=${font-size-text-regular}";
+            font-1 = "JetBrainsMono Nerd Font:style=Medium:size=${font-size-text-regular}";
+            font-2 = "JetBrainsMono Nerd Font:style=Bold:size=${font-size-text-regular}";
+            font-3 = "JetBrainsMono Nerd Font:style=Italic:size=${font-size-text-regular}";
+            font-4 = "JetBrainsMono Nerd Font:style=Medium Italic:size=${font-size-text-regular}";
+            font-5 = "JetBrainsMono Nerd Font:size=${font-size-text-large}";
+            font-6 = "feathericon:size=${font-size-feather-icons}";
+            font-7 = "Material Icons:size=${font-size-material-icons}";
+            font-8 = "Material Icons Outlined:size=${font-size-material-icons}";
+            font-9 = "Material Icons Round:size=${font-size-material-icons}";
+            font-10 = "Material Icons Sharp:size=${font-size-material-icons}";
+            font-11 = "Material Icons TwoTone:size=${font-size-material-icons}";
           };
 
           colors = {
