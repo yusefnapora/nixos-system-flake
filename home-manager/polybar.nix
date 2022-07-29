@@ -5,10 +5,16 @@ let
   enable = nixosConfig.yusef.i3.enable;
   dpi-scale = nixosConfig.yusef.i3.dpi-scale;
 
-  font-size-text-regular = (floatToString (9.0 * dpi-scale));
-  font-size-text-large = (floatToString (19.0 * dpi-scale));
-  font-size-material-icons = (floatToString (11.0 * dpi-scale));
-  font-size-feather-icons = (floatToString (10.4 * dpi-scale));
+  scaled = size: (floatToString (size * dpi-scale));
+
+  font-size-text-regular = (scaled 9.0);
+  font-size-text-large = (scaled 19.0);
+  font-size-material-icons = (scaled 11.0);
+  font-size-feather-icons = (scaled 10.4);
+  font-offset-text = (scaled 3.0);
+  font-offset-text-large = (scaled 5.0);
+  font-offset-feather-icons = (scaled 3.5);
+  font-offset-material-icons = (scaled 4.0);
 in
 {
   config = mkIf enable {
@@ -51,18 +57,18 @@ in
             modules-center = "round-left title round-right";
             modules-right = "round-left date";
 
-            font-0 = "JetBrainsMono Nerd Font:style=Normal:size=${font-size-text-regular};3";
-            font-1 = "JetBrainsMono Nerd Font:style=Medium:size=${font-size-text-regular};3";
-            font-2 = "JetBrainsMono Nerd Font:style=Bold:size=${font-size-text-regular};3";
-            font-3 = "JetBrainsMono Nerd Font:style=Italic:size=${font-size-text-regular};3";
-            font-4 = "JetBrainsMono Nerd Font:style=Medium Italic:size=${font-size-text-regular};3";
-            font-5 = "JetBrainsMono Nerd Font:size=${font-size-text-large};5";
-            font-6 = "feathericon:size=${font-size-feather-icons};3.5";
-            font-7 = "Material Icons:size=${font-size-material-icons};4";
-            font-8 = "Material Icons Outlined:size=${font-size-material-icons};4";
-            font-9 = "Material Icons Round:size=${font-size-material-icons};4";
-            font-10 = "Material Icons Sharp:size=${font-size-material-icons};4";
-            font-11 = "Material Icons TwoTone:size=${font-size-material-icons};4";
+            font-0 = "JetBrainsMono Nerd Font:style=Normal:size=${font-size-text-regular};${font-offset-text}";
+            font-1 = "JetBrainsMono Nerd Font:style=Medium:size=${font-size-text-regular};${font-offset-text}";
+            font-2 = "JetBrainsMono Nerd Font:style=Bold:size=${font-size-text-regular};${font-offset-text}";
+            font-3 = "JetBrainsMono Nerd Font:style=Italic:size=${font-size-text-regular};${font-offset-text}";
+            font-4 = "JetBrainsMono Nerd Font:style=Medium Italic:size=${font-size-text-regular};${font-offset-text}";
+            font-5 = "JetBrainsMono Nerd Font:size=${font-size-text-large};${font-offset-text-large}";
+            font-6 = "feathericon:size=${font-size-feather-icons};${font-offset-feather-icons}";
+            font-7 = "Material Icons:size=${font-size-material-icons};${font-offset-material-icons}";
+            font-8 = "Material Icons Outlined:size=${font-size-material-icons};${font-offset-material-icons}";
+            font-9 = "Material Icons Round:size=${font-size-material-icons};${font-offset-material-icons}";
+            font-10 = "Material Icons Sharp:size=${font-size-material-icons};${font-offset-material-icons}";
+            font-11 = "Material Icons TwoTone:size=${font-size-material-icons};${font-offset-material-icons}";
           };
 
           colors = {
