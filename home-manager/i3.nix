@@ -72,10 +72,9 @@ in
                 tray-position = "right";
                 tray-maxsize = 16;
 
-                modules-left = "date round-right";
-                modules-center = "round-left i3 round-right";
-                # modules-right = "round-left mpd";
-                # modules.right = [ "clock" ];
+                modules-left = "i3 round-right";
+                modules-center = "round-left title round-right";
+                modules-right = "round-left date";
 
                 font-0 = "JetBrainsMono Nerd Font:style=Normal:size=9;3";
                 font-1 = "JetBrainsMono Nerd Font:style=Medium:size=9;3";
@@ -108,8 +107,15 @@ in
                 black = "#000";
                 white = "#FFF";
 
-                trans = "#00000000";
+                trans = "#00ffffff";
                 semi-trans-black = "#aa000000";
+              };
+
+              "module/title" = {
+                type = "internal/xwindow";
+                format = "<label>";
+                label-foreground = "\${colors.fg}";
+                format-background = "\${colors.bg-alt}";
               };
 
               "module/i3" = {
@@ -117,6 +123,9 @@ in
                 index-sort = true;
                 format = "<label-state> <label-mode>";
                 format-background = "\${colors.bg-alt}";
+                format-prefix = "%{T10}%{T-}";
+                format-prefix-background = "\${colors.cyan}";
+                format-prefix-padding = 1;
 
                 label-mode = "%{T2}%mode%%{T-}";
                 label-mode-padding = 1;
@@ -142,10 +151,10 @@ in
               "module/date" = {
                 type = "internal/date";
                 format = "<label>";
-                format-prefix = "%{T10}%{T-}";
-                format-prefix-background = "\${colors.green}";
-                format-prefix-foreground = "\${colors.bg}";
-                format-prefix-padding = 1;
+                format-suffix = "%{T10}%{T-}";
+                format-suffix-background = "\${colors.green}";
+                format-suffix-foreground = "\${colors.bg}";
+                format-suffix-padding = 1;
                 label = "%{T2}%time%%{T-}";
                 label-background = "\${colors.bg-alt}";
                 label-foreground = "\${colors.fg}";
@@ -159,6 +168,7 @@ in
                 type = "custom/text";
                 content = "%{T1} %{T-}";
                 content-foreground = "\${colors.trans}";
+                content-background = "\${colors.bg-alt}";
               };
 
               "module/round-left" = {
@@ -174,5 +184,45 @@ in
               };
             };
         };
+    
+    # enable picom compositor, so we can have transparency in polybar & other cool stuff
+    services.picom = {
+      enable = true;
+      experimentalBackends = true;
+
+      blur = true;
+      fade = true;
+      fadeDelta = 5;
+
+      shadow = true;
+      shadowOffsets = [ (-7) (-7) ];
+      shadowOpacity = "0.7";
+      shadowExclude = [ "window_type *= 'normal' && ! name ~= ''" ];
+      noDockShadow = true;
+      noDNDShadow = true;
+
+      activeOpacity = "1.0";
+      inactiveOpacity = "0.8";
+      menuOpacity = "0.8";
+
+      backend = "glx";
+      vSync = true;
+
+      extraOptions = ''
+        shadow-radius = 7;
+        clear-shadow = true;
+        frame-opacity = 0.7;
+        blur-method = "dual_kawase";
+        blur-strength = 5;
+        alpha-step = 0.06;
+        detect-client-opacity = true;
+        detect-rounded-corners = true;
+        paint-on-overlay = true;
+        detect-transient = true;
+        mark-wmwin-focused = true;
+        mark-ovredir-focused = true;
+      '';
+    };
+
     };
 }
