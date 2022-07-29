@@ -24,7 +24,10 @@ in
   config = mkIf enable {
      services.polybar = {
         enable = true;
-        package = (pkgs.polybar.override { i3GapsSupport = true; });
+        package = (pkgs.polybar.override { 
+          i3Support = true;
+          i3GapsSupport = true; 
+        });
         script = ''
         #!/usr/bin/env bash
 
