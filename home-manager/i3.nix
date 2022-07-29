@@ -26,6 +26,20 @@ in
                 keybindings = mkOptionDefault {
                     # terminal
                     "${mod}+Return" = "exec kitty";
+
+                    # vim-style focus / movement
+                    "${mod}+h" = "focus left";
+                    "${mod}+j" = "focus down";
+                    "${mod}+k" = "focus up";
+                    "${mod}+l" = "focus right";
+                    "${mod}+Shift+h" = "move left";
+                    "${mod}+Shift+j" = "move down";
+                    "${mod}+Shift+k" = "move up";
+                    "${mod}+Shift+l" = "move right";
+
+                    # split horizontal moves to Mod+b, since Mod+h is repurposed
+                    "${mod}+v" = "split v";
+                    "${mod}+b" = "split h";
                 };
 
                 # polybar is started by home-manager's systemd service
