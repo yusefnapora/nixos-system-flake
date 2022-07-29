@@ -25,6 +25,7 @@ in
   imports = [
     ./git.nix
     ./sway.nix
+    ./i3.nix
     ./fish.nix
     ./vscode.nix
     ./kitty.nix

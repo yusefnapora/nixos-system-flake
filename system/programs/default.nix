@@ -22,6 +22,7 @@ in
 {
     imports = [
         ./sway.nix
+        ./i3.nix
         ./droidcam.nix
         ./docker.nix
         ./1password.nix
