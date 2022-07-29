@@ -28,6 +28,7 @@ in
         ./1password.nix
         ./obs.nix
         ./v4l2loopback.nix
+        ./streamdeck.nix
     ];
 
     options.yusef = {

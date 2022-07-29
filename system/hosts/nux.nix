@@ -31,6 +31,7 @@
     droidcam.enable = true;
     kvm-switch.enable = true;
     obs.enable = true;
+    streamdeck.enable = true;
   };
 
   # Use the systemd-boot EFI boot loader.
