@@ -18,6 +18,10 @@ in
   config = mkIf cfg.enable {
     programs.streamdeck-ui.enable = true;
     
+    yusef.i3.startup = [
+      { command = "sleep 1 && ${pkgs.streamdeck-ui}/bin/streamdeck -n &"; }
+    ];
+
     environment.systemPackages = [ pkgs.xdotool ];
   };
 }

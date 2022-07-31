@@ -88,6 +88,25 @@ let
         default = 15;
       };
 
+      brightness = mkOption {
+        type = types.nullOr types.int;
+        description = "stream deck brightness";
+        default = null;
+      };
+  
+      brightness-dimmed = mkOption {
+        type = types.nullOr types.int;
+        description = "brightness when auto-dimmed";
+        default = null;
+      };
+
+      display-timeout = mkOption {
+        type = types.nullOr types.int;
+        description = "seconds of inactivity before auto-dimming";
+        default = null;
+      };
+
+
       pages = mkOption {
         type = types.listOf page-module;
         description = "page definitions. docs TDB";
@@ -143,9 +162,12 @@ let
     obj = {
       streamdeck_ui_version = 1;
       state = {
-        "${device-config.device-id}" = {
+        "${device-config.device-id}" = (filterAttrs (n: v: v != null) {
           buttons = (blank-pages device-config.num-buttons) // page-definitions;
-        };
+          brightness = device-config.brightness;
+          brightness_dimmed = device-config.brightness-dimmed;
+          display_timeout = device-config.display-timeout;
+        });
       };
     };
   in (builtins.toJSON obj);
@@ -156,16 +178,16 @@ in
 {
   options.yusef.streamdeck.settings = mkOption {
     type = types.nullOr device-config-module;
-    description = "streamdeck-ui settings json file. will be linked to /etc/streamdeck-ui.json - you'll need to manually symlink to ~/.streamdeck_ui.json";
+    description = "streamdeck-ui settings json file. will be linked to /etc/streamdeck_ui.json - you'll need to manually symlink to ~/.streamdeck_ui.json";
     default = default-config;
   };
 
 
   config = mkIf (cfg.enable && cfg.settings != null) {
-    environment.etc."streamdeck-ui.json" = {
+    environment.etc."streamdeck_ui.json" = {
       source = pkgs.writeTextFile { 
         text = (to-json cfg.settings);
-        name = "streamdeck-ui.json";
+        name = "streamdeck_ui.json";
       };
     };
   };

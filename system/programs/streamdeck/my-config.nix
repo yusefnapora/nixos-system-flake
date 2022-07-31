@@ -13,6 +13,10 @@ in
   device-id = "DL51K1A63326";
   num-buttons = 15;
 
+  brightness = 40;
+  brightness-dimmed = 4;
+  display-timeout = 900;
+
   pages = [
     { page = 0;
       buttons = [
