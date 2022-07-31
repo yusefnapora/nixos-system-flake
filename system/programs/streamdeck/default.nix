@@ -4,11 +4,11 @@ let
 
   cfg = config.yusef.streamdeck;
 
+  
 in
 {
   imports = [
     ./settings.nix
-    ./scripts
   ];
 
   options.yusef.streamdeck = {

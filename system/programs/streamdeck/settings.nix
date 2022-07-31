@@ -1,6 +1,9 @@
 { pkgs, lib, config, ...}:
 with lib;
 let
+  inherit (lib.attrsets) filterAttrs nameValuePair;
+  inherit (lib.lists) range forEach;
+
   cfg = config.yusef.streamdeck;
 
   # options for a single stream deck button
@@ -74,16 +77,16 @@ let
   device-config-module = types.submodule {
     options = {
       device-id = mkOption {
-        types = types.str;
+        type = types.str;
         description = "device serial id. default is mine cause I'm lazy";
         default = "DL51K1A63326";
       };
 
       num-buttons = mkOption {
-        types = types.int;
-        descriptions = "number of buttons on your device";
+        type = types.int;
+        description = "number of buttons on your device";
         default = 15;
-      }
+      };
 
       pages = mkOption {
         type = types.listOf page-module;
@@ -93,48 +96,77 @@ let
     };
   };
 
-  to-json = device-config: let 
-    button-definition = b: {
-      # todo: there's probably something clever for this...
-      # i basically just want to convert null to undefined
-      icon = lib.mkIf (b.icon != null) b.image;
-      text = lib.mkIf (b.text != null) b.label;
-      command = lib.mkIf (b.command != null) b.command;
-      keys = lib.mkIf (b.keys != null) b.keys;
-      switch_page = lib.mkIf (b.switch-page != null) b.switch-page;
-      brightness_change = lib.mkIf (b.brightness-change != null) b.brightness-change;
-      write = lib.mkIf (b.write != null) b.write;
-    };
+  # returns an attr set with fields numbered 0 - (num-1),
+  # whose values are empty attribute sets
+  empty-objects = 
+    num:
+      (builtins.listToAttrs
+        (forEach 
+          (range 0 (num - 1))
+          (i: (nameValuePair (toString i) {}))));
 
-    page-definitions = (map (p: {
-      "${p.page}": (map (b: {
-        "${b.button}" = (button-definition b);
-      })
-      p.buttons) 
-    }) 
-    device-config.pages);
+  # returns an attribute set defining a button's properties,
+  # given a button-submodule nix expression
+  button-definition = b: filterAttrs 
+    (n: v: v != null) 
+    {
+      icon = b.icon;
+      text = b.text;
+      command = b.command;
+      keys = b.keys;
+      switch_page = b.switch-page;
+      brightness_change = b.brightness-change;
+      write = b.write;
+    };
+  
+  button-defs = page-buttons: 
+    (builtins.listToAttrs
+      (forEach page-buttons
+        (b: (nameValuePair (toString b.button) (button-definition b)))));
+
+  full-page = num-buttons: page-buttons:
+    (empty-objects num-buttons) // (button-defs page-buttons);
+
+  blank-pages = num-buttons:
+    (builtins.listToAttrs
+      (forEach (range 0 10)
+        (i: nameValuePair (toString i) (empty-objects num-buttons))));
+
+  to-json = device-config: let 
+    page-definitions = 
+     (builtins.listToAttrs
+      (forEach device-config.pages
+        (p: nameValuePair 
+          (toString p.page) 
+          (full-page device-config.num-buttons p.buttons))));
 
     obj = {
       streamdeck_ui_version = 1;
       state = {
         "${device-config.device-id}" = {
-          buttons = page-definitions;
+          buttons = (blank-pages device-config.num-buttons) // page-definitions;
         };
       };
     };
-  in (builtins.toJSON );
+  in (builtins.toJSON obj);
+
+
+  default-config = (import ./my-config.nix { inherit lib; inherit pkgs; });
 in
 {
   options.yusef.streamdeck.settings = mkOption {
     type = types.nullOr device-config-module;
     description = "streamdeck-ui settings json file. will be linked to /etc/streamdeck-ui.json - you'll need to manually symlink to ~/.streamdeck_ui.json";
-    default = null;
+    default = default-config;
   };
 
 
   config = mkIf (cfg.enable && cfg.settings != null) {
     environment.etc."streamdeck-ui.json" = {
-      text = (to-json cfg.settings);
+      source = pkgs.writeTextFile { 
+        text = (to-json cfg.settings);
+        name = "streamdeck-ui.json";
+      };
     };
   };
 }
