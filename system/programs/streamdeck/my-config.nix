@@ -21,15 +21,35 @@ in
           command = "${activate-window-by-name} '.*Mozilla Firefox$' firefox";
           icon = "${icons.firefox}";
         }
-        { button = 5;
+        { button = 1;
           text = "Slack";
           command = "${activate-window-by-name} 'Slack \\|.*' slack";
           icon = "${icons.slack}";
         }
-        { button = 10;
+        { button = 2;
           text = "VSCode";
           command = "${activate-window-by-name} '.*Visual Studio Code' code";
           icon = "${icons.vscode}";
+        }
+        { button = 10;
+          text = "Zoom";
+          command = "${activate-window-by-name} 'Zoom Meeting'";
+          icon = "${icons.zoom}";
+        }
+        { button = 11;
+          text = "Zoom cam";
+          command = "${type-in-window} 'Zoom Meeting' 'alt+v' --activate";
+          icon = "${icons.video-off}";
+        }
+        { button = 12;
+          text = "Zoom mic";
+          command = "${type-in-window} 'Zoom Meeting' 'alt+a' --activate";
+          icon = "${icons.mic-off}";
+        }
+        { button = 13;
+          text = "Screenshare";
+          command = "${type-in-window} 'Zoom Meeting' 'alt+s' --activate";
+          icon = "${icons.screen-share}";
         }
       ];
     }
