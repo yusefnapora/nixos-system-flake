@@ -10,4 +10,5 @@ in
   video-off = storePath "video-off.svg";
   mic-off = storePath "mic-off.svg";
   screen-share = storePath "screen-share.svg";
+  back-arrow = storePath "back-arrow.svg";
 }

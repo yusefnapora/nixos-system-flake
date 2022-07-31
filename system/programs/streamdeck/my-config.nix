@@ -21,40 +21,62 @@ in
     { page = 0;
       buttons = [
         { button = 0;
-          text = "Firefox";
-          command = "${activate-window-by-name} '.*Mozilla Firefox$' firefox";
-          icon = "${icons.firefox}";
-        }
-        { button = 1;
-          text = "Slack";
-          command = "${activate-window-by-name} 'Slack \\|.*' slack";
-          icon = "${icons.slack}";
-        }
-        { button = 2;
-          text = "VSCode";
-          command = "${activate-window-by-name} '.*Visual Studio Code' code";
-          icon = "${icons.vscode}";
-        }
-        { button = 10;
-          text = "Zoom";
+          # text = "Zoom";
+          switch-page = 1;
           command = "${activate-window-by-name} 'Zoom Meeting'";
           icon = "${icons.zoom}";
         }
-        { button = 11;
+        { button = 1;
+          # text = "Firefox";
+          command = "${activate-window-by-name} '.*Mozilla Firefox$' firefox";
+          icon = "${icons.firefox}";
+        }
+        { button = 2;
+          # text = "Slack";
+          command = "${activate-window-by-name} 'Slack \\|.*' slack";
+          icon = "${icons.slack}";
+        }
+        { button = 3;
+          # text = "VSCode";
+          command = "${activate-window-by-name} '.*Visual Studio Code' code";
+          icon = "${icons.vscode}";
+        }
+
+
+      ];
+    }
+
+    # Zoom controls page
+    { page = 1;
+      buttons = [
+        { button = 0;
+          # text = "Back";
+          icon = "${icons.back-arrow}";
+          switch-page = 0;
+        }
+        { button = 1;
           text = "Zoom cam";
           command = "${type-in-window} 'Zoom Meeting' 'alt+v' --activate";
           icon = "${icons.video-off}";
         }
-        { button = 12;
+        { button = 2;
           text = "Zoom mic";
           command = "${type-in-window} 'Zoom Meeting' 'alt+a' --activate";
           icon = "${icons.mic-off}";
         }
-        { button = 13;
+        { button = 3;
           text = "Screenshare";
           command = "${type-in-window} 'Zoom Meeting' 'alt+s' --activate";
           icon = "${icons.screen-share}";
         }
+
+        { button = 5;
+          text = "Focus";
+          switch-page = 1;
+          command = "${activate-window-by-name} 'Zoom Meeting'";
+          icon = "${icons.zoom}";
+        }
+
       ];
     }
   ];

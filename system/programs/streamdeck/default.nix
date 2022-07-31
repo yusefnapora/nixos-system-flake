@@ -4,7 +4,13 @@ let
 
   cfg = config.yusef.streamdeck;
 
-  
+  startup-script = (pkgs.writeScriptBin "start-streamdeck" ''
+  #!/usr/bin/env bash
+  # TODO: without the sleep, the systray icon doesn't show in polybar... why tho?
+  sleep 1
+  cp /etc/streamdeck_ui.json $HOME/.streamdeck_ui.json
+  streamdeck -n & 
+  '');
 in
 {
   imports = [
@@ -19,7 +25,7 @@ in
     programs.streamdeck-ui.enable = true;
     
     yusef.i3.startup = [
-      { command = "sleep 1 && ${pkgs.streamdeck-ui}/bin/streamdeck -n &"; }
+      { command = "${startup-script}/bin/start-streamdeck"; }
     ];
 
     environment.systemPackages = [ pkgs.xdotool ];

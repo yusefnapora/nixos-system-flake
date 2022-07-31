@@ -133,7 +133,8 @@ let
       text = b.text;
       command = b.command;
       keys = b.keys;
-      switch_page = b.switch-page;
+      # the app uses pagenumber + 1 in the switch_page setting
+      switch_page = if (b.switch-page != null) then b.switch-page + 1 else null;
       brightness_change = b.brightness-change;
       write = b.write;
     };
@@ -178,7 +179,7 @@ in
 {
   options.yusef.streamdeck.settings = mkOption {
     type = types.nullOr device-config-module;
-    description = "streamdeck-ui settings json file. will be linked to /etc/streamdeck_ui.json - you'll need to manually symlink to ~/.streamdeck_ui.json";
+    description = "streamdeck-ui settings json file. will be linked to /etc/streamdeck_ui.json - you'll need to manually copy to ~/.streamdeck_ui.json - symlinks wont work, since it needs to be writable by the app";
     default = default-config;
   };
 
