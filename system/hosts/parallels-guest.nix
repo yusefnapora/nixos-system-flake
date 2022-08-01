@@ -32,6 +32,7 @@
       ];
     };
     docker.enable = true;
+    trilium.enable = true;
   };
 
   # HiDPI settings for macbook pro 14"
