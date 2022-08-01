@@ -18,6 +18,7 @@ in
       (nerdfonts.override { fonts = nerd-fonts; })
       fira-code
       noto-fonts
+      open-fonts
       powerline-fonts
       helvetica-neue-lt-std
       liberation_ttf
