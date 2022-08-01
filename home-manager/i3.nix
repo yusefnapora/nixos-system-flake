@@ -27,6 +27,15 @@ in
                     # terminal
                     "${mod}+Return" = "exec kitty";
 
+                    # rofi
+                    "${mod}+d" = "exec --no-startup-id rofi -show drun";
+
+                    # alternative to mod+shift+q, since macos insists on eating it
+                    "${mod}+Shift+w" = "kill";
+
+                    # alternative to mod+w for tabs, since t is for tabs
+                    "${mod}+t" = "layout tabbed";
+
                     # vim-style focus / movement
                     "${mod}+h" = "focus left";
                     "${mod}+j" = "focus down";

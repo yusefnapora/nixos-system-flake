@@ -30,6 +30,7 @@ in
     ./fish.nix
     ./vscode.nix
     ./kitty.nix
+    ./rofi
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
