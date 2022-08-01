@@ -15,6 +15,7 @@ let
     kitty
     alacritty
     dmenu
+    chromium
   ] ++ lists.optionals (isX86) [
     zoom-us
     slack

@@ -18,6 +18,15 @@ in
       description = "dpi scale factor (affects polybar fonts, etc)";
       default = 1.0;
     };
+
+    gaps = mkOption {
+      type = types.attrs;
+      description = "i3 gaps settings";
+      default = {
+        inner = 10;
+        outer = 5;
+      };
+    };
   };
 
   config = mkIf cfg.enable {

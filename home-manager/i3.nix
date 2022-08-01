@@ -18,10 +18,7 @@ in
             config = {
                 modifier = mod;
 
-                gaps = {
-                    inner = 10;
-                    outer = 5;
-                };
+                gaps = cfg.gaps;
 
                 keybindings = mkOptionDefault {
                     # terminal

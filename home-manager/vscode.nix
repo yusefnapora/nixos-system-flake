@@ -153,6 +153,9 @@ in
       userSettings = {
         # disable auto-update notifications
         "update.mode" = "none";
+
+        # hide menu bar, show with alt
+        "window.menuBarVisibility" = "toggle";
         
         # fix server path for rust-analyzer plugin
         "rust-analyzer.server.path" = "${pkgs.rust-analyzer}/bin/rust-analyzer";
