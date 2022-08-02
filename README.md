@@ -41,6 +41,12 @@ There are a few things I've cobbled together that might be useful to others. I'm
   - I'm including the fonts I'm installing here in the repo, but you can also use e.g. `fetchFromGitHub` as the `src` to download them from elsewhere.
   - in the `installPhase`, copy fonts from `$src` to `$out/share/fonts/truetype` or `$out/share/fonts/opentype`, depending on the file type.
 
+- Running certain comands as root without a `sudo` password
+  - I run `nixos-rebuild` all the time, so it's nice to be able to run it with `sudo` without a password. Same for a few other things like `systemctl`, `reboot`, etc.
+  - While this technically does give you the keys to the kingdom, my user account is also part of the `docker` group, which is just `root` with extra steps. 
+  - As such, the point of a `sudo` password prompt is not to keep other people out, but to keep myself from accidentally destroying things by making me stop for a second before running scary commands.
+  - see `security.sudo.extraRules` in [system/users/default.nix](./system/users/default.nix) for how to allow commands to run without a password. Note that you need to give an absolute path, so use e.g. `"${pkgs.systemd}/bin/systemctl"` instead of `"systemctl"`;
+
 - Elgato Streamdeck configuration
   - if `config.yusef.streamdeck.enable = true`
     - installs the [streamdeck-ui](https://timothycrosley.github.io/streamdeck-ui/) project from nixpkgs (currently unstable only)
