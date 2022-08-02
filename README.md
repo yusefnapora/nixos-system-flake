@@ -82,7 +82,7 @@ There are a few things I've cobbled together that might be useful to others. I'm
     - With Nix, I can capture the dependencies for the `lgtv` thing, so it will always have `websocat` and I never need to think about it again or explicitly install it.
       - Think about it - how many times have you had to write something like this in a script:
         ```bash
-        which jq || echo "I need the 'jq' command, but it's not installed. Guess I'll just die then"; exit 1
+        which jq || echo "I need 'jq', but it's not installed. Guess I'll just die then"; exit 1
         ```
     - NixOS takes it a step further and lets me use things like systemd services and udev without worrying about whether I'll be able to remember how to copy all the config files to the right places or not.
     - Anyway, that's probably enough ranting. I just think it's funny how much more likely I am to even start writing little hack scripts like this in the first place when I know I can "lock it down" and have a chance of it working again in a year or so.
