@@ -6,49 +6,43 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-vscode-server.url = "github:msteen/nixos-vscode-server";
-    nixos-vscode-server.flake = false;
+    vscode-server.url = "github:msteen/nixos-vscode-server";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, ... }: 
+  outputs = inputs@{ self, nixpkgs, home-manager, vscode-server, ... }: 
   let
-    defaultHomeManagerFlags = {
-      withGUI = true;
-      withSway = true;
-    };
-
     mkSystemConfig = { 
       system, 
       modules, 
-      homeManagerFlags ? defaultHomeManagerFlags, 
       useHomeManager ? true, 
       ... 
     }: nixpkgs.lib.nixosSystem { 
         inherit system;
         specialArgs = inputs;
 
-        modules = modules ++ nixpkgs.lib.lists.optionals (useHomeManager) [
+        modules = modules
+          ++ [ vscode-server.nixosModule
+               ({ config, pkgs, ... }: {
+                 services.vscode-server.enable = true;
+               })
+             ] 
+          ++ nixpkgs.lib.lists.optionals (useHomeManager) [
+              home-manager.nixosModules.home-manager {
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
 
-          home-manager.nixosModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
+                home-manager.users.yusef = {
+                  imports = [
+                    ./home-manager
+                  ];
+                };
 
-            home-manager.users.yusef = {
-              imports = [
-                ./home-manager
-              ];
-            };
-
-            home-manager.extraSpecialArgs = {
-              inherit system inputs;
-              
-              homeManagerFlags = homeManagerFlags // { 
-                inherit system; 
-              };
-            };
-          }
-  
-        ];
+                home-manager.extraSpecialArgs = {
+                  inherit system inputs;
+                };
+              }
+      
+            ];
       };
 
 
