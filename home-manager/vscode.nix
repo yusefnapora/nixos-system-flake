@@ -160,6 +160,9 @@ in
         # fix server path for rust-analyzer plugin
         "rust-analyzer.server.path" = "${pkgs.rust-analyzer}/bin/rust-analyzer";
 
+        # workaround timeout issue when connecting to vscode server running on nixos
+        "remote.SSH.useLocalServer" = false;
+
         "workbench.colorTheme" = "${defaultTheme}";
 
         "editor.tabSize" = 2;
