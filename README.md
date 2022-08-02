@@ -68,3 +68,21 @@ There are a few things I've cobbled together that might be useful to others. I'm
   - The scripts are triggered by `udev` events - when the USB dongle for my mouse is attached, we run the script that switches to the NUC's HDMI input. When the NUC sees the mouse dongle disconnect, we assume it's because I hit the button, and we switch HDMI inputs to the Windows machine.
   - Fun fact I discovered about `udev` triggers - they run in a super restricted sandbox, where you can't access the network & only have a few milliseconds to do anything. Luckily, it's really easy to define systemd services in NixOS, so I wrote oneshot wrapper services around the scripts. Now udev can just trigger the oneshot service, which doesn't have the sandbox limits.
   - If this sounds more fun than crazy to you, check out [system/modules/kvm-switch](./system/modules/kvm-switch) and see if there's anything worth stealing.
+
+  - FWIW, this ridiculous hack is a perfect example of everything I love about NixOS. 
+    - I can bang out a duct tape bash script solution to a silly problem that only I have.
+    - So far, so good; I don't need Nix for that.
+    - But what if I ever need to set this thing up again, or do it on another machine?
+    - There are a lot of fiddly little moving parts here, like the fact that the `lgtv` control thing I found needs `websocat` installed, or that whole thing about needing to use a systemd service to make the udev trigger work.
+    - In other words, to get my stupid 10 minute script to actualy work, I need a pretty precisely controlled environement, including a bunch of extra crap I didn't really plan for at the outset.
+    - Setting up that environment _once_ is actually pretty fun and not really that hard, since you're doing it as you develop the solution in the first place.
+    - But it's extra super not fun to come back in three years and have absolutely no idea what's going on, or where to find a version of `X` that's compatible with `Y` now that `Z` has been rewritten in rust or whatever.
+    - Even if you take careful notes about all the dependencies and how to install everything, there's a decent chance that the world will change around you. 
+      - In the imortal words of Abe Simpson, "I used to be with it. Then they changed what 'it' was, and now what I'm with isn't 'it,' and what's 'it' seems weird and scary to me. [It'll happen to you!](https://frinkiac.com/meme/S07E24/358040/m/SXQnbGwgaGFwcGVuIHRvIHlvdS4uLg==)
+    - With Nix, I can capture the dependencies for the `lgtv` thing, so it will always have `websocat` and I never need to think about it again or explicitly install it.
+      - Think about it - how many times have you had to write something like this in a script:
+        ```bash
+        which jq || echo "I need the 'jq' command, but it's not installed. Guess I'll just die then"; exit 1
+        ```
+    - NixOS takes it a step further and lets me use things like systemd services and udev without worrying about whether I'll be able to remember how to copy all the config files to the right places or not.
+    - Anyway, that's probably enough ranting. I just think it's funny how much more likely I am to even start writing little hack scripts like this in the first place when I know I can "lock it down" and have a chance of it working again in a year or so.
