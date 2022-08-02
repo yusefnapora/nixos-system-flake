@@ -7,7 +7,7 @@ in
   programs.kitty = mkIf enable {
     enable = true;
     settings = {
-      background_opacity = "0.8";
+      # background_opacity = "0.8";
     };
   };
 }
