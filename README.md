@@ -74,7 +74,7 @@ There are a few things I've cobbled together that might be useful to others. I'm
     - So far, so good; I don't need Nix for that.
     - But what if I ever need to set this thing up again, or do it on another machine?
     - There are a lot of fiddly little moving parts here, like the fact that the `lgtv` control thing I found needs `websocat` installed, or that whole thing about needing to use a systemd service to make the udev trigger work.
-    - In other words, to get my stupid 10 minute script to actualy work, I need a pretty precisely controlled environement, including a bunch of extra crap I didn't really plan for at the outset.
+    - In other words, to get my stupid 10 minute script to actualy work, I need a pretty precisely controlled environment, including a bunch of extra crap I didn't really plan for at the outset.
     - Setting up that environment _once_ is actually pretty fun and not really that hard, since you're doing it as you develop the solution in the first place.
     - But it's extra super not fun to come back in three years and have absolutely no idea what's going on, or where to find a version of `X` that's compatible with `Y` now that `Z` has been rewritten in rust or whatever.
     - Even if you take careful notes about all the dependencies and how to install everything, there's a decent chance that the world will change around you. 
