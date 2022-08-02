@@ -1,5 +1,5 @@
 { pkgs, lib, ...}:
 {
-  material-icons = (pkgs.callPackage ./material-icons.nix {});
-  feather-icons = (pkgs.callPackage ./feather-icons.nix {});
+  material-icons = (pkgs.callPackage ./material-icons {});
+  feather-icons = (pkgs.callPackage ./feather-icons {});
 }

@@ -38,6 +38,7 @@ There are a few things I've cobbled together that might be useful to others. I'm
 - Installing random fonts (not from nixpkgs)
   - see [system/packages/fonts/feather-icons.nix](system/packages/fonts/feather-icons.nix) and [system/packages/fonts/material-icons.nix](system/packages/fonts/material-icons.nix).
   - basically, you just grab the font files from somewhere and use them as the `src` attribute in a call to `pkgs.stdEnvNoCC.mkDerivation`.
+  - I'm including the fonts I'm installing here in the repo, but you can also use e.g. `fetchFromGitHub` as the `src` to download them from elsewhere.
   - in the `installPhase`, copy fonts from `$src` to `$out/share/fonts/truetype` or `$out/share/fonts/opentype`, depending on the file type.
 
 - Elgato Streamdeck configuration
