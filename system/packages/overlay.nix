@@ -9,10 +9,6 @@ in
 {
   yusef = {
     _1password-aarch64 = (p ./1password-beta-aarch64.nix);
-
-    fonts = {
-      material-icons = (p ./fonts/material-icons);
-      feather-icons = (p ./fonts/feather-icons);
-    };
+    fonts = (p ./fonts); 
   };
 }
