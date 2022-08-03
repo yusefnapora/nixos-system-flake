@@ -6,7 +6,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    vscode-server.url = "github:msteen/nixos-vscode-server";
+    vscode-server = {
+      url = "github:msteen/nixos-vscode-server"; 
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, vscode-server, ... }: 
