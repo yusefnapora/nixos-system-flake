@@ -30,6 +30,8 @@
       gaps = {};
       startup = [
         { command = "xrandr --output Virtual-1 --mode 3600x2252 --dpi 250"; }
+        # polybar needs to be restarted after the resolution change above
+        { command = "systemctl --user restart polybar"; }
       ];
     };
     docker.enable = true;

@@ -51,10 +51,10 @@ in
                 # polybar is started by home-manager's systemd service
                 bars = [ ];
 
-                startup = [
+                startup = cfg.startup ++ [
                   { command = "feh --bg-scale --zoom fill ${backgroundImage}"; }
                   { command = "i3-msg 'workspace 1'"; }
-                ] ++ cfg.startup;
+                ];
 
                 floating.modifier = mod;
 
