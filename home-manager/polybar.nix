@@ -1,6 +1,6 @@
 { pkgs, lib, config, nixosConfig, ... }:
-with lib;
 let
+  inherit (lib) mkIf;
   inherit (lib.strings) floatToString concatStringsSep;
   enable = nixosConfig.yusef.i3.enable;
   dpi-scale = nixosConfig.yusef.i3.dpi-scale;

@@ -1,6 +1,7 @@
 { pkgs, config, lib, ...}:
-with lib;
 let
+  inherit (lib) mkEnableOption mkIf;
+  
   cfg = config.yusef.obs;
 in {
   options.yusef.obs = {

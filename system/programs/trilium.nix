@@ -1,7 +1,8 @@
 # Installs Trilium notes server using docker, since the current NixOS package is x86 only.
 { pkgs, config, lib, ...}:
-with lib;
 let
+  inherit (lib) mkEnableOption mkIf;
+  
   cfg = config.yusef.trilium;
 in
 {

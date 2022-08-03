@@ -1,6 +1,7 @@
 { pkgs, lib, config, ...}:
-with lib;
 let
+  inherit (lib) mkIf;
+  
   droidcam = config.yusef.droidcam;
   obs = config.yusef.obs;
 

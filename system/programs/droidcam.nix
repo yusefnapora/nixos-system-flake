@@ -1,8 +1,9 @@
 { config, pkgs, lib, ... }:
-with lib;
-let cfg = config.yusef.droidcam;
-in {
+let
+  inherit (lib) mkEnableOption mkIf;
 
+  cfg = config.yusef.droidcam;
+in {
     options.yusef.droidcam = {
         enable = mkEnableOption "Enable Droidcam support";
     };
@@ -12,5 +13,4 @@ in {
         boot.kernelModules = [ "snd-aloop" ];
         environment.systemPackages = [ pkgs.droidcam ];
     };
-
 }

@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:
-with lib;
 let
+  inherit (lib) mkIf;
+  
   enable = config.yusef.gui.enable;
   nerd-fonts = [
     "FiraCode"

@@ -1,6 +1,8 @@
 { config, pkgs, lib, ... }:
-with lib;
 let
+  inherit (lib) mkEnableOption mkOption mkIf types;
+  inherit (lib.lists) optionals;
+
   packages = with pkgs; [
       vim 
       wget
@@ -64,7 +66,7 @@ in
       programs.fish.enable = true;
 
       environment.systemPackages = packages ++ 
-        lists.optionals guiEnabled guiPackages;
+        optionals guiEnabled guiPackages;
 
     };
 }

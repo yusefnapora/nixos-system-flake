@@ -1,11 +1,13 @@
 { config, nixosConfig, lib, pkgs, ... }:
-with lib;
 let
+  inherit (lib) mkIf;
+  inherit (lib.strings) optionalString;
+
   cfg = nixosConfig.yusef.sway;
 
   backgroundImage = (builtins.path { name = "jwst-carina.jpg"; path = ./backgrounds/jwst-carina.jpg; });
 
-  hardwareCursorsFix = strings.optionalString cfg.no-hardware-cursors-fix ''
+  hardwareCursorsFix = optionalString cfg.no-hardware-cursors-fix ''
     # fix for black screen in vmware guest. 
     set -x WLR_NO_HARDWARE_CURSORS 1
   '';

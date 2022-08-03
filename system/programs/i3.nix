@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:
-with lib;
-let 
+let
+  inherit (lib) mkEnableOption mkIf mkOption types;
+   
   cfg = config.yusef.i3;
 in
 {
@@ -32,7 +33,11 @@ in
   config = mkIf cfg.enable {
      services.xserver = {
       enable = true;
-      
+
+      libinput = {
+        enable = true;
+      };
+
       desktopManager = { 
         xterm.enable = false;
       };

@@ -1,6 +1,7 @@
 { config, system, nixosConfig, lib, pkgs, ... }:
-with lib;
 let
+  inherit (lib) mkIf lists;
+
   guiEnabled = nixosConfig.yusef.gui.enable;
 
   home.packages = with pkgs; [ rust-analyzer ];

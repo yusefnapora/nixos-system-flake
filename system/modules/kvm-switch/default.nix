@@ -1,8 +1,9 @@
 { config, pkgs, lib, ... }:
-with lib;
 let
+  inherit (lib) types mkEnableOption mkOption mkIf;
+
   cfg = config.yusef.kvm-switch;
-  trigger-script = ((import ./udev-trigger.nix) { inherit pkgs; inherit lib; });
+  trigger-script = (pkgs.callPackage ./udev-trigger.nix {});
 in
 {
   options.yusef.kvm-switch = {

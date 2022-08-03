@@ -1,8 +1,8 @@
 # remap capslock to control when held, escape when tapped
 { config, lib, pkgs, ... }:
-with lib;
 let
-  inherit (lib.strings) optionalString;
+  inherit (lib) mkEnableOption mkIf;
+  inherit (lib.strings) optionalString concatStringsSep;
   inherit (lib.lists) optionals;
   cfg = config.yusef.key-remap;
 
@@ -10,7 +10,7 @@ let
     optionals cfg.caps-to-ctrl-esc ["KEY_CAPSLOCK" "KEY_ESC"] 
     ++ optionals cfg.swap-left-alt-and-super [ "KEY_LEFTALT" "KEY_LEFTMETA"];
 
-  listen-key-string = (strings.concatStringsSep ", " keys-to-listen-for);
+  listen-key-string = (concatStringsSep ", " keys-to-listen-for);
   
 in
 {

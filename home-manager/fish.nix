@@ -1,6 +1,8 @@
 { config, nixosConfig, pkgs, lib, ... }:
-with lib;
 let
+  inherit (lib.lists) optionals;
+  inherit (lib.attrsets) optionalAttrs;
+
   withGUI = nixosConfig.yusef.gui.enable;
 in
 {
@@ -8,7 +10,7 @@ in
   home.packages = with pkgs; [
       exa
       starship
-  ] ++ lists.optionals (withGUI) [
+  ] ++ optionals (withGUI) [
     xclip
   ];
 
@@ -18,7 +20,7 @@ in
       shellAliases = {
           ls = "exa";
           nix-search = "nix-env -qaP"; 
-      } // attrsets.optionalAttrs (withGUI) {
+      } // optionalAttrs (withGUI) {
           pbcopy = "xclip -selection clipboard";
           pbpaste = "xclip -selection clipboard -o";
       };

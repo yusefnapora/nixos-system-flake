@@ -1,6 +1,6 @@
 { nixosConfig, pkgs, lib, ... }:
-with lib;
 let
+  inherit (lib) mkIf;
   enable = nixosConfig.yusef.gui.enable;
 in
 {

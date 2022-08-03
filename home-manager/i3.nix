@@ -1,6 +1,7 @@
 { config, lib, pkgs, nixosConfig, ...}:
-with lib;
 let
+  inherit (lib) mkIf mkOptionDefault;
+
   cfg = nixosConfig.yusef.i3;
   mod = "Mod4";
   backgroundImage = (builtins.path { name = "jwst-carina.jpg"; path = ./backgrounds/jwst-carina.jpg; });

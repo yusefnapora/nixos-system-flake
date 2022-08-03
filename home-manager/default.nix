@@ -1,6 +1,7 @@
 { config, system, nixosConfig, pkgs, nixpkgs, lib, ... }:
-with lib;
 let
+  inherit (lib) lists;
+
   withGUI = nixosConfig.yusef.gui.enable;
   withSway = nixosConfig.yusef.sway.enable;
 

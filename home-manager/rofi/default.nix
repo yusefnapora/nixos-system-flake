@@ -1,6 +1,6 @@
 { lib, pkgs, config, nixosConfig, ... }:
-with lib;
 let
+  inherit (lib) mkIf;
   inherit (nixosConfig.yusef.i3) enable dpi-scale;
 
   scaled = size: (lib.strings.floatToString (size * dpi-scale));
