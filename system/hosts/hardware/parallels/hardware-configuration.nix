@@ -1,6 +1,10 @@
 # Hardware configuration.
 { config, lib, pkgs, modulesPath, ... }:
-
+let
+  # use our prl-tools package instead of old version in nixpkgs
+  parallels-tools-package = 
+    (config.boot.kernelPackages.callPackage ./prl-tools.nix { });
+in
 {
   disabledModules = [ "virtualisation/parallels-guest.nix" ];
 
@@ -44,10 +48,6 @@
 
   hardware.parallels = {
     enable = true;
-    package = (config.boot.kernelPackages.callPackage ./prl-tools.nix { });
+    package = parallels-tools-package;
   };
-
-#  environment.unfreePackages = [
-#    "prl-tools"
-#  ];
 }

@@ -5,7 +5,7 @@ let
   targetSystem = config.yusef.system;
 
   _1password-package = if (targetSystem == "aarch64-linux") then
-    pkgs.callPackage ../packages/1password-beta-aarch64.nix { }
+    pkgs._1password-aarch64
    else
      pkgs._1password-gui;
 in

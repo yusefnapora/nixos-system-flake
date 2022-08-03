@@ -11,12 +11,13 @@
 
   outputs = inputs@{ self, nixpkgs, home-manager, vscode-server, ... }: 
   let
+    inherit (nixpkgs.lib) nixosSystem lists;
     mkSystemConfig = { 
       system, 
       modules, 
       useHomeManager ? true, 
       ... 
-    }: nixpkgs.lib.nixosSystem { 
+    }: nixosSystem { 
         inherit system;
         specialArgs = inputs;
 
@@ -26,7 +27,7 @@
                  services.vscode-server.enable = true;
                })
              ] 
-          ++ nixpkgs.lib.lists.optionals (useHomeManager) [
+          ++ lists.optionals (useHomeManager) [
               home-manager.nixosModules.home-manager {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;

@@ -45,8 +45,15 @@ in
 
     config = { 
 
-      # allow unfree (vscode, etc)
-      nixpkgs.config.allowUnfree = true;
+      nixpkgs = {
+        # add our custom packages as an overlay
+        overlays = [
+            (import ../packages/overlay.nix)
+        ];
+
+        # allow unfree (vscode, etc)
+        config.allowUnfree = true;
+      };
 
       # enable nix flakes
       nix.package = pkgs.nixUnstable;

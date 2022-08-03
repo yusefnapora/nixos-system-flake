@@ -1,8 +1,7 @@
-{ config, pkgs, nixpkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 with lib;
 let
   enable = config.yusef.gui.enable;
-  custom-fonts = ((import ../packages/fonts) { inherit pkgs; inherit lib; });
   nerd-fonts = [
     "FiraCode"
     "DroidSansMono"
@@ -22,8 +21,10 @@ in
       powerline-fonts
       helvetica-neue-lt-std
       liberation_ttf
-      custom-fonts.material-icons
-      custom-fonts.feather-icons
+
+      # custom fonts from this repo (see system/packages/overlay.nix)
+      custom-fonts-yusef.material-icons
+      custom-fonts-yusef.feather-icons
     ];
   };
 }
