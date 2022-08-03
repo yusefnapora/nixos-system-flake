@@ -80,7 +80,7 @@ in
 
       activeOpacity = 1.0;
       inactiveOpacity = 0.8;
-      menuOpacity = 0.8;
+      # menuOpacity = 0.8;
 
       backend = "xrender";
       vSync = true;
