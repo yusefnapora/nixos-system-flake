@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -17,37 +17,31 @@
     _1password.enable = true;
     gui.enable = true;
     sound.enable = true;
-    # sway = { 
-    #   enable = true;
-    #   no-hardware-cursors-fix = true;
-    #   startup-commands = [
-    #     { command = "swaymsg -- output Virtual-1 scale 2 mode --custom 3600x2252@120Hz"; always = true; }
-    #   ];
-    # };
     i3 = { 
       enable = true;
       dpi-scale = 2.0;
       gaps = {};
-      startup = [
-        { command = "xrandr --output Virtual-1 --mode 3600x2252 --dpi 250"; }
-        # polybar needs to be restarted after the resolution change above
-        { command = "systemctl --user restart polybar"; }
-      ];
     };
     docker.enable = true;
     trilium.enable = true;
   };
 
   # HiDPI settings for macbook pro 14"
-  services.xserver.displayManager.sessionCommands = ''
+  services.xserver = {
+    displayManager.sessionCommands = ''
     ${pkgs.xorg.xrdb}/bin/xrdb -merge <${pkgs.writeText "Xresources" ''
-      Xft.dpi: 250
+      Xft.dpi: 220
       Xcursor.theme: Adwaita
-      Xcursor.size: 64
+      Xcursor.size: 48
       Xcursor.theme_core: 1
     ''}
   '';
-  services.xserver = {
+    
+    dpi = 220;
+    resolutions = lib.mkOverride 5 [
+      { x = 3600; y = 2252; }
+    ];
+
     monitorSection = ''
       Modeline "3600x2252"  696.00  3600 3896 4288 4976  2252 2255 2265 2332 -hsync +vsync
     '';
