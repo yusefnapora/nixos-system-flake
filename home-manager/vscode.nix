@@ -9,6 +9,7 @@ let
     bbenoist.nix
     ms-azuretools.vscode-docker
     ms-vscode-remote.remote-ssh
+    github.vscode-pull-request-github
     vscodevim.vim
     vspacecode.vspacecode
     vspacecode.whichkey
