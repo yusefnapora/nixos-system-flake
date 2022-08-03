@@ -23,8 +23,8 @@ in
       liberation_ttf
 
       # custom fonts from this repo (see system/packages/overlay.nix)
-      custom-fonts-yusef.material-icons
-      custom-fonts-yusef.feather-icons
+      yusef.fonts.material-icons
+      yusef.fonts.feather-icons
     ];
   };
 }

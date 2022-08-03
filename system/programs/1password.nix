@@ -5,9 +5,9 @@ let
   targetSystem = config.yusef.system;
 
   _1password-package = if (targetSystem == "aarch64-linux") then
-    pkgs._1password-aarch64
+    pkgs.yusef._1password-aarch64
    else
-     pkgs._1password-gui;
+    pkgs._1password-gui;
 in
 {
   options.yusef._1password = {

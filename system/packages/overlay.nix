@@ -7,10 +7,12 @@ let
   p = path: (super.callPackage path {});
 in
 {
-  _1password-aarch64 = (p ./1password-beta-aarch64.nix);
+  yusef = {
+    _1password-aarch64 = (p ./1password-beta-aarch64.nix);
 
-  custom-fonts-yusef = {
-    material-icons = (p ./fonts/material-icons);
-    feather-icons = (p ./fonts/feather-icons);
+    fonts = {
+      material-icons = (p ./fonts/material-icons);
+      feather-icons = (p ./fonts/feather-icons);
+    };
   };
 }
