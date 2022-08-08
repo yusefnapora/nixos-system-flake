@@ -17,6 +17,7 @@ let
     alacritty
     dmenu
     chromium
+    obsidian
   ] ++ lists.optionals (isX86) [
     zoom-us
     slack
