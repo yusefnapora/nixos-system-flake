@@ -35,6 +35,12 @@ There are a few things I've cobbled together that might be useful to others. I'm
   - see [system/modules/key-remap.nix](./system/modules/key-remap.nix)
     - also has an option to swap left super and alt. There are simpler ways to do this with interception-tools, but I was already using the dual-function-keys plugin, and this seems to work.
 
+- Allowing USB devices to wake the system
+  - see [system/modules/usb-wake.nix](./system/modules/usb-wake.nix)
+  - adds a `yusef.usb-wake.devices` option that takes a list of attrsets
+    - e.g. `yusef.usb-wake.devices = [ { vendor-id = "abcd"; product-id = "1234"; } ]`
+  - adds udev rules to set the `power/wakeup` attribute for each device to "enabled" (inspired by [this SO answer](https://unix.stackexchange.com/a/532839))
+
 - Installing random fonts (not from nixpkgs)
   - see [system/packages/fonts/feather-icons](system/packages/fonts/feather-icons) and [system/packages/fonts/material-icons](system/packages/fonts/material-icons).
   - basically, you just grab the font files from somewhere and use them as the `src` attribute in a call to `pkgs.stdEnvNoCC.mkDerivation`.
