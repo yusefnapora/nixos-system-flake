@@ -80,8 +80,15 @@ in
       shadowExclude = [ "window_type *= 'normal' && ! name ~= ''" ];
 
       activeOpacity = 1.0;
-      inactiveOpacity = 0.8;
-      # menuOpacity = 0.8;
+
+      # set kitty (terminal) windows to 80% opacity when unfocused.
+      # using this instead of inactiveOpacity, since the latter is
+      # too distracting when e.g. coding with a web-browser in split screen
+      opacityRules = [
+        ''
+        80: class_i = "kitty" && focused != 1
+        ''
+      ];
 
       backend = "xrender";
       vSync = true;
