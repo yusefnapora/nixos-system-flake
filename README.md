@@ -84,7 +84,7 @@ There are a few things I've cobbled together that might be useful to others. I'm
     - Setting up that environment _once_ is actually pretty fun and not really that hard, since you're doing it as you develop the solution in the first place.
     - But it's extra super not fun to come back in three years and have absolutely no idea what's going on, or where to find a version of `X` that's compatible with `Y` now that `Z` has been rewritten in rust or whatever.
     - Even if you take careful notes about all the dependencies and how to install everything, there's a decent chance that the world will change around you. 
-      - In the immortal words of Abe Simpson, "I used to be with it. Then they changed what 'it' was, and now what I'm with isn't 'it,' and what's 'it' seems weird and scary to me. [It'll happen to you!](https://frinkiac.com/meme/S07E24/358040/m/SXQnbGwgaGFwcGVuIHRvIHlvdS4uLg==)
+      - In the immortal words of Abe Simpson, "I used to be with it. Then they changed what 'it' was, and now what I'm with isn't 'it,' and what's 'it' seems weird and scary to me. [It'll happen to you!](https://frinkiac.com/meme/S07E24/358040/m/SXQnbGwgaGFwcGVuIHRvIHlvdS4uLg==)"
     - With Nix, I can capture the dependencies for the `lgtv` thing, so it will always have `websocat` and I never need to think about it again or explicitly install it.
       - Think about it - how many times have you had to write something like this in a script:
         ```bash
