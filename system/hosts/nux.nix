@@ -40,6 +40,10 @@
         vendor-id = "046d";
         product-id = "c52b";
       }
+      { # streamdeck 
+        vendor-id = "0fd9";
+        device-id = "0080";
+      }
     ];
   };
 
