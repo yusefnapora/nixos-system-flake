@@ -1,9 +1,8 @@
 { pkgs, config, lib, ...}:
 let
-  inherit (builtins) toString;
-  inherit (lib) types mkEnableOption mkIf mkOption;
+  inherit (lib) types mkIf mkOption;
   inherit (lib.lists) forEach count;
-  inherit (lib.strings) concatStringsSep;
+  inherit (lib.strings) concatStrings;
 
   device-spec = types.submodule {
     options = {
@@ -31,6 +30,6 @@ in
   };
 
   config = mkIf enable {
-    services.udev.extraRules = concatStringsSep "\n" actions;
+    services.udev.extraRules = concatStrings actions;
   };
 }
