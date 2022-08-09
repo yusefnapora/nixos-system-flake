@@ -6,5 +6,6 @@
         ./fonts.nix
         ./bluetooth.nix
         ./kvm-switch
+        ./usb-wake.nix
     ];
 }

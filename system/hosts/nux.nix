@@ -17,11 +17,10 @@
     _1password.enable = true;
     sound.enable = true;
     bluetooth.enable = true;
-    i3.enable = true;
-    # sway = { 
-    #   enable = true; 
-    #   natural-scrolling = true;
-    # };
+    i3 = {
+      enable = true; 
+      natural-scrolling = true;
+    };
     key-remap = { 
       enable = true; 
       caps-to-ctrl-esc= true; 
@@ -32,6 +31,16 @@
     kvm-switch.enable = true;
     obs.enable = true;
     streamdeck.enable = true;
+    usb-wake.devices = [
+      { # ms keyboard receiver
+        vendor-id = "045e";
+        product-id = "07a5"; 
+      }
+      { # logitech mouse receiver
+        vendor-id = "046d";
+        product-id = "c52b";
+      }
+    ];
   };
 
   # Use the systemd-boot EFI boot loader.

@@ -28,6 +28,12 @@ in
         outer = 5;
       };
     };
+
+    natural-scrolling = mkOption {
+      type = types.bool;
+      description = "enable libinput natural scrolling (mouse and touchpad)";
+      default = false;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -36,6 +42,8 @@ in
 
       libinput = {
         enable = true;
+        mouse.naturalScrolling = cfg.natural-scrolling;
+        touchpad.naturalScrolling = cfg.natural-scrolling;
       };
 
       desktopManager = { 
