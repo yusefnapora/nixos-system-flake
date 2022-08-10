@@ -49,6 +49,7 @@
 
   environment.systemPackages = [
     pkgs.yusef.lgtv
+    pkgs.yusef.trim-screencast
   ];
 
   powerManagement.resumeCommands = 
