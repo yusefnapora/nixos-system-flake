@@ -4,10 +4,18 @@ let
 
   cfg = nixosConfig.yusef.i3;
   mod = "Mod4";
+  alt = "Mod1";
   backgroundImage = (builtins.path { name = "jwst-carina.jpg"; path = ./backgrounds/jwst-carina.jpg; });
+
+  # TODO: make an option for this?
+  screenshots-dir = "/home/yusef/Screenshots";
 in
 {
     config = mkIf cfg.enable {
+      home.packages = [
+        pkgs.flameshot
+      ];
+
       programs.feh.enable = true;
 
       xsession.enable = true;
@@ -27,6 +35,15 @@ in
 
                 # rofi
                 "${mod}+d" = "exec --no-startup-id rofi -show drun";
+
+                # screenshots:
+                ## PrintScreen and Mod+Shift+S (for keyboards without print screen key) to flameshot gui
+                "Print" = "exec flameshot gui -p ${screenshots-dir}";
+                "${mod}+Shift+s" = "exec flameshot gui -p ${screenshots-dir}";
+
+                ## Shift+PrintScreen and Mod+Alt+Shift+S to full screen capture
+                "Shift+Print" = "exec flameshot full -p ${screenshots-dir}";
+                "${mod}+${alt}+Shift+s" = "exec flameshot full -p ${screenshots-dir}";
 
                 # alternative to mod+shift+q, since macos insists on eating it
                 "${mod}+Shift+w" = "kill";
