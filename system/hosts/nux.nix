@@ -47,6 +47,15 @@
     ];
   };
 
+  environment.systemPackages = [
+    pkgs.yusef.lgtv
+  ];
+
+  powerManagement.resumeCommands = 
+    ''
+    ${pkgs.yusef.lgtv}/bin/lgtv -c /root/.config/lgtv/config wakeonlan
+    '';
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

@@ -9,6 +9,7 @@ in
 {
   yusef = {
     _1password-aarch64 = (p ./1password-beta-aarch64.nix);
+    lgtv = (p ./lgtv.nix);
     fonts = (p ./fonts); 
   };
 }
