@@ -16,7 +16,7 @@
     system = "aarch64-linux";
     gui.enable = true;
     sound.enable = true;
-    sway.enable = true;
+    i3.enable = true;
     docker.enable = true;
   };
 

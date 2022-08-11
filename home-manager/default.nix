@@ -3,7 +3,6 @@ let
   inherit (lib) lists mkIf;
 
   withGUI = nixosConfig.yusef.gui.enable;
-  withSway = nixosConfig.yusef.sway.enable;
 
   isX86 = system == "x86_64-linux";
 
@@ -29,7 +28,6 @@ in
 {
   imports = [
     ./git.nix
-    ./sway.nix
     ./i3.nix
     ./polybar.nix
     ./fish.nix

@@ -24,7 +24,6 @@ let
 in
 {
     imports = [
-        ./sway.nix
         ./i3.nix
         ./droidcam.nix
         ./docker.nix

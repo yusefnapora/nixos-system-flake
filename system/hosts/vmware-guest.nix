@@ -16,9 +16,8 @@
     gui.enable = true;
     _1password.enable = true;
     sound.enable = true;
-    sway = { 
+    i3 = { 
       enable = true; 
-      no-hardware-cursors-fix = true;
     };
     key-remap = { 
       enable = true; 
