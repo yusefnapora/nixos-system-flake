@@ -13,7 +13,9 @@ in {
 
     environment.systemPackages = with pkgs; [
       obs-studio
-      obs-studio-plugins.wlrobs
+
+      # also install shotcut video editor for simple edits
+      shotcut
     ];
 
   };
