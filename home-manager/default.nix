@@ -22,6 +22,7 @@ let
     zoom-us
     slack
     logseq
+    simplescreenrecorder
   ];
 in
 {

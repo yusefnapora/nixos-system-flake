@@ -13,6 +13,7 @@ let
       sqlite
       htop
       killall
+      tree
   ];
 
   guiPackages = with pkgs; [
