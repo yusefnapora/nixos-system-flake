@@ -1,6 +1,6 @@
 { config, system, nixosConfig, pkgs, nixpkgs, lib, ... }:
 let
-  inherit (lib) lists;
+  inherit (lib) lists mkIf;
 
   withGUI = nixosConfig.yusef.gui.enable;
   withSway = nixosConfig.yusef.sway.enable;
@@ -16,6 +16,7 @@ let
     kitty
     alacritty
     dmenu
+    firefox
     chromium
     obsidian
   ] ++ lists.optionals (isX86) [
@@ -49,6 +50,18 @@ in
 
     direnv.enable = true;
     direnv.nix-direnv.enable = true;
+  };
+
+  # set firefox as default browser (chromium hijacks it by default)
+  xdg = mkIf withGUI {
+    mime.enable = true;
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "x-scheme-handler/http" = ["firefox.desktop"];
+        "x-scheme-handler/https" = ["firefox.desktop"];
+      };
+    };
   };
 
   home = {
