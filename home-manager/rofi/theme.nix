@@ -2,21 +2,19 @@
 { scaled, config }:
 let
   inherit (config.lib.formats.rasi) mkLiteral;
-  size-10 = (scaled 10.0);
-  size-12 = (scaled 12.0);
 in
 {
   # colors
   "*" = {
     al = mkLiteral "#00000000";
     bg = mkLiteral "#000000ff";
-    se = mkLiteral "#101010ff";
+    se = mkLiteral "#264653ff";
     fg = mkLiteral "#FFFFFFff";
-    ac = mkLiteral "#EC7875ff";
+    ac = mkLiteral "#2a9d8fff";
   };
 
   configuration = {
-	  font = "Iosevka Nerd Font ${size-10}";
+	  font = "Iosevka Nerd Font ${(scaled 12.0)}";
     show-icons = true;
 	  icon-theme = "Papirus";
     display-drun = "";
@@ -43,10 +41,11 @@ in
     padding = mkLiteral "0.30% 1% 0% -0.5%";
     background-color = mkLiteral "@al";
     text-color = mkLiteral "@bg";
-    font = "FantasqueSansMono Nerd Font ${size-12}";
+    font = "FantasqueSansMono Nerd Font ${(scaled 14.0)}";
   };
 
   entry = {
+	  font = "Iosevka Nerd Font ${(scaled 14.0)}";
     background-color = mkLiteral "@al";
     text-color = mkLiteral "@bg";
     placeholder-color = mkLiteral "@bg";
