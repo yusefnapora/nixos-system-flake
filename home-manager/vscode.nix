@@ -16,6 +16,7 @@ let
     vspacecode.whichkey
     skyapps.fish-vscode
     rust-lang.rust-analyzer
+    golang.go
   ]) 
   ++ lists.optionals (system == "x86_64-linux") (with pkgs.vscode-extensions; [
     ms-vsliveshare.vsliveshare
