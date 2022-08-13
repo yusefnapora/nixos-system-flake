@@ -8,15 +8,6 @@ in {
     enable = mkEnableOption "Install OBS Studio and plugins";
   };
 
-  config = mkIf cfg.enable {
-    # See ./v4l2loopback.nix for virtual camera video device stuff
-
-    environment.systemPackages = with pkgs; [
-      obs-studio
-
-      # also install shotcut video editor for simple edits
-      shotcut
-    ];
-
-  };
+  # obs is actually installed via home-manager, since it's a litte easier to add plugins.
+  # see ./v4l2loopback.nix for virtual camera config.
 }

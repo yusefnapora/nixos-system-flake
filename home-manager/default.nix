@@ -34,6 +34,7 @@ in
     ./vscode.nix
     ./kitty.nix
     ./rofi
+    ./obs.nix
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [

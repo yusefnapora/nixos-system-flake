@@ -6,11 +6,11 @@ buildGoModule {
   name = "obs-cli";
 
   src = fetchFromGitHub {
-    owner = "muesli";
+    owner = "muesli"; # using my fork until upstream supports v5 protocol
     repo = "obs-cli";
-    rev = "v0.5.0";
-    sha256 = "sha256-4tjS+PWyP/T0zs4IGE6VQ5c+3tuqxlBwfpPBVEcim6c=";
+    rev = "ed84a32dd2d93851349eb578ad08db3829453907";
+    sha256 = "sha256-fd6FWjwLNfitWK3CYuba/OVN3iLRC51HZp+p1VR59cs=";
   };
 
-  vendorHash = "sha256-RGpkqX97zalZv4aDfihJBKO1l2O8tcxn0I1SPL1WIg8=";
+  vendorHash = "sha256-KHkjAToGJhldqJi5qwjY7SaRh67TfPAwXNaKJMyutxE=";
 }
