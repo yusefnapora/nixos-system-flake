@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -50,6 +50,7 @@
   environment.systemPackages = [
     pkgs.yusef.lgtv
     pkgs.yusef.trim-screencast
+    pkgs.libva-utils
   ];
 
   powerManagement.resumeCommands = 
@@ -58,12 +59,20 @@
     '';
 
   # enable hw-accelerated video playback for intel GPU
-  nixpkgs.config.packageOverrides = pkgs: {
-    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+  # nixpkgs.config.packageOverrides = pkgs: {
+  #   vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+  # };
+
+
+  environment.variables = {
+    LIBVA_DRIVER_NAME = "iHD";
+    VDPAU_DRIVER = "va_gl";
   };
 
-  hardware.opengl = {
+  hardware.opengl = lib.mkForce {
     enable = true;
+    driSupport = true;
+    # driSupport32Bit = true;
     extraPackages = with pkgs; [
       intel-media-driver
       vaapiIntel
