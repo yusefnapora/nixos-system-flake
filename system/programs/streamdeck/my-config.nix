@@ -7,7 +7,10 @@ let
   icons = (import ./icons);
   scripts = (import ./scripts { inherit pkgs; inherit lib; });
 
-  inherit (scripts) activate-window-by-name type-in-window; 
+  inherit (scripts) activate-window-by-name type-in-window;
+
+  obs-password = "donthackmebro"; # TODO: setup secrets, ala https://xeiaso.net/blog/nixos-encrypted-secrets-2021-01-20 
+  obs-cli = "${pkgs.yusef.obs-cli}/bin/obs-cli --password ${obs-password}";
 in
 {
   device-id = "DL51K1A63326";
@@ -42,7 +45,11 @@ in
           icon = "${icons.vscode}";
         }
 
-
+        { button = 5;
+          # text = "OBS";
+          switch-page = 2;
+          icon = "${icons.obs}";
+        }
       ];
     }
 
@@ -76,7 +83,28 @@ in
           command = "${activate-window-by-name} 'Zoom Meeting'";
           icon = "${icons.zoom}";
         }
+      ];
+    }
 
+    # OBS controls page
+    { page = 2;
+      buttons = [
+        { button = 0;
+          text = "Toggle Rec";
+          icon = "${icons.record}";
+          command = "${obs-cli} recording toggle";
+        }
+        { button = 1;
+          # text = "Play/Pause";
+          icon = "${icons.play-pause}";
+          command = "${obs-cli} recording pause toggle";
+        }
+
+        { button = 5;
+          # text = "Back";
+          icon = "${icons.back-arrow}";
+          switch-page = 0;
+        }
       ];
     }
   ];
