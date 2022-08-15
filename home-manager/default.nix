@@ -9,6 +9,7 @@ let
   packages = with pkgs; [
     nixFlakes
     jq
+    cht-sh
   ];
 
   guiPackages = with pkgs; [
