@@ -14,4 +14,8 @@ in
   back-arrow = storePath "back-arrow.svg";
   record = storePath "record.svg";
   play-pause = storePath "play-pause.svg";
+  screen-capture = storePath "screen-capture.svg";
+  selfie = storePath "selfie.svg";
+  window = storePath "window.svg";
+  window-and-selfie = storePath "window-and-selfie.svg";
 }

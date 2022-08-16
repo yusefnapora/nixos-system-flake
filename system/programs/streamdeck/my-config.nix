@@ -105,6 +105,24 @@ in
           icon = "${icons.back-arrow}";
           switch-page = 0;
         }
+
+        { button = 10;
+          text = "Screen";
+          icon = "${icons.window}";
+          command = "${obs-cli} scene switch 'Desktop Capture'";
+        }
+
+        { button = 11;
+          text = "Camera";
+          icon = "${icons.selfie}";
+          command = "${obs-cli} scene switch 'Camera Only'";
+        }
+
+        { button = 12; 
+          text = "Screen+Cam";
+          icon = "${icons.window-and-selfie}";
+          command = "${obs-cli} scene switch 'Desktop Capture With Camera'";
+        }
       ];
     }
   ];
