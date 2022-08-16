@@ -53,6 +53,10 @@
     pkgs.libva-utils
   ];
 
+  # doesn't seem to want to wake from hibernate...
+  systemd.targets.hibernate.enable = false;
+  systemd.targets.hybrid-sleep.enable = false;
+
   powerManagement.resumeCommands = 
     ''
     ${pkgs.yusef.lgtv}/bin/lgtv -c /root/.config/lgtv/config wakeonlan
