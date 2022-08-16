@@ -55,7 +55,6 @@
 
   # doesn't seem to want to wake from hibernate...
   systemd.targets.hibernate.enable = false;
-  systemd.targets.hybrid-sleep.enable = false;
 
   powerManagement.resumeCommands = 
     ''
