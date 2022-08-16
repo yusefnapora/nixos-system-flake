@@ -44,6 +44,19 @@
         vendor-id = "0fd9";
         product-id = "0080";
       }
+      # somewhat annoyingly, you need to enable wakeup for the usb host controller & the hub they're plugged into also
+      { # usb1 and usb3 xHCI controller
+        vendor-id = "1d6b";
+        product-id = "0002";
+      }
+      { # usb2 and usb4 xHCI controller
+        vendor-id = "1d6b";
+        product-id = "0003";
+      }
+      { # usb 2.0 hub (assuming this is the usb switch) 
+        vendor-id = "2109";
+        product-id = "2817";
+      }
     ];
   };
 
