@@ -18,16 +18,19 @@ OTHER_MAC_ADDR="e0:d5:5e:d4:2a:4e"
 # config file for lgtv is in /root/.config/lgtv/config
 # need to set HOME when called by udev
 export HOME=/root
+CONFIG_FILE="/root/.config/lgtv/config"
+
+LGTV="$DIR/lgtv -c $CONFIG_FILE"
 
 function device_added() {
   echo "switching TV to $OUR_INPUT"
-  $DIR/lgtv tv switchInput $OUR_INPUT
+  $LGTV tv switchInput $OUR_INPUT
 }
 
 function device_removed() {
   echo "switching TV to $OTHER_INPUT and sending WoL packet to $OTHER_MAC_ADDR"
   $DIR/wakeonlan $OTHER_MAC_ADDR
-  $DIR/lgtv tv switchInput $OTHER_INPUT
+  $LGTV tv switchInput $OTHER_INPUT
 }
 
 if [ "$1" == "add" ]; then

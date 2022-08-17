@@ -5,12 +5,12 @@
 , websocat
 , coreutils
 , gnugrep
-
+, wakeonlan
 }:
 
 let
     pkgName = "lgtv";
-    pkgBuildInputs = [ bash websocat coreutils gnugrep ];
+    pkgBuildInputs = [ bash websocat coreutils gnugrep wakeonlan ];
     src = fetchFromGitHub {
       owner = "SaschaWessel";
       repo = "lgtv";
