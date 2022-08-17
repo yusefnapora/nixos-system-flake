@@ -74,6 +74,13 @@
     ${pkgs.yusef.lgtv}/bin/lgtv -c /root/.config/lgtv/config wakeonlan
     '';
 
+  services.logind.extraConfig = ''
+    # set power button to suspend instead of poweroff
+    HandlePowerKey=suspend
+    # suspend when idle timer kicks in
+    IdleAction=suspend
+  '';
+
   # enable hw-accelerated video playback for intel GPU
   environment.variables = {
     LIBVA_DRIVER_NAME = "iHD";
