@@ -34,16 +34,6 @@ in
         ./trilium.nix
     ];
 
-    options.yusef = {
-        gui.enable = mkEnableOption "Enables GUI programs";
-
-        system = mkOption {
-            type = types.str;
-            description = "nix system, e.g. x86_64-linux, aarch64-linux, etc";
-            default = "x86_64-linux";
-        };
-    };
-
 
     config = { 
 

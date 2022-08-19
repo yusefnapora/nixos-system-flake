@@ -64,6 +64,7 @@
     pkgs.yusef.lgtv
     pkgs.yusef.trim-screencast
     pkgs.libva-utils
+    pkgs.logiops # logitech mx master config thing
   ];
 
   # doesn't seem to want to wake from hibernate...
@@ -71,6 +72,7 @@
 
   powerManagement.resumeCommands = 
     ''
+    echo "waking TV on resume from sleep"
     ${pkgs.yusef.lgtv}/bin/lgtv -c /root/.config/lgtv/config wakeonlan
     '';
 
