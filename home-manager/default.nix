@@ -19,12 +19,12 @@ let
     firefox
     chromium
     obsidian
-    jetbrains.idea-ultimate
   ] ++ lists.optionals (isX86) [
     zoom-us
     slack
     logseq
     simplescreenrecorder
+    jetbrains.idea-ultimate
   ];
 in
 {
