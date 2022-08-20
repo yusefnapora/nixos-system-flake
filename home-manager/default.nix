@@ -10,6 +10,7 @@ let
     nixFlakes
     jq
     cht-sh
+    unzip
   ];
 
   guiPackages = with pkgs; [
