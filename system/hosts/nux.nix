@@ -60,11 +60,10 @@
     ];
   };
 
-  environment.systemPackages = [
-    pkgs.yusef.lgtv
-    pkgs.yusef.trim-screencast
-    pkgs.libva-utils
-    pkgs.logiops # logitech mx master config thing
+  environment.systemPackages = with pkgs; [
+    yusef.lgtv
+    yusef.trim-screencast
+    libva-utils # for sanity-checking video acceleration
   ];
 
   # doesn't seem to want to wake from hibernate...

@@ -36,6 +36,7 @@ in
     ./kitty.nix
     ./rofi
     ./obs.nix
+    ./jetbrains.nix
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
