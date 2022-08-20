@@ -19,6 +19,7 @@ let
     firefox
     chromium
     obsidian
+    jetbrains.idea-ultimate
   ] ++ lists.optionals (isX86) [
     zoom-us
     slack
@@ -36,7 +37,6 @@ in
     ./kitty.nix
     ./rofi
     ./obs.nix
-    ./jetbrains.nix
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
