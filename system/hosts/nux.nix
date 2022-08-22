@@ -80,6 +80,7 @@
     HandlePowerKey=suspend
     # suspend when idle timer kicks in
     IdleAction=suspend
+    IdleActionSec=45m
   '';
 
   # enable hw-accelerated video playback for intel GPU

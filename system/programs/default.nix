@@ -55,6 +55,9 @@ in
 
       programs.fish.enable = true;
 
+      # enable nix-ld to run unpatched binaries
+      programs.nix-ld.enable = true;
+
       environment.systemPackages = packages ++ 
         optionals guiEnabled guiPackages;
 
