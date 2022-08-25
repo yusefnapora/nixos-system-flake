@@ -40,8 +40,8 @@ in
                 # rofi emoji picker on Mod+Shift+space
                 "${mod}+Shift+space" = "exec --no-startup-id rofi -show emoji";
 
-                # rofi window switcher on Alt+Tab
-                "${alt}+Tab" = "exec --no-startup-id rofi -show window";
+                # rofi window switcher on Mod+Tab
+                "${mod}+Tab" = "exec --no-startup-id rofi -show window";
 
                 # move the default commands for Mod+space and Mod+Shift+space to Mod+o / Mod+Shift+o
                 "${mod}+o" = "focus mode_toggle";
