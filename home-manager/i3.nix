@@ -33,8 +33,19 @@ in
                 # terminal
                 "${mod}+Return" = "exec kitty";
 
-                # rofi
+                # rofi drun on Mod+d and Mod+Space
                 "${mod}+d" = "exec --no-startup-id rofi -show drun";
+                "${mod}+space"= "exec --no-startup-id rofi -show drun";
+
+                # rofi emoji picker on Mod+Shift+space
+                "${mod}+Shift+space" = "exec --no-startup-id rofi -show emoji";
+
+                # rofi window switcher on Alt+Tab
+                "${alt}+Tab" = "exec --no-startup-id rofi -show window";
+
+                # move the default commands for Mod+space and Mod+Shift+space to Mod+o / Mod+Shift+o
+                "${mod}+o" = "focus mode_toggle";
+                "${mod}+Shift+o" = "floating toggle";
 
                 # screenshots:
                 ## PrintScreen and Mod+Shift+S (for keyboards without print screen key) to flameshot gui

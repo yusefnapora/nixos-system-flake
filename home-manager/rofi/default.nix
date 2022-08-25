@@ -17,7 +17,7 @@ in
       theme = (import ./theme.nix { inherit scaled; inherit config; }); 
 
       extraConfig = {
-        modi = "drun,run,emoji,calc,ssh,combi";
+        modi = "drun,run,emoji,calc,ssh,combi,window";
       };
     };
   };
