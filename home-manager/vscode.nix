@@ -33,8 +33,8 @@ let
     { # vscode remote containers
       name = "remote-containers";
       publisher = "ms-vscode-remote";
-      version = "0.239.0";
-      sha256 = "c967933a9ce8459faf275904275dda7808d7d45b476c2b8ca2af343e20b5c814";
+      version = "0.248.0";
+      sha256 = "sha256-Q3bnxByJkTXn/cQZWQsjlohhvPI16dsD56WthVJl8JA=";
     }
 
     { # standard-js code style
