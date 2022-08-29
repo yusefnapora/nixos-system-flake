@@ -21,10 +21,9 @@
     };
     key-remap = { 
       enable = true; 
-      caps-to-ctrl-escenable = true; 
+      caps-to-ctrl-esc = true; 
     };
     docker.enable = true;
-    droidcam.enable = true;
   };
 
   # Use the systemd-boot EFI boot loader.
