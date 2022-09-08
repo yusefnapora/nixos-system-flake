@@ -11,6 +11,7 @@ let
     jq
     cht-sh
     unzip
+    deno
   ];
 
   guiPackages = with pkgs; [
