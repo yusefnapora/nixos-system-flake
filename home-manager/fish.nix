@@ -10,6 +10,7 @@ in
   home.packages = with pkgs; [
       exa
       starship
+      any-nix-shell
   ] ++ optionals (withGUI) [
     xclip
   ];
@@ -26,10 +27,15 @@ in
       };
 
       shellInit = ''
-      # init starship prompt
-      ${pkgs.starship}/bin/starship init fish | source
+        # init starship prompt
+        ${pkgs.starship}/bin/starship init fish | source
 
-      set -x EDITOR vim
+        set -x EDITOR vim
+      '';
+
+      interactiveShellInit = ''
+        # setup any-nix-shell integration
+        any-nix-shell fish --info-right | source
       '';
 
   };
