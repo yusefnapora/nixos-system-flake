@@ -18,6 +18,7 @@ let
     rust-lang.rust-analyzer
     golang.go
     denoland.vscode-deno
+    jnoortheen.nix-ide
   ]) 
   ++ lists.optionals (system == "x86_64-linux") (with pkgs.vscode-extensions; [
     ms-vsliveshare.vsliveshare
