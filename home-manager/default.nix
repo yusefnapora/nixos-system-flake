@@ -21,6 +21,7 @@ let
     firefox
     chromium
     obsidian
+    zeal
   ] ++ lists.optionals (isX86) [
     zoom-us
     slack
