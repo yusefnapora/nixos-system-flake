@@ -19,6 +19,7 @@ let
     golang.go
     denoland.vscode-deno
     jnoortheen.nix-ide
+    tamasfe.even-better-toml
   ]) 
   ++ lists.optionals (system == "x86_64-linux") (with pkgs.vscode-extensions; [
     ms-vsliveshare.vsliveshare
