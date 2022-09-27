@@ -59,6 +59,13 @@ let
       version = "105.20.0";
       sha256 = "sha256-+vYNgKVuknPROKTMMHugc9VrvYZ7GONr5SgYsb7l5rs=";
     }
+
+    { # dagger (ci thing, uses CUE lang)
+      name = "dagger";
+      publisher = "Dagger";
+      version = "0.3.3";
+      sha256 = "sha256-53WN/6TSgSqiKZ+cG0U7oSyo4H3etRQihLhZ0H14a6k=";
+    }
   ];
 
   keybindings = [
