@@ -97,6 +97,7 @@ in
 
             floating.criteria = [
               { title = ".zoom "; }
+              { title = "^zoom$"; }
             ];
         };
     };
