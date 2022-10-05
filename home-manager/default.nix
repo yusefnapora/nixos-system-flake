@@ -22,6 +22,7 @@ let
     chromium
     obsidian
     zeal
+    tigervnc
   ] ++ lists.optionals (isX86) [
     zoom-us
     slack
