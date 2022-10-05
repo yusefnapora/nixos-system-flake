@@ -62,6 +62,14 @@ in
       windowManager.i3 = { 
         enable = true;
       };
-     }; 
+     };
+
+     # enable gnome-keyring, so 1password, etc can use it
+      services.gnome = {
+        gnome-keyring.enable = true;
+      };
+
+      programs.dconf.enable = true;
+      security.pam.services.xdm.enableGnomeKeyring = true;
   };
 }
