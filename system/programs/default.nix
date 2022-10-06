@@ -31,7 +31,6 @@ in
         ./obs.nix
         ./v4l2loopback.nix
         ./streamdeck
-        ./trilium.nix
     ];
 
 
