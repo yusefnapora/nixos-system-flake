@@ -1,9 +1,20 @@
 # Package for Kindle v1.17, the last version before KFX downloads were added.
+# Note to self: autodetection of the Kindle decryption key seems to fail if you
+# use the calibre GUI. To manually extract the key, run this after signing into the Kindle app
+# and installing calibre's DeDRM plugin:
+#   wine py -3 $HOME/.calibre/plugins/DeDRM/libraryfiles/kindlekey.py
+# That will write a keyfile to  $HOME/.calibre/plugins/DeDRM/libraryfiles/kindlekey1.k4i
+# which you can import in the DeDRM plugin prefs.
 { pkgs, fetchurl, makeDesktopItem, symlinkJoin, ... }:
 let
   source = fetchurl {
     url = "https://ia600909.us.archive.org/6/items/kindle-for-pc-1-17-44170/kindle-for-pc-1-17-44170.exe";
     sha256 = "001j2r2024icfr8nk6z9pxzp0krlf30jv2a6qk3w0xhj7w2z1q0l";
+  };
+
+  python-win-installer = fetchurl {
+    url = "https://www.python.org/ftp/python/3.9.6/python-3.9.6.exe";
+    sha256 = "506f8d88063191e9c579a4d6b4274b16e941d004ce33f99ab34ef4c5be23e45b";
   };
 
   name = "kindle";
@@ -12,16 +23,31 @@ let
     inherit name;
 
     firstrunScript = ''
+      echo "installing Kindle for PC"
       wine ${source} /S
 
       # create the default content folder 
       mkdir -p "$WINE_NIX_PROFILES/${name}/Documents/My Kindle Content"
+
+      # set the windows version reported by wine to 8.1, so we can install python 3
+      winecfg /v win81
+
+      # install python3 in our wine prefix
+      echo "installing python"
+      wine ${python-win-installer} /quiet
+
+      # install cryptodome python module
+      wine py -m pip install pycryptodome
+
+      # reset windows version back to win7 to make the Kindle app happy
+      winecfg /v win7   
     '';
 
     setupScript = ''
       # disable auto update
       APP_DIR="$WINE_NIX_PROFILES/${name}/AppData/Local/Amazon/Kindle"
       mkdir -p "$APP_DIR"
+      rm -rf "$APP_DIR/updates"
       echo "no thanks" > "$APP_DIR/updates"
     '';
 

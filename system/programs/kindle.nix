@@ -12,6 +12,8 @@ in {
   config = mkIf cfg.enable {
     environment.systemPackages = [
       pkgs.yusef.kindle
+
+      pkgs.wine # needed for calibre DeDRM plugin to find the key
     ];
 
     # Kindle 1.17 needs a special certificate file to access the network.

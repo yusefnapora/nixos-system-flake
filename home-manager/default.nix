@@ -23,6 +23,7 @@ let
     obsidian
     zeal
     tigervnc
+    calibre
   ] ++ lists.optionals (isX86) [
     zoom-us
     slack
