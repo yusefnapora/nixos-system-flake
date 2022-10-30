@@ -31,6 +31,7 @@ in
         ./obs.nix
         ./v4l2loopback.nix
         ./streamdeck
+        ./kindle.nix
     ];
 
 

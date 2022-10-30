@@ -31,6 +31,7 @@
     kvm-switch.enable = true;
     obs.enable = true;
     streamdeck.enable = true;
+    kindle.enable = true;
     usb-wake.devices = [
       { # ms keyboard receiver
         vendor-id = "045e";

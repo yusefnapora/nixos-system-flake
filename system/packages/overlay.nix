@@ -12,6 +12,8 @@ in
     lgtv = (p ./lgtv.nix);
     trim-screencast = (p ./trim-screencast.nix);
     obs-cli = (p ./obs-cli.nix);
-    fonts = (p ./fonts); 
+    fonts = (p ./fonts);
+    wrapWine = (p ./wrapWine.nix);
+    kindle = (p ./wineApps/kindle/default.nix);
   };
 }
