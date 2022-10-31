@@ -14,6 +14,6 @@ in
     obs-cli = (p ./obs-cli.nix);
     fonts = (p ./fonts);
     wrapWine = (p ./wrapWine.nix);
-    kindle = (p ./wineApps/kindle/default.nix);
+    kindle = (p ./wineApps/kindle.nix);
   };
 }

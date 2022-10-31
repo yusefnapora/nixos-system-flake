@@ -1,10 +1,5 @@
 # Package for Kindle v1.17, the last version before KFX downloads were added.
-# Note to self: autodetection of the Kindle decryption key seems to fail if you
-# use the calibre GUI. To manually extract the key, run this after signing into the Kindle app
-# and installing calibre's DeDRM plugin:
-#   wine py -3 $HOME/.calibre/plugins/DeDRM/libraryfiles/kindlekey.py
-# That will write a keyfile to  $HOME/.calibre/plugins/DeDRM/libraryfiles/kindlekey1.k4i
-# which you can import in the DeDRM plugin prefs.
+
 { pkgs, fetchurl, makeDesktopItem, symlinkJoin, ... }:
 let
   source = fetchurl {
