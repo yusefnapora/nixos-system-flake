@@ -12,6 +12,7 @@ let
     cht-sh
     unzip
     deno
+    nushell
   ];
 
   guiPackages = with pkgs; [
