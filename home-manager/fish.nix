@@ -3,6 +3,7 @@ let
   inherit (lib.lists) optionals;
   inherit (lib.attrsets) optionalAttrs;
 
+  cfg = nixosConfig.yusef.fish;
   withGUI = nixosConfig.yusef.gui.enable;
 in
 {
@@ -31,6 +32,8 @@ in
         ${pkgs.starship}/bin/starship init fish | source
 
         set -x EDITOR vim
+
+        ${cfg.init}
       '';
 
       interactiveShellInit = ''

@@ -13,6 +13,14 @@
   options.yusef = {
     gui.enable = lib.mkEnableOption "Enables GUI programs";
 
+    fish = {
+      init = lib.mkOption {
+        type = lib.types.lines;
+        description = "added to fish initScript in home-manager config";
+        default = "";
+      };
+    };
+
     system = lib.mkOption {
       type = lib.types.str;
       description = "nix system, e.g. x86_64-linux, aarch64-linux, etc";
