@@ -13,7 +13,7 @@ let
 in
 {
   config = mkIf (enable) {
-    fonts.fontconfig.enable = true;
+    fonts.fontconfig.enable = lib.mkDefault true;
     fonts.fonts = with pkgs; [
       (nerdfonts.override { fonts = nerd-fonts; })
       fira-code

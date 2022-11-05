@@ -23,14 +23,14 @@ let
     chromium
     obsidian
     zeal
-    tigervnc
-    calibre
+    #tigervnc
+    #calibre
   ] ++ lists.optionals (isX86) [
-    zoom-us
-    slack
+    #zoom-us
+    #slack
     logseq
-    simplescreenrecorder
-    jetbrains.idea-ultimate
+    #simplescreenrecorder
+    #jetbrains.idea-ultimate
   ];
 in
 {

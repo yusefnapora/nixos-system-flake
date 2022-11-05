@@ -1,9 +1,9 @@
-{ lib, pkgs, config, modulesPath, ... }:
+{ lib, pkgs, config, modulesPath, nixos-wsl, ... }:
 
 with lib;
 let
   # TODO: use as flake input instead of putting nixos-wsl in this repo
-  nixos-wsl = import ./hardware/nixos-wsl;
+  # nixos-wsl = import ./hardware/nixos-wsl;
 in
 {
   imports = [
@@ -26,6 +26,7 @@ in
     # Enable integration with Docker Desktop (needs to be installed)
     # docker-desktop.enable = true;
 
+    nativeSystemd = true;
   };
 
   yusef = {
