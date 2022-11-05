@@ -76,6 +76,13 @@
       ];
     };
 
+    # WSL2 on Win11
+    nixosConfigurations.Hex = mkSystemConfig {
+      system = "x86_64-linux";
+      modules = [
+        ./system/hosts/hex-wsl.nix
+      ];
+    };
 
     # Intel NUC (11th gen)
     nixosConfigurations.nux = mkSystemConfig {
