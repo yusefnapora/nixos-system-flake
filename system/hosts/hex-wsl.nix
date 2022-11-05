@@ -38,6 +38,9 @@ in
     # WSLg should be disabled (https://x410.dev/cookbook/wsl/disabling-wslg-or-using-it-together-with-x410)
     # unless you need it for wayland
     set -x DISPLAY (grep nameserver /etc/resolv.conf | sed 's/nameserver //'):0
+
+    # prefer to use linux vscode from cli
+    set -x DONT_PROMPT_WSL_INSTALL true
     '';
   };
 
