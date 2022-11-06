@@ -74,6 +74,13 @@ let
       version = "2.3.0";
       sha256 = "sha256-sQdzMTZA0ZCwzU/+r2f88qIHBjj+Qvlrsa92bGbx2XA=";
     }
+
+    { # nushell
+      name = "vscode-nushell-lang";
+      publisher = "TheNuProjectContributors";
+      version = "0.7.0";
+      sha256 = "sha256-+AGJkFx/uzgQzuRnRBZ44xGNQ6a/QWt7SNiQgwPTZxo=";
+    }
   ];
 
   keybindings = [
