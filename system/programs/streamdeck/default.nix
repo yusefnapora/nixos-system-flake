@@ -22,12 +22,12 @@ in
   };
 
   config = mkIf cfg.enable {
-    programs.streamdeck-ui.enable = true;
+    # programs.streamdeck-ui.enable = true;
     
     yusef.i3.startup = [
       { command = "${startup-script}/bin/start-streamdeck"; }
     ];
 
-    environment.systemPackages = [ pkgs.xdotool ];
+    environment.systemPackages = [ pkgs.unstable.streamdeck-ui pkgs.xdotool ];
   };
 }
