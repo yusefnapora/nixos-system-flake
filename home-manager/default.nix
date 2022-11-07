@@ -12,7 +12,8 @@ let
     cht-sh
     unzip
     deno
-    nushell
+    unstable.nushell
+    unstable.helix
   ];
 
   guiPackages = with pkgs; [
