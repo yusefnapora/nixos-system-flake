@@ -39,6 +39,16 @@
     '';
   };
 
+  # enable gnome-keyring, so 1password, etc can use it
+  services.gnome = {
+    gnome-keyring.enable = true;
+  };
+
+  programs.dconf.enable = true;
+  security.pam.services.xdm.enableGnomeKeyring = true;
+
+  programs.ssh.startAgent = true;
+
   networking.hostName = "Hex";
 
   system.stateVersion = lib.mkForce "22.05";
