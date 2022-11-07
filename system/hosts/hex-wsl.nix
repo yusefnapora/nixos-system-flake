@@ -16,10 +16,11 @@ in
 
   wsl = {
     enable = true;
-    wslConf.automount.root = "/mnt";
     defaultUser = "yusef";
     startMenuLaunchers = true;
-    nativeSystemd = true;
+    #nativeSystemd = true;
+
+    wslConf.interop.appendWindowsPath = false;
 
     # Enable native Docker support
     docker-native.enable = true;
