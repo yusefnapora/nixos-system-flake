@@ -21,10 +21,10 @@ let
     dmenu
     firefox
     chromium
-    obsidian
     zeal
     tigervnc
-    calibre
+    unstable.calibre
+    unstable.obsidian
   ] ++ lists.optionals (isX86) [
     zoom-us
     slack
