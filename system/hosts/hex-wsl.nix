@@ -1,14 +1,6 @@
 { lib, pkgs, config, modulesPath, nixos-wsl, ... }:
-
-with lib;
-let
-  # TODO: use as flake input instead of putting nixos-wsl in this repo
-  #nixos-wsl = import ./hardware/nixos-wsl;
-in
 {
   imports = [
-    "${modulesPath}/profiles/minimal.nix"
-
     nixos-wsl.nixosModules.wsl
 
     ../default.nix
@@ -49,6 +41,5 @@ in
 
   networking.hostName = "Hex";
 
-  environment.noXlibs = false;
   system.stateVersion = lib.mkForce "22.05";
 }
