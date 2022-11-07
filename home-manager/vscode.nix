@@ -68,12 +68,12 @@ let
       sha256 = "sha256-53WN/6TSgSqiKZ+cG0U7oSyo4H3etRQihLhZ0H14a6k=";
     }
 
-    { # marp (markdown presentation thing)
-      name = "marp-vscode";
-      publisher = "marp-team";
-      version = "2.3.0";
-      sha256 = "sha256-sQdzMTZA0ZCwzU/+r2f88qIHBjj+Qvlrsa92bGbx2XA=";
-    }
+#    { # marp (markdown presentation thing)
+#      name = "marp-vscode";
+#      publisher = "marp-team";
+#      version = "2.3.0";
+#      sha256 = "sha256-sQdzMTZA0ZCwzU/+r2f88qIHBjj+Qvlrsa92bGbx2XA=";
+#    }
 
     { # nushell
       name = "vscode-nushell-lang";

@@ -1,9 +1,9 @@
-{ lib, pkgs, config, modulesPath, ... }:
+{ lib, pkgs, config, modulesPath, nixos-wsl, ... }:
 
 with lib;
 let
   # TODO: use as flake input instead of putting nixos-wsl in this repo
-  nixos-wsl = import ./hardware/nixos-wsl;
+  #nixos-wsl = import ./hardware/nixos-wsl;
 in
 {
   imports = [
@@ -16,9 +16,10 @@ in
 
   wsl = {
     enable = true;
-    automountPath = "/mnt";
+    wslConf.automount.root = "/mnt";
     defaultUser = "yusef";
     startMenuLaunchers = true;
+    nativeSystemd = true;
 
     # Enable native Docker support
     docker-native.enable = true;
@@ -30,7 +31,8 @@ in
 
   yusef = {
     gui.enable = true;
-
+    # i3.enable = true;
+        
     fish.init = ''
     # set DISPLAY to host IP:0 to use X410 instead of WSLg
     # motivation: X410 supports window snapping / fancy zones / komorebi, etc.
@@ -46,5 +48,6 @@ in
 
   networking.hostName = "Hex";
 
+  environment.noXlibs = false;
   system.stateVersion = lib.mkForce "22.05";
 }
