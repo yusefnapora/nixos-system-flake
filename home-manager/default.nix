@@ -59,6 +59,13 @@ in
 
     direnv.enable = true;
     direnv.nix-direnv.enable = true;
+  
+    ssh = {
+      enable = true;
+      extraConfig = ''
+        AddKeysToAgent=yes
+      '';
+    };
   };
 
   # set firefox as default browser (chromium hijacks it by default)
