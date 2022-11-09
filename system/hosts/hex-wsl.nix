@@ -24,7 +24,7 @@
 
   yusef = {
     gui.enable = true;
-    # i3.enable = true;
+    i3.enable = true;
         
     fish.init = ''
     # set DISPLAY to host IP:0 to use X410 instead of WSLg
@@ -39,7 +39,7 @@
     '';
   };
 
-  # enable gnome-keyring, so 1password, etc can use it
+  # enable gnome-keyring
   services.gnome = {
     gnome-keyring.enable = true;
   };
@@ -52,4 +52,5 @@
   networking.hostName = "Hex";
 
   system.stateVersion = lib.mkForce "22.05";
+
 }

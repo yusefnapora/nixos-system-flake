@@ -1,7 +1,7 @@
 # The system dir contains nixos system configuration stuff
 #
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, agenix, ... }:
 {
   imports = [
     ./users

@@ -17,9 +17,14 @@
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";    
     };
+
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, vscode-server, ... }: 
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, vscode-server, agenix, ... }: 
   let
     inherit (nixpkgs.lib) nixosSystem lists;
     mkSystemConfig = { 
@@ -36,6 +41,8 @@
                ({ config, pkgs, ... }: {
                  services.vscode-server.enable = true;
                })
+
+               agenix.nixosModule
              ] 
           ++ lists.optionals (useHomeManager) [
               home-manager.nixosModules.home-manager {
