@@ -20,6 +20,7 @@ let
     denoland.vscode-deno
     jnoortheen.nix-ide
     tamasfe.even-better-toml
+    yzhang.markdown-all-in-one
   ]) 
   ++ lists.optionals (system == "x86_64-linux") (with pkgs.unstable.vscode-extensions; [
     ms-vsliveshare.vsliveshare
@@ -210,6 +211,11 @@ in
         "terminal.integrated.fontFamily" = "Fira Mono for Powerline";
         "terminal.integrated.fontSize" = 16;
         "terminal.integrated.fontWeight" = 450;
+
+        # Use markdown-all-in-one as default formatter
+        "[markdown]" = {
+          "editor.defaultFormatter" = "yzhang.markdown-all-in-one";
+        };
 
         # I'm addicted to the macOS "emacs-like" shortcuts, but just ctrl-a and ctrl-e
         "vim.insertModeKeyBindings" = [
