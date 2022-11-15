@@ -57,6 +57,7 @@ in
     ./rofi
     ./npm.nix
     ./obs.nix
+    ./ssh.nix
   ];
 
   nixpkgs.config = import ./nixpkgs-config.nix;
@@ -71,13 +72,6 @@ in
     direnv.enable = true;
     direnv.nix-direnv.enable = true;
   
-    ssh = mkIf isLinux {
-      enable = true;
-      extraConfig = ''
-        AddKeysToAgent=yes
-      '';
-    };
-
     nix-index = {
       enable = true;
       enableFishIntegration = true;
