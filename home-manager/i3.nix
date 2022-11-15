@@ -126,16 +126,16 @@ in
       # set kitty (terminal) windows to 80% opacity when unfocused.
       # using this instead of inactiveOpacity, since the latter is
       # too distracting when e.g. coding with a web-browser in split screen
-      #opacityRules = [
-      #  "80: class_i = 'kitty' && focused != 1"
-      # 
-      #  # don't render hidden windows (prevents semi-transparent tabbed windows)
-      #  "0:_NET_WM_STATE@[0]:32a *= '_NET_WM_STATE_HIDDEN'"
-      #  "0:_NET_WM_STATE@[1]:32a *= '_NET_WM_STATE_HIDDEN'"
-      #  "0:_NET_WM_STATE@[2]:32a *= '_NET_WM_STATE_HIDDEN'"
-      #  "0:_NET_WM_STATE@[3]:32a *= '_NET_WM_STATE_HIDDEN'"
-      #  "0:_NET_WM_STATE@[4]:32a *= '_NET_WM_STATE_HIDDEN'"
-      #];
+      opacityRule = [
+       "80: class_i = 'kitty' && focused != 1"
+      
+       # don't render hidden windows (prevents semi-transparent tabbed windows)
+       "0:_NET_WM_STATE@[0]:32a *= '_NET_WM_STATE_HIDDEN'"
+       "0:_NET_WM_STATE@[1]:32a *= '_NET_WM_STATE_HIDDEN'"
+       "0:_NET_WM_STATE@[2]:32a *= '_NET_WM_STATE_HIDDEN'"
+       "0:_NET_WM_STATE@[3]:32a *= '_NET_WM_STATE_HIDDEN'"
+       "0:_NET_WM_STATE@[4]:32a *= '_NET_WM_STATE_HIDDEN'"
+      ];
 
       backend = "xrender";
       vSync = true;
