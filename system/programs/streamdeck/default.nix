@@ -28,6 +28,6 @@ in
       { command = "${startup-script}/bin/start-streamdeck"; }
     ];
 
-    environment.systemPackages = [ pkgs.unstable.streamdeck-ui pkgs.xdotool ];
+    environment.systemPackages = [ pkgs.streamdeck-ui pkgs.xdotool ];
   };
 }

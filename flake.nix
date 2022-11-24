@@ -1,10 +1,9 @@
 {
   inputs = { 
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = { 
-      url = "github:nix-community/home-manager/release-22.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -24,7 +23,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, vscode-server, agenix, ... }: 
+  outputs = inputs@{ self, nixpkgs, home-manager, vscode-server, agenix, ... }: 
   let
     inherit (nixpkgs.lib) nixosSystem lists;
     mkSystemConfig = { 
