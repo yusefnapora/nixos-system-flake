@@ -1,4 +1,4 @@
-{ config, pkgs, lib, nixpkgs-unstable, ... }:
+{ config, pkgs, lib, ... }:
 let
   inherit (lib) mkEnableOption mkOption mkIf types;
   inherit (lib.lists) optionals;
@@ -21,14 +21,6 @@ let
   ];
 
   guiEnabled = config.yusef.gui.enable;
-
-  # make packages from nixos-unstable available as pkgs.unstable
-  unstable-overlay = final: prev: {
-    unstable = import nixpkgs-unstable {
-      system = prev.system;
-      config.allowUnfree = true;
-    };
-  };
 in
 {
     imports = [
@@ -48,7 +40,6 @@ in
       nixpkgs = {
         # add our custom packages as an overlay
         overlays = [
-          unstable-overlay
           (import ../packages/overlay.nix)
         ];
 

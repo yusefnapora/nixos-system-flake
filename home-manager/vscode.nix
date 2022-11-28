@@ -6,7 +6,7 @@ let
 
   home.packages = with pkgs; [ rust-analyzer ];
 
-  extensions = (with pkgs.unstable.vscode-extensions; [
+  extensions = (with pkgs.vscode-extensions; [
     bbenoist.nix
     ms-azuretools.vscode-docker
     ms-vscode-remote.remote-ssh
@@ -22,7 +22,7 @@ let
     tamasfe.even-better-toml
     yzhang.markdown-all-in-one
   ]) 
-  ++ lists.optionals (system == "x86_64-linux") (with pkgs.unstable.vscode-extensions; [
+  ++ lists.optionals (system == "x86_64-linux") (with pkgs.vscode-extensions; [
     ms-vsliveshare.vsliveshare
     ms-vscode.cpptools
   ])
@@ -183,7 +183,6 @@ in
   config = mkIf (guiEnabled) {
     programs.vscode = {
       enable = true;
-      package = pkgs.unstable.vscode;
 
       inherit extensions;
 

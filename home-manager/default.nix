@@ -12,8 +12,8 @@ let
     cht-sh
     unzip
     deno
-    unstable.nushell
-    unstable.helix
+    nushell
+    helix
   ];
 
   guiPackages = with pkgs; [
@@ -24,9 +24,9 @@ let
     chromium
     zeal
     tigervnc
-    unstable.calibre
-    unstable.obsidian
+    obsidian
   ] ++ lists.optionals (isX86) [
+    calibre
     zoom-us
     slack
     logseq
