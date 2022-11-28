@@ -14,6 +14,7 @@ let
     deno
     nushell
     helix
+    fossil
   ];
 
   guiPackages = with pkgs; [
