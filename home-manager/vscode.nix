@@ -21,6 +21,7 @@ let
     jnoortheen.nix-ide
     tamasfe.even-better-toml
     yzhang.markdown-all-in-one
+    mhutchie.git-graph
   ]) 
   ++ lists.optionals (system == "x86_64-linux") (with pkgs.vscode-extensions; [
     ms-vsliveshare.vsliveshare
