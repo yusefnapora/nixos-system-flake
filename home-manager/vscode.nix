@@ -217,6 +217,9 @@ in
           "editor.defaultFormatter" = "yzhang.markdown-all-in-one";
         };
 
+        # disable markdown-all-in-one's TOC auto-update
+        "markdown.extension.toc.updateOnSave" = false;
+
         # I'm addicted to the macOS "emacs-like" shortcuts, but just ctrl-a and ctrl-e
         "vim.insertModeKeyBindings" = [
           {
