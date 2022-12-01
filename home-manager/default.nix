@@ -1,10 +1,13 @@
-{ config, system, nixosConfig, pkgs, nixpkgs, lib, ... }:
+{ config, system, pkgs, nixpkgs, lib, nixosConfig ? {}, darwinConfig ? {}, ... }:
 let
   inherit (lib) lists mkIf;
 
-  withGUI = nixosConfig.yusef.gui.enable;
+  systemConfig = nixosConfig // darwinConfig;
+  isX86 = lib.strings.hasPrefix "x86_64" system;
+  isDarwin = lib.strings.hasSuffix "darwin" system;
+  isLinux = !isDarwin;
 
-  isX86 = system == "x86_64-linux";
+  withGUI = systemConfig.yusef.gui.enable;
 
   packages = with pkgs; [
     nixFlakes
@@ -19,6 +22,8 @@ let
 
   guiPackages = with pkgs; [
     kitty
+  ] 
+  ++ lists.optionals isLinux [
     alacritty
     dmenu
     firefox
@@ -26,7 +31,8 @@ let
     zeal
     tigervnc
     obsidian
-  ] ++ lists.optionals (isX86) [
+  ]
+  ++ lists.optionals (isX86 && isLinux) [
     calibre
     zoom-us
     slack
@@ -38,14 +44,14 @@ in
 {
   imports = [
     ./git.nix
-    ./i3.nix
-    ./polybar.nix
     ./fish.nix
     ./vscode.nix
-    ./kitty.nix
+  ] ++ lists.optionals isLinux [
+    ./i3.nix
+    ./polybar.nix
     ./rofi
-    ./obs.nix
     ./npm.nix
+    ./obs.nix
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
@@ -61,7 +67,7 @@ in
     direnv.enable = true;
     direnv.nix-direnv.enable = true;
   
-    ssh = {
+    ssh = mkIf isLinux {
       enable = true;
       extraConfig = ''
         AddKeysToAgent=yes
@@ -70,7 +76,7 @@ in
   };
 
   # set firefox as default browser (chromium hijacks it by default)
-  xdg = mkIf withGUI {
+  xdg = mkIf (withGUI && isLinux) {
     mime.enable = true;
     mimeApps = {
       enable = true;

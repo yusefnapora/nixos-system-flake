@@ -21,11 +21,18 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-darwin = {
+      url = "github:lnl7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, vscode-server, agenix, ... }: 
+  outputs = inputs@{ self, nixpkgs, home-manager, vscode-server, agenix, nix-darwin, ... }: 
   let
     inherit (nixpkgs.lib) nixosSystem lists;
+    inherit (nix-darwin.lib) darwinSystem;
+
     mkSystemConfig = { 
       system, 
       modules, 
@@ -56,6 +63,7 @@
 
                 home-manager.extraSpecialArgs = {
                   inherit system inputs;
+                  darwinConfig = {};
                 };
               }
       
@@ -65,42 +73,74 @@
 
   in
   {
-    # macbook via UTM virtual machine
-    nixosConfigurations.nixos = mkSystemConfig {
-      system = "aarch64-linux";
-      modules = [
-        ./system/hosts/macbook-vm.nix
-      ];
+    ### --- nixos configs
+    nixosConfigurations = {
+      # macbook via UTM virtual machine (TODO: change hostname)
+      nixos = mkSystemConfig {
+        system = "aarch64-linux";
+        modules = [
+          ./system/hosts/macbook-vm.nix
+        ];
+      };
+
+      # macbook via Parallels VM
+      parallels = mkSystemConfig { 
+        system = "aarch64-linux";
+        modules = [
+          ./system/hosts/parallels-guest.nix
+        ];
+      };
+
+      # VMWare guest (windows 11 host)
+      virtualboy = mkSystemConfig { 
+        system = "x86_64-linux";
+        modules = [
+          ./system/hosts/vmware-guest.nix
+        ];
+      };
+
+      # WSL2 on Win11
+      Hex = mkSystemConfig {
+        system = "x86_64-linux";
+        modules = [
+          ./system/hosts/hex-wsl.nix
+        ];
+      };
+
+      # Intel NUC (11th gen)
+      nux = mkSystemConfig {
+        system = "x86_64-linux";
+        modules = [ ./system/hosts/nux.nix ];
+      };
+
     };
 
-    # macbook via Parallels VM
-    nixosConfigurations.parallels = mkSystemConfig { 
-      system = "aarch64-linux";
-      modules = [
-        ./system/hosts/parallels-guest.nix
-      ];
-    };
+    ### --- nix-darwin configs
+    darwinConfigurations = {
+      sef-macbook = darwinSystem {
+        system = "aarch64-darwin";
+        modules = [ 
+          ./darwin/hosts/macbook.nix 
+          
+          home-manager.darwinModules.home-manager {
+                home-manager.useGlobalPkgs = true;
+                # home-manager.useUserPackages = true;
 
-    # VMWare guest (windows 11 host)
-    nixosConfigurations.virtualboy = mkSystemConfig { 
-      system = "x86_64-linux";
-      modules = [
-        ./system/hosts/vmware-guest.nix
-      ];
-    };
+                home-manager.users.yusef = {
+                  imports = [
+                    ./home-manager
+                  ];
+                };
 
-    # WSL2 on Win11
-    nixosConfigurations.Hex = mkSystemConfig {
-      system = "x86_64-linux";
-      modules = [
-        ./system/hosts/hex-wsl.nix
-      ];
-    };
-
-    # Intel NUC (11th gen)
-    nixosConfigurations.nux = mkSystemConfig {
-      system = "x86_64-linux";
-      modules = [ ./system/hosts/nux.nix ];
+                home-manager.extraSpecialArgs = {
+                  inherit inputs;
+                  nixosConfig = {};
+                  system = "aarch64-darwin";
+                };
+              }
+          ];
+        inputs = { inherit nix-darwin home-manager nixpkgs; };
+      };
     };
   };
 }

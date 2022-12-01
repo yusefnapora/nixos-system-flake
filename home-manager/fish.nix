@@ -1,10 +1,13 @@
-{ config, nixosConfig, pkgs, lib, ... }:
+{ config, pkgs, lib, system, nixosConfig ? {}, darwinConfig ? {}, ... }:
 let
   inherit (lib.lists) optionals;
   inherit (lib.attrsets) optionalAttrs;
 
-  cfg = nixosConfig.yusef.fish;
-  withGUI = nixosConfig.yusef.gui.enable;
+  systemConfig = nixosConfig // darwinConfig;
+  cfg = systemConfig.yusef.fish;
+  isLinux = lib.strings.hasSuffix "linux" system;
+
+  linuxGUI = isLinux && systemConfig.yusef.gui.enable;
 in
 {
 
@@ -12,7 +15,7 @@ in
       exa
       starship
       any-nix-shell
-  ] ++ optionals (withGUI) [
+  ] ++ optionals (linuxGUI) [
     xclip
   ];
 
@@ -20,9 +23,9 @@ in
       enable = true;
 
       shellAliases = {
-          ls = "exa";
+          ls = "${pkgs.exa}/bin/exa";
           nix-search = "nix-env -qaP"; 
-      } // optionalAttrs (withGUI) {
+      } // optionalAttrs (linuxGUI) {
           pbcopy = "xclip -selection clipboard";
           pbpaste = "xclip -selection clipboard -o";
       };
@@ -38,7 +41,7 @@ in
 
       interactiveShellInit = ''
         # setup any-nix-shell integration
-        any-nix-shell fish --info-right | source
+        ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
       '';
 
       plugins = [
