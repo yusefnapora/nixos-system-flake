@@ -1,8 +1,9 @@
-{ config, system, nixosConfig, lib, pkgs, ... }:
+{ config, system, nixosConfig ? {}, darwinConfig ? {}, lib, pkgs, ... }:
 let
   inherit (lib) mkIf lists;
 
-  guiEnabled = nixosConfig.yusef.gui.enable;
+  systemConfig = nixosConfig // darwinConfig;
+  guiEnabled = systemConfig.yusef.gui.enable;
 
   home.packages = with pkgs; [ rust-analyzer ];
 
@@ -193,6 +194,8 @@ in
 
         # hide menu bar, show with alt
         "window.menuBarVisibility" = "toggle";
+        
+        "editor.accessibilitySupport" = "off";
         
         # fix server path for rust-analyzer plugin
         "rust-analyzer.server.path" = "${pkgs.rust-analyzer}/bin/rust-analyzer";
