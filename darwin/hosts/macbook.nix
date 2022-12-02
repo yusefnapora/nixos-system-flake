@@ -7,6 +7,7 @@
   users.users.yusef = {
     name = "yusef";
     home = "/Users/yusef";
+    shell = pkgs.fish;
   };
 
   # List packages installed in system profile. To search by name, run:

@@ -18,6 +18,11 @@ let
     nushell
     helix
     fossil
+    tmux
+    sqlite
+    htop
+    killall
+    tree
   ];
 
   guiPackages = with pkgs; [
