@@ -15,9 +15,11 @@
   environment.systemPackages = [ 
     pkgs.vim
     pkgs.fish
+    pkgs.rustup
   ];
 
   programs.fish.enable = true;
+  environment.shells = with pkgs; [ bashInteractive zsh fish ];
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
