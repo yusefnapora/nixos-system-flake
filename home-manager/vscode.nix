@@ -91,6 +91,13 @@ let
       version = "1.1.0";
       sha256 = "sha256-y51Hpo6m/G6ZSRlU4go3Q+la2+uVEcmm1zRodsphgws=";
     }
+
+    { # Vue
+      name = "volar";
+      publisher = "Vue";
+      version = "1.0.11";
+      sha256 = "sha256-8WTYrg2PcTR/824KZJXvmHamwI1kf2I8d3qgA2NjlQ0=";
+    }
   ];
 
   keybindings = [
