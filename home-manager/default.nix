@@ -96,6 +96,7 @@ in
     stateVersion = "21.11";
     packages = packages ++ lists.optionals (withGUI) guiPackages;
     sessionVariables = {
+      EDITOR = "hx";
       COLORTERM = "truecolor";
     };
   };
