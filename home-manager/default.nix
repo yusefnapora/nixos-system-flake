@@ -51,6 +51,7 @@ in
     ./fish.nix
     ./vscode.nix
     ./helix.nix
+    ./tmux.nix
   ] ++ lists.optionals isLinux [
     ./i3.nix
     ./polybar.nix
