@@ -1,32 +1,17 @@
 { lib, pkgs, ... }:
 let
-  palette-neon = ''
-    black = "#202023"
-    bg0 = "#2b2d3a"
-    bg1 = "#333648"
-    bg2 = "#363a4e"
-    bg3 = "#393e53"
-    bg4 = "#3f445b"
-    bg_grey = "#7a819d"
-    bg_red = "#ec7279"
-    diff_red = "#55393d"
-    bg_green = "#a0c980"
-    diff_green = "#394634"
-    bg_blue = "#6cb6eb"
-    diff_blue = "#354157"
-    bg_purple = "#d38aea"
-    diff_yellow = "#4e432f"
-    fg = "#c5cdd9"
-    red = "#ec7279"
-    orange = "#e59b77" # added for compatibility with `sonokai` scheme
-    yellow = "#deb974"
-    green = "#a0c980"
-    cyan = "#5dbbc1"
-    blue = "#6cb6eb"
-    purple = "#d38aea"
-    grey = "#7e8294"
-    grey_dim = "#5c6071"
-  '';
+
+  themes-repo = pkgs.fetchFromGitHub {
+    owner = "CptPotato";
+    repo = "helix-themes";
+    rev = "0ebf77d9e1dc3ee71fbb2a2956810cfc131d0008";
+    sha256 = "sha256-Cr4NEEFq3XOmOvbsYpRUGkOY1Mq7wIFJzxVhf8e9T0c=";
+  };
+  
+
+  scheme-edge = (builtins.readFile "${themes-repo}/schemes/edge");
+  palette-neon = (builtins.readFile "${themes-repo}/palettes/edge/neon");
+  theme-edge-neon = lib.strings.concatStringsSep "\n" [scheme-edge palette-neon];
 in
 {
   home.packages = [ pkgs.helix ];
@@ -40,95 +25,6 @@ in
 
   home.file."helix-theme-edge-neon" = {
     target = ".config/helix/themes/edge-neon.toml";
-    text = ''
-      "type" = "yellow"
-      "constant" = "purple" # TODO
-      "constant.numeric" = "green"
-      "constant.character.escape" = "cyan"
-      "string" = "green"
-      "string.regexp" = "orange"
-      "comment" = "grey"
-      "variable" = "fg"
-      "variable.builtin" = "orange"
-      "variable.parameter" = "fg"
-      "variable.other.member" = "fg"
-      "label" = "orange"
-      "punctuation" = "grey"
-      "punctuation.delimiter" = "grey"
-      "punctuation.bracket" = "fg"
-      "keyword" = "purple"
-      "keyword.directive" = "cyan"
-      "operator" = "red"
-      "function" = "blue"
-      "function.builtin" = "blue"
-      "function.macro" = "cyan"
-      "tag" = "yellow"
-      "namespace" = "red"
-      "attribute" = "cyan"
-      "constructor" = "yellow"
-      "module" = "red"
-      "special" = "orange"
-
-      "markup.heading.marker" = "grey"
-      "markup.heading.1" = { fg = "purple", modifiers = ["bold"] }
-      "markup.heading.2" = { fg = "red", modifiers = ["bold"] }
-      "markup.heading.3" = { fg = "blue", modifiers = ["bold"] }
-      "markup.heading.4" = { fg = "yellow", modifiers = ["bold"] }
-      "markup.heading.5" = { fg = "green", modifiers = ["bold"] }
-      "markup.heading.6" = { fg = "fg", modifiers = ["bold"] }
-      "markup.list" = "red"
-      "markup.bold" = { modifiers = ["bold"] }
-      "markup.italic" = { modifiers = ["italic"] }
-      "markup.link.url" = { fg = "green", modifiers = ["underlined"] }
-      "markup.link.text" = "purple"
-      "markup.quote" = "grey"
-      "markup.raw" = "green"
-
-      "diff.plus" = "green"
-      "diff.delta" = "orange"
-      "diff.minus" = "red"
-
-      "ui.background" = { bg = "bg0" }
-      "ui.background.separator" = "grey"
-      "ui.cursor" = { fg = "bg0", bg = "fg" }
-      "ui.cursor.match" = { fg = "orange", bg = "diff_yellow" }
-      "ui.cursor.insert" = { fg = "black", bg = "grey" }
-      "ui.cursor.select" = { fg = "bg0", bg = "blue" }
-      "ui.cursorline.primary" = { bg = "bg1" }
-      "ui.cursorline.secondary" = { bg = "bg1" }
-      "ui.selection" = { bg = "bg4" }
-      "ui.linenr" = "grey"
-      "ui.linenr.selected" = "fg"
-      "ui.statusline" = { fg = "fg", bg = "bg3" }
-      "ui.statusline.inactive" = { fg = "grey", bg = "bg1" }
-      "ui.statusline.normal" = { fg = "bg0", bg = "fg", modifiers = ["bold"] }
-      "ui.statusline.insert" = { fg = "bg0", bg = "purple", modifiers = ["bold"] }
-      "ui.statusline.select" = { fg = "bg0", bg = "blue", modifiers = ["bold"] }
-      "ui.bufferline" = { fg = "grey", bg = "bg1" }
-      "ui.bufferline.active" = { fg = "fg", bg = "bg4", modifiers = ["bold"] }
-      "ui.popup" = { fg = "grey", bg = "bg2" }
-      "ui.window" = { fg = "grey", bg = "bg0" }
-      "ui.help" = { fg = "fg", bg = "bg2" }
-      "ui.text" = "fg"
-      "ui.text.focus" = "green"
-      "ui.menu" = { fg = "fg", bg = "bg3" }
-      "ui.menu.selected" = { fg = "bg0", bg = "blue" }
-      "ui.virtual.whitespace" = { fg = "bg4" }
-      "ui.virtual.indent-guide" = { fg = "bg4" }
-      "ui.virtual.ruler" = { bg = "bg2" }
-
-      "hint" = "blue"
-      "info" = "green"
-      "warning" = "yellow"
-      "error" = "red"
-      "diagnostic" = { underline = { style = "line" } }
-      "diagnostic.hint" = { underline = { color = "blue", style = "dotted" } }
-      "diagnostic.info" = { underline = { color = "green", style = "dotted" } }
-      "diagnostic.warning" = { underline = { color = "yellow", style = "curl" } }
-      "diagnostic.error" = { underline = { color = "red", style = "curl" } }
-
-      [palette]
-      ${palette-neon}
-    '';
+    text = theme-edge-neon;
   };
 }
