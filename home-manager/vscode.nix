@@ -12,9 +12,6 @@ let
     ms-azuretools.vscode-docker
     ms-vscode-remote.remote-ssh
     github.vscode-pull-request-github
-    vscodevim.vim
-    vspacecode.vspacecode
-    vspacecode.whichkey
     skyapps.fish-vscode
     rust-lang.rust-analyzer
     golang.go
@@ -29,6 +26,12 @@ let
     ms-vscode.cpptools
   ])
   ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+    { # helix-like keybindings
+      name = "dancehelix";
+      publisher = "silverquark";
+      version = "0.5.16";
+      sha256 = "sha256-oHwtlbB18ctEnfStDOpJ+2/Kq41JZog8FVhTa1/s7m0=";
+    }
     { # spacemacs color theme
       name = "spacemacs";
       publisher = "rkwan94";
@@ -118,72 +121,6 @@ let
       command = "workbench.action.quickOpen";
       when = null;
     }
-
-    # VSpaceCode
-    # Trigger vspacecode in empty editor group
-    {
-        key = "space";
-        command = "vspacecode.space";
-        when = "activeEditorGroupEmpty && focusedView == '' && !whichkeyActive && !inputFocus";
-    }
-    # Trigger vspacecode when sidebar is in focus
-    {
-        key = "space";
-        command = "vspacecode.space";
-        when = "sideBarFocus && !inputFocus && !whichkeyActive";
-    }
-    # Easy navigation in quick open/QuickPick
-    {
-        key = "ctrl+j";
-        command = "workbench.action.quickOpenSelectNext";
-        when = "inQuickOpen";
-    }
-    {
-        key = "ctrl+k";
-        command = "workbench.action.quickOpenSelectPrevious";
-        when = "inQuickOpen";
-    }
-    # Easy navigation in sugesstion/intellisense
-    # Cannot be added to package.json because of conflict with vim's default bindings
-    {
-        key = "ctrl+j";
-        command = "selectNextSuggestion";
-        when = "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus";
-    }
-    {
-        key = "ctrl+k";
-        command = "selectPrevSuggestion";
-        when = "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus";
-    }
-    {
-        key = "ctrl+l";
-        command = "acceptSelectedSuggestion";
-        when = "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus";
-    }
-    #  Easy navigation in parameter hint (i.e. traverse the hints when there's multiple overload for one method)
-    #  Cannot be added to package.json because of conflict with vim's default bindings
-    {
-        key = "ctrl+j";
-        command = "showNextParameterHint";
-        when = "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible";
-    }
-    {
-        key = "ctrl+k";
-        command = "showPrevParameterHint";
-        when = "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible";
-    }
-    #  Easy navigation in parameter hint (i.e. traverse the hints when there's multiple overload for one method)
-    # Cannot be added to package.json because of conflict with vim's default bindings
-    {
-        key = "ctrl+j";
-        command = "showNextParameterHint";
-        when = "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible";
-    }
-    {
-        key = "ctrl+k";
-        command = "showPrevParameterHint";
-        when = "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible";
-    }
   ];
 
   defaultTheme = "Spacemacs";
@@ -229,54 +166,6 @@ in
 
         # disable markdown-all-in-one's TOC auto-update
         "markdown.extension.toc.updateOnSave" = false;
-
-        # I'm addicted to the macOS "emacs-like" shortcuts, but just ctrl-a and ctrl-e
-        "vim.insertModeKeyBindings" = [
-          {
-            before = ["<C-a>"];
-            after = ["Esc" "I"];
-          }
-          {
-            before = ["<C-e>"];
-            after = ["Esc" "A"];
-          }
-        ];
-
-        # VSpaceCode settings
-        "vim.easymotion" = true;
-        "vim.useSystemClipboard" = true;
-        "vim.normalModeKeyBindingsNonRecursive" = [
-          {
-            before = ["<space>"];
-            commands = ["vspacecode.space"];
-          }
-          {
-            before = [","];
-            commands = [
-              "vspacecode.space"
-              {
-                command = "whichkey.triggerKey";
-                args = "m";
-              }
-            ];
-          }
-        ];
-      "vim.visualModeKeyBindingsNonRecursive" = [
-          {
-            before = ["<space>"];
-            commands = ["vspacecode.space"];
-          }
-          {
-            before = [","];
-            commands = [
-              "vspacecode.space"
-              {
-                command = "whichkey.triggerKey";
-                args = "m";
-              }
-            ];
-          }
-        ];
       }; 
     };
   };
