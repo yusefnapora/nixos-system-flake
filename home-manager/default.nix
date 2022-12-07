@@ -16,7 +16,6 @@ let
     unzip
     deno
     nushell
-    helix
     fossil
     tmux
     sqlite
@@ -51,6 +50,7 @@ in
     ./git.nix
     ./fish.nix
     ./vscode.nix
+    ./helix.nix
   ] ++ lists.optionals isLinux [
     ./i3.nix
     ./polybar.nix
@@ -95,5 +95,8 @@ in
   home = {
     stateVersion = "21.11";
     packages = packages ++ lists.optionals (withGUI) guiPackages;
+    sessionVariables = {
+      COLORTERM = "truecolor";
+    };
   };
 }
