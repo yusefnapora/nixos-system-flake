@@ -16,4 +16,28 @@ in
     target = ".tmux.conf";
     source = tmux-conf;
   };
+
+  home.file.tmux-conf-local = {
+    target = ".tmux.conf.local";
+    text = 
+    ''
+      # use Powerline symbols in status bar
+      tmux_conf_theme_left_separator_main='\uE0B0'
+      tmux_conf_theme_left_separator_sub='\uE0B1'
+      tmux_conf_theme_right_separator_main='\uE0B2'
+      tmux_conf_theme_right_separator_sub='\uE0B3'
+
+      # customize status bar
+      # removes uptime and battery info from default config
+      tmux_conf_theme_status_left=" ❐ #S"
+      tmux_conf_theme_status_right=" #{prefix}#{mouse}#{pairing}#{synchronized}, %R , %d %b | #{username}#{root} | #{hostname} "
+
+      # copy mouse-mode selections to system clipboard
+      tmux_conf_copy_to_os_clipboard=true
+
+      # just use C-b as prefix instead of C-b and C-a
+      set -gu prefix2
+      unbind C-a
+    '';
+  };
 }
