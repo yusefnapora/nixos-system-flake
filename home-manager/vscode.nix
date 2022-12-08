@@ -169,6 +169,11 @@ in
 
         # Svelte typescript integration
         "svelte.plugin.svelte.useNewTransformation" = true;
+       
+        # don't highlight comments as errors in JSON files
+        "files.associations" = {
+          "*.json" = "jsonc";
+        };
       }; 
     };
   };

@@ -40,6 +40,12 @@ in
       interactiveShellInit = ''
         # setup any-nix-shell integration
         ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
+
+
+        # auto-start tmux, if we're not already in a tmux session
+        if not set -q TMUX
+          tmux new-session -A -s main
+        end
       '';
 
       plugins = [
