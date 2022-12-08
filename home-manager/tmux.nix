@@ -38,6 +38,9 @@ in
       # just use C-b as prefix instead of C-b and C-a
       set -gu prefix2
       unbind C-a
+
+      # start with mouse mode enabled
+      set -g mouse on
     '';
   };
 }
