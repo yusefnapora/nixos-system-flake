@@ -166,6 +166,9 @@ in
 
         # disable markdown-all-in-one's TOC auto-update
         "markdown.extension.toc.updateOnSave" = false;
+
+        # Svelte typescript integration
+        "svelte.plugin.svelte.useNewTransformation" = true;
       }; 
     };
   };
