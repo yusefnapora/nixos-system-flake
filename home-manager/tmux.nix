@@ -41,6 +41,24 @@ in
 
       # start with mouse mode enabled
       set -g mouse on
+
+      # use visual bell instead of audible beeps
+      set -g visual-bell on
+
+      # create a session called "main" if none exists
+      # ref: https://gist.github.com/chakrit/5004006
+      new-session -s main
     '';
   };
+
+  programs.fish.interactiveShellInit = 
+  ''
+    # auto-start tmux, if we're not already in a tmux session.
+    # the destroy-unattached option prevents stale sessions from
+    # piling up when you detach (ref: https://unix.stackexchange.com/a/222843)
+
+    if not set -q TMUX
+      tmux new-session -t main \; set-option destroy-unattached
+    end    
+  '';
 }
