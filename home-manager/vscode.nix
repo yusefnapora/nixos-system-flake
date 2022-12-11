@@ -1,6 +1,7 @@
 { config, system, nixosConfig ? {}, darwinConfig ? {}, lib, pkgs, ... }:
 let
   inherit (lib) mkIf lists;
+  inherit (pkgs.stdenv) isDarwin;
 
   systemConfig = nixosConfig // darwinConfig;
   guiEnabled = systemConfig.yusef.gui.enable;
@@ -121,6 +122,11 @@ let
       command = "workbench.action.quickOpen";
       when = null;
     }
+  ] ++ lists.optionals isDarwin [
+    {
+      key = "ctrl+s";
+      command = "workbench.action.files.save";
+    }
   ];
 
   defaultTheme = "Spacemacs";
@@ -130,7 +136,7 @@ in
     programs.vscode = {
       enable = true;
 
-      inherit extensions;
+      inherit extensions keybindings;
 
       userSettings = {
         # disable auto-update notifications
