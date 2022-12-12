@@ -35,6 +35,9 @@ in
       # copy mouse-mode selections to system clipboard
       tmux_conf_copy_to_os_clipboard=true
 
+      # retain current path for new windows
+      tmux_conf_new_window_retain_current_path=true      
+      
       # just use C-b as prefix instead of C-b and C-a
       set -gu prefix2
       unbind C-a
