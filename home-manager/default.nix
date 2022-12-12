@@ -78,6 +78,12 @@ in
         AddKeysToAgent=yes
       '';
     };
+
+    nix-index = {
+      enable = true;
+      enableFishIntegration = true;
+      enableBashIntegration = true;
+    };
   };
 
   # set firefox as default browser (chromium hijacks it by default)
