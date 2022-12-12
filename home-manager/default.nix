@@ -17,7 +17,6 @@ let
     deno
     nushell
     fossil
-    tmux
     sqlite
     htop
     killall

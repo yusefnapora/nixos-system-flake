@@ -12,6 +12,10 @@ let
   tmux-conf = "${oh-my-tmux}/.tmux-${oh-my-tmux.rev}/.tmux.conf";
 in
 {
+  home.packages = with pkgs; [
+    tmux
+  ];
+
   home.file.tmux-conf = {
     target = ".tmux.conf";
     source = tmux-conf;
@@ -47,6 +51,9 @@ in
 
       # use visual bell instead of audible beeps
       set -g visual-bell on
+
+      # plugins
+      set -g @plugin 'jabirali/tmux-tilish'
 
       # create a session called "main" if none exists
       # ref: https://gist.github.com/chakrit/5004006
