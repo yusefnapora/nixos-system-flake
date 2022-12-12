@@ -60,12 +60,11 @@ in
     ./obs.nix
   ];
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-      "1password"
-      "1password-cli"
-      "vscode"
-      "vscode-with-extensions"        
-  ];
+  nixpkgs.config = import ./nixpkgs-config.nix;
+  home.file."nixpkgs-config" = {
+    target = ".config/nixpkgs/config.nix";
+    source = ./nixpkgs-config.nix;
+  };
 
   programs = {
     home-manager.enable = true;
