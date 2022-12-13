@@ -21,6 +21,7 @@ let
     htop
     killall
     tree
+    lnav
   ];
 
   guiPackages = with pkgs; [
