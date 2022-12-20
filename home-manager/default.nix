@@ -78,6 +78,11 @@ in
       enableFishIntegration = true;
       enableBashIntegration = true;
     };
+
+    fzf = {
+      enable = true;
+      enableFishIntegration = true;
+    };
   };
 
   # set firefox as default browser (chromium hijacks it by default)
