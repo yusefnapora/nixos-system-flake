@@ -10,7 +10,7 @@
     enable = true;
     defaultUser = "yusef";
     startMenuLaunchers = true;
-    #nativeSystemd = true;
+    nativeSystemd = true;
 
     wslConf.interop.appendWindowsPath = false;
 
