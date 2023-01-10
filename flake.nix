@@ -108,9 +108,9 @@
       };
 
       # Intel NUC (11th gen)
-      nux = mkSystemConfig {
+      musicbox = mkSystemConfig {
         system = "x86_64-linux";
-        modules = [ ./system/hosts/nux.nix ];
+        modules = [ ./system/hosts/musicbox.nix ];
       };
 
     };
