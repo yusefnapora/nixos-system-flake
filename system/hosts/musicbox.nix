@@ -20,6 +20,7 @@
     i3 = {
       enable = true; 
       natural-scrolling = true;
+      dpi-scale = 2.0;
     };
     key-remap = { 
       enable = true; 
@@ -64,6 +65,47 @@
       libvdpau-va-gl
     ];
   };
+
+
+  # Thunderbolt
+  services.hardware.bolt.enable = true;
+
+
+  # display config for LG Ultrafine 5k
+  # it's a bit quirky, since it shows up as two displayport outputs
+  # that need to be stitched together
+  # 
+  # This config is equivalent to this xrandr command:
+  # xrandr --output DP-3 --mode 2560x2880 --output DP-4 --mode 2560x2880 --right-of DP-3
+  services.xserver = {
+    xrandrHeads = [
+      {
+        output = "DP-3";
+        monitorConfig = ''
+          Option "PreferredMode" "2560x2880"
+        '';
+      }
+      {
+        output = "DP-4";
+        monitorConfig = ''
+          Option "PreferredMode" "2560x2880"
+          Option "RightOf" "DP-3"
+        '';
+      }
+    ];
+
+    # hi-dpi config
+    dpi = 218;
+    displayManager.sessionCommands = ''
+      ${pkgs.xorg.xrdb}/bin/xrdb -merge <${pkgs.writeText "Xresources" ''
+        Xft.dpi: 218
+        Xcursor.theme: Adwaita
+        Xcursor.size: 48
+        Xcursor.theme_core: 1
+      ''}
+    '';    
+  };
+
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
