@@ -37,8 +37,8 @@ in
         # Otherwise you can use the nuclear option:
         # killall -q polybar
 
-        echo "---" | tee -a /tmp/polybar.log
-        polybar 2>&1 | tee -a /tmp/polybar.log & disown
+        echo "---" | ${pkgs.coreutils}/bin/tee -a /tmp/polybar.log
+        polybar 2>&1 | ${pkgs.coreutils}/bin/tee -a /tmp/polybar.log & disown
 
         echo "Bars launched..."
         '';
