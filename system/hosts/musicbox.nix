@@ -28,6 +28,7 @@
     docker.enable = true;
     droidcam.enable = true;
     obs.enable = true;
+    kvm-host.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
