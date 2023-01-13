@@ -30,6 +30,7 @@
     droidcam.enable = true;
     obs.enable = true;
     kvm-host.enable = true;
+    intel-sr-iov-kernel.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
@@ -106,6 +107,24 @@
     '';    
   };
 
+  # bind thunderbolt audio interface to vfio,
+  # so we can pass it through to windows VM
+  boot.kernelParams = [
+    "vfio-pci.ids=1d4b:a016"
+    "intel_iommu=on" 
+    "iommu=pt" 
+    "i915.enable_guc=7"
+    # "vfio_pci" 
+    # "vfio"
+    # "mdev"
+  ]; 
+  boot.initrd.kernelModules = [
+    "vfio_pci"
+    "vfio"
+    "mdev"
+    "vfio_iommu_type1"
+    "vfio_virqfd"
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;

@@ -95,6 +95,13 @@ let
       version = "1.1.0";
       sha256 = "sha256-y51Hpo6m/G6ZSRlU4go3Q+la2+uVEcmm1zRodsphgws=";
     }
+    
+    { # nim
+      name = "nim";
+      publisher = "kosz78";
+      version = "0.6.6";
+      sha256 = "sha256-sNW6Lvfyep8Hvas6cSufuRmol3q4mCyX8c/K78y8Nug=";
+    }
 
 #    { # Vue
 #      name = "volar";

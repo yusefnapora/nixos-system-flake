@@ -8,5 +8,6 @@
         ./kvm-switch
         ./usb-wake.nix
         ./kvm-host.nix
+        ./intel-sr-iov-kernel.nix
     ];
 }
