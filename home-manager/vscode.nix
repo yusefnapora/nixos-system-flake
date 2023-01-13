@@ -102,6 +102,13 @@ let
       version = "1.0.11";
       sha256 = "sha256-8WTYrg2PcTR/824KZJXvmHamwI1kf2I8d3qgA2NjlQ0=";
     }
+
+    { # nim
+      name = "nimvscode";
+      publisher = "nimsaem";
+      version = "0.1.26";
+      sha256 = "sha256-unxcnQR2ccsydVG3H13e+xYRnW+3/ArIuBt0HlCLKio=";
+    }
   ];
 
   keybindings = [
