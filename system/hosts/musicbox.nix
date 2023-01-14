@@ -70,26 +70,31 @@
   # Thunderbolt
   services.hardware.bolt.enable = true;
 
-
+  # use vfio-pci to passthrough thunderbolt audio device to vms
+  boot.extraModprobeConfig = ''
+    options vfio-pci ids=1d4b:a016  
+  '';  
+  
   # display config for LG Ultrafine 5k
   # it's a bit quirky, since it shows up as two displayport outputs
   # that need to be stitched together
   # 
   # This config is equivalent to this xrandr command:
-  # xrandr --output DP-3 --mode 2560x2880 --output DP-4 --mode 2560x2880 --right-of DP-3
+  # xrandr --output DP3 --mode 2560x2880 --output DP4 --mode 2560x2880 --right-of DP3
   services.xserver = {
+    videoDrivers = [ "intel" ];
     xrandrHeads = [
       {
-        output = "DP-3";
+        output = "DP3";
         monitorConfig = ''
           Option "PreferredMode" "2560x2880"
         '';
       }
       {
-        output = "DP-4";
+        output = "DP4";
         monitorConfig = ''
           Option "PreferredMode" "2560x2880"
-          Option "RightOf" "DP-3"
+          Option "RightOf" "DP3"
         '';
       }
     ];

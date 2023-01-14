@@ -8,9 +8,10 @@ in {
 
   config = lib.mkIf cfg.enable {
 
-    environment.systemPackages = lib.lists.optionals config.yusef.gui.enable [ pkgs.virt-manager ];
-
+    environment.systemPackages = [ pkgs.virt-manager pkgs.spice-gtk ];
+    
     virtualisation = {
+      spiceUSBRedirection.enable = true;
       libvirtd.enable = true;
       libvirtd.qemu = {
         package = pkgs.qemu_kvm;
