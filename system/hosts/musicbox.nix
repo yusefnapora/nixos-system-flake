@@ -77,20 +77,20 @@
   # that need to be stitched together
   # 
   # This config is equivalent to this xrandr command:
-  # xrandr --output DP-3 --mode 2560x2880 --output DP-4 --mode 2560x2880 --right-of DP-3
+  # xrandr --output DP3 --mode 2560x2880 --output DP4 --mode 2560x2880 --right-of DP3
   services.xserver = {
     xrandrHeads = [
       {
-        output = "DP-3";
+        output = "DP3";
         monitorConfig = ''
           Option "PreferredMode" "2560x2880"
         '';
       }
       {
-        output = "DP-4";
+        output = "DP4";
         monitorConfig = ''
           Option "PreferredMode" "2560x2880"
-          Option "RightOf" "DP-3"
+          Option "RightOf" "DP3"
         '';
       }
     ];
@@ -104,8 +104,17 @@
         Xcursor.size: 48
         Xcursor.theme_core: 1
       ''}
-    '';    
+    '';
+
+    exportConfiguration = true;
+    # experimental VFIO config - use first virtual GPU instead of physical
+    videoDrivers = [ "intel" ];
+    # deviceSection = ''
+    #   BusID "PCI:0:2:1"
+    # '';
   };
+
+  programs.mdevctl.enable = true;
 
   # bind thunderbolt audio interface to vfio,
   # so we can pass it through to windows VM
@@ -114,6 +123,7 @@
     "intel_iommu=on" 
     "iommu=pt" 
     "i915.enable_guc=7"
+    "i915.enable_gvt=1"
     # "vfio_pci" 
     # "vfio"
     # "mdev"
@@ -122,8 +132,13 @@
     "vfio_pci"
     "vfio"
     "mdev"
+    "kvmgt"
     "vfio_iommu_type1"
     "vfio_virqfd"
+  ];
+
+  systemd.tmpfiles.rules = [
+    "f /dev/shm/looking-glass 0660 yusef kvm -"  
   ];
 
   # Use the systemd-boot EFI boot loader.

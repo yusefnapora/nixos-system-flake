@@ -31,5 +31,19 @@ in {
         linux_sr_iov = pkgs.callPackage linux_sr_iov_pkg{};
       in 
         pkgs.recurseIntoAttrs (pkgs.linuxPackagesFor linux_sr_iov);
+
+    # hack script with hardcoded device ids to enable vf's on boot
+    # systemd.services.enable-vfs = {
+    #   script = ''
+    #     echo 2 > /sys/kernel/iommu_groups/1/devices/0000:00:02.0/sriov_numvfs
+    #   '';
+
+    #   wantedBy = [ "multi-user.target" ];
+
+    #   serviceConfig = {
+    #     Type = "oneshot";
+    #     User = "root";
+    #   };
+    # };
   };
 }
