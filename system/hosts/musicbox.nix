@@ -70,10 +70,23 @@
   # Thunderbolt
   services.hardware.bolt.enable = true;
 
-  # use vfio-pci to passthrough thunderbolt audio device to vms
-  boot.extraModprobeConfig = ''
-    options vfio-pci ids=1d4b:a016  
-  '';  
+  # bind thunderbolt audio interface to vfio,
+  # so we can pass it through to windows VM
+  boot.kernelParams = [
+    "vfio-pci.ids=1d4b:a016"
+    "intel_iommu=on" 
+    "iommu=pt"
+
+  # pre-allocate huge page for guest
+    "hugepagesz=1G"
+    "default_hugepagesz=1G"
+    "hugepages=24"
+  ]; 
+  boot.initrd.kernelModules = [
+    "vfio_pci"
+    "vfio"
+  ]; 
+
   
   # display config for LG Ultrafine 5k
   # it's a bit quirky, since it shows up as two displayport outputs
