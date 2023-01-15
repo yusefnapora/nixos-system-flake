@@ -124,6 +124,11 @@
     "iommu=pt" 
     "i915.enable_guc=7"
     "i915.enable_gvt=1"
+
+    # huge pages for vm guest
+    "hugepagesz=1G"
+    "default_hugepagesz=1G"
+    "hugepages=24"
     # "vfio_pci" 
     # "vfio"
     # "mdev"
