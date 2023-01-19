@@ -166,6 +166,13 @@ in
         # workaround timeout issue when connecting to vscode server running on nixos
         "remote.SSH.useLocalServer" = false;
 
+        # set the os for some remote hosts I use
+        "remote.SSH.remotePlatform" = {
+          "hex.lan" =  "linux";
+          "musicbox.lan" =  "linux";
+          "sef-macbook.lan" = "macOS";
+        };
+
         "workbench.colorTheme" = "${defaultTheme}";
 
         "editor.tabSize" = 2;
