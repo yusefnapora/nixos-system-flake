@@ -200,6 +200,10 @@ in
         "files.associations" = {
           "*.json" = "jsonc";
         };
+
+        # svelte
+        "svelte.ask-to-enable-ts-plugin" = false;
+        "svelte.enable-ts-plugin" = true;
       }; 
     };
   };
