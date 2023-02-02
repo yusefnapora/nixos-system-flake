@@ -11,6 +11,8 @@
     docker.enable = true;
   };
 
+
+  boot.loader.systemd-boot.enable = true;
   networking.hostName = "pythia";
   system.stateVersion = lib.mkForce "22.05";
 }
