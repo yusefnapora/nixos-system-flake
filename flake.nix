@@ -113,6 +113,11 @@
         modules = [ ./system/hosts/nux.nix ];
       };
 
+      # Oracle Cloud VM
+      pythia = mkSystemConfig {
+        system = "aarch64-linux";
+        modules = [ ./system/hosts/pythia.nix ];
+      };
     };
 
     ### --- nix-darwin configs
