@@ -109,6 +109,12 @@ let
       version = "0.1.26";
       sha256 = "sha256-unxcnQR2ccsydVG3H13e+xYRnW+3/ArIuBt0HlCLKio=";
     }
+    { # markdownlint
+      name = "vscode-markdownlint";
+      publisher = "DavidAnson";
+      version = "0.49.0";
+      sha256 = "sha256-Mh/OoRK410aXEr3sK2CYFDsXGSqFT+JOWi9jHOdK01Y=";
+    }
   ];
 
   keybindings = [
