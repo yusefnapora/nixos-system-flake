@@ -55,6 +55,7 @@ in
     ./tmux.nix
   ] ++ lists.optionals isLinux [
     ./i3.nix
+    ./sway.nix
     ./polybar.nix
     ./rofi
     ./npm.nix

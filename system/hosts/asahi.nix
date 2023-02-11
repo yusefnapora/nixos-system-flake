@@ -19,12 +19,22 @@
     system = "aarch64-linux";
     gui.enable = true;
     sound.enable = true;
-    i3 = { 
+    # i3 = { 
+    #   enable = true;
+    #   terminal = "alacritty";
+    #   dpi-scale = 2.0;
+    #   natural-scrolling = true;
+    #   gaps = {};
+    # };
+    sway = {
       enable = true;
-      terminal = "alacritty";
-      dpi-scale = 2.0;
       natural-scrolling = true;
-      gaps = {};
+      terminal = "alacritty";
+      output = {
+        eDP-1 = {
+          scale = "2";
+        };
+      };
     };
     docker.enable = true;
     key-remap = { 
@@ -40,15 +50,17 @@
   hardware.asahi.useExperimentalGPUDriver = true;
   
   # HiDPI settings for macbook pro 14"
-  services.xserver.displayManager.sessionCommands = ''
-    ${pkgs.xorg.xrdb}/bin/xrdb -merge <${pkgs.writeText "Xresources" ''
-      Xft.dpi: 250
-      Xcursor.theme: Adwaita
-      Xcursor.size: 64
-      Xcursor.theme_core: 1
-    ''}
-  '';
+  # services.xserver.displayManager.sessionCommands = ''
+  #   ${pkgs.xorg.xrdb}/bin/xrdb -merge <${pkgs.writeText "Xresources" ''
+  #     Xft.dpi: 250
+  #     Xcursor.theme: Adwaita
+  #     Xcursor.size: 64
+  #     Xcursor.theme_core: 1
+  #   ''}
+  # '';
 
+  # multi touch gestures
+  # services.touchegg.enable = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
