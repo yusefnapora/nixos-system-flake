@@ -73,7 +73,7 @@ in {
       gtk.enable = true;
     };
 
-    # yet more hidpi stuff, this time for elsctron apps (vscode, obsidian, etc)
+    # yet more hidpi stuff, this time for electron apps (vscode, obsidian, etc)
     # see: https://github.com/microsoft/vscode/issues/136390#issuecomment-1340891893
     programs.fish.shellAliases = {
       code = "code --enable-features=WaylandWindowDecorations --ozone-platform=wayland";
