@@ -73,10 +73,34 @@ in {
       gtk.enable = true;
     };
 
-    # yet more cursor stuff, this time for vscode
+    # yet more hidpi stuff, this time for elsctron apps (vscode, obsidian, etc)
     # see: https://github.com/microsoft/vscode/issues/136390#issuecomment-1340891893
     programs.fish.shellAliases = {
       code = "code --enable-features=WaylandWindowDecorations --ozone-platform=wayland";
+      obsidian = "OBSIDIAN_USE_WAYLAND=1 obsidian -enable-features=UseOzonePlatform -ozone-platform=wayland";
+      "1password" = "1password -enable-features=UseOzonePlatform -ozone-platform=wayland";
+    };
+
+    # apply hi-dpi hacks to desktop entries
+    xdg.desktopEntries = {
+      code = {
+        name = "VSCode";
+        terminal = false;
+        icon = "${pkgs.vscode}/lib/vscode/resources/app/resources/linux/code.png";
+        exec = "code --enable-features=WaylandWindowDecorations --ozone-platform=wayland";
+      };
+      obsidian = {
+        name = "Obsidian";
+        terminal = false;
+        icon = "${pkgs.obsidian}/share/icons/hicolor/256x256/apps/obsidian.png";        
+        exec = "env OBSIDIAN_USE_WAYLAND=1 obsidian -enable-features=UseOzonePlatform -ozone-platform=wayland";
+      };
+      "1password" = { 
+        name = "1Password";
+        terminal = false;
+        icon = "${pkgs._1password-gui}/share/1password/resources/icons/hicolor/256x256/apps/1password.png";
+        exec = "1password -enable-features=UseOzonePlatform -ozone-platform=wayland";
+      };
     };
 
     # waybar
@@ -106,9 +130,35 @@ in {
           "wlr/taskbar" = {
             on-click = "activate";
           };
-        };
-};
-    };
 
+          battery = {
+            interval = 60;
+            states = {
+              warning = 20;
+              critical = 10;
+            };
+            format = "{capacity}% {icon}";
+            format-icons = ["" "" "" "" ""];
+          };
+
+          pulseaudio = {
+            format = "{volume}% {icon}";
+            format-bluetooth = "{volume}% {icon}";
+            format-muted = "";
+            format-icons = {
+              headphone =  "";
+              hands-free = "";
+              headset = "";
+              phone = "";
+              portable = "";
+              car = "";
+              default = ["" ""];
+            };
+            scroll-step = 1;
+            on-click = "pavucontrol";
+          };
+        };
+      };
+    };
   };
 }
