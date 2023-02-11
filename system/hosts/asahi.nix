@@ -19,13 +19,6 @@
     system = "aarch64-linux";
     gui.enable = true;
     sound.enable = true;
-    # i3 = { 
-    #   enable = true;
-    #   terminal = "alacritty";
-    #   dpi-scale = 2.0;
-    #   natural-scrolling = true;
-    #   gaps = {};
-    # };
     sway = {
       enable = true;
       natural-scrolling = true;
