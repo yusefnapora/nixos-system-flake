@@ -35,6 +35,7 @@ let
     zeal
     tigervnc
     obsidian
+    _1password-gui
   ]
   ++ lists.optionals (isX86 && isLinux) [
     calibre

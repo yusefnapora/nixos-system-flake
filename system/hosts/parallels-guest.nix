@@ -14,7 +14,6 @@
   # custom options
   yusef = {
     system = "aarch64-linux";
-    _1password.enable = true;
     gui.enable = true;
     sound.enable = true;
     i3 = { 

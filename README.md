@@ -25,10 +25,6 @@ Subject to change, but I'm starting to kind of like it.
 
 There are a few things I've cobbled together that might be useful to others. I'm not a nix wizard, so no promises or anything :)
 
-- 1Password aarch64 beta
-  - very lightly modified version of the x86 definition in nixpkgs. It's probably better to override things on the official package, but this seems to work.
-  - defined in [system/packages/1password-beta-aarch64.nix](./system/packages/1password-beta-aarch64.nix)
-
 - Dual function Caps Lock with interception-tools
   - maps Caps Lock to Control when held, Esc when tapped
   - works in tty / console and X11 / Wayland

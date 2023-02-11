@@ -14,7 +14,6 @@
   # custom options
   yusef = {
     gui.enable = true;
-    _1password.enable = true;
     sound.enable = true;
     i3 = { 
       enable = true; 

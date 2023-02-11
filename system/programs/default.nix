@@ -27,7 +27,6 @@ in
         ./i3.nix
         ./droidcam.nix
         ./docker.nix
-        ./1password.nix
         ./obs.nix
         ./v4l2loopback.nix
         ./streamdeck

@@ -8,7 +8,6 @@ let
 in
 {
   yusef = {
-    _1password-aarch64 = (p ./1password-beta-aarch64.nix);
     lgtv = (p ./lgtv.nix);
     trim-screencast = (p ./trim-screencast.nix);
     obs-cli = (p ./obs-cli.nix);
