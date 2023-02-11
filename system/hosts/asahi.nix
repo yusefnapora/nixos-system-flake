@@ -49,19 +49,16 @@
 
   # enable GPU support
   hardware.asahi.useExperimentalGPUDriver = true;
-  
-  # HiDPI settings for macbook pro 14"
-  # services.xserver.displayManager.sessionCommands = ''
-  #   ${pkgs.xorg.xrdb}/bin/xrdb -merge <${pkgs.writeText "Xresources" ''
-  #     Xft.dpi: 250
-  #     Xcursor.theme: Adwaita
-  #     Xcursor.size: 64
-  #     Xcursor.theme_core: 1
-  #   ''}
-  # '';
 
-  # multi touch gestures
-  # services.touchegg.enable = true;
+  # backlight control
+  programs.light.enable = true;  
+  services.actkbd = {
+    enable = true;
+    bindings = [
+      { keys = [ 225 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/light -A 10"; }
+      { keys = [ 224 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/light -U 10"; }
+    ];
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
