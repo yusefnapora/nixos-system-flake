@@ -23,6 +23,7 @@
       enable = true;
       terminal = "alacritty";
       dpi-scale = 2.0;
+      natural-scrolling = true;
       gaps = {};
     };
     docker.enable = true;
