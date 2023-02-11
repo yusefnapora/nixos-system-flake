@@ -36,7 +36,16 @@ in {
             natural_scroll = "enabled";
           };
 
-          startup = cfg.startup-commands;
+          keybindings = 
+            let
+              modifier = config.wayland.windowManager.sway.config.modifier;
+            in lib.mkOptionDefault {
+              "${modifier}+space" = "exec ${pkgs.albert}/bin/albert show";
+            };
+          
+          startup = [
+            { command = "${pkgs.albert}/bin/albert"; }
+          ] ++ cfg.startup-commands;
 
           bars = [
             {
@@ -101,6 +110,5 @@ in {
 };
     };
 
-    # todo: launcher, swaybar, lock, etc
   };
 }

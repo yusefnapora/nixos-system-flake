@@ -2,7 +2,7 @@
 {
     users.users.yusef = {
         isNormalUser = true;
-        extraGroups = [ "wheel" "docker" "onepassword" ];
+        extraGroups = [ "wheel" "docker" "onepassword" "video" ];
         shell = pkgs.fish;
 
         openssh.authorizedKeys.keys = [ 
