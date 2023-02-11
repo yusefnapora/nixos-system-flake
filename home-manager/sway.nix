@@ -32,6 +32,10 @@ in {
             natural_scroll = "enabled";
           };
 
+          input."type:touchpad" = mkIf cfg.natural-scrolling { 
+            natural_scroll = "enabled";
+          };
+
           startup = cfg.startup-commands;
 
           bars = [
