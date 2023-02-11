@@ -8,6 +8,7 @@ let
     set -x WLR_NO_HARDWARE_CURSORS 1
   '';
 
+  cursor-size = builtins.ceil (32 * cfg.dpi-scale);
 in {
   config = mkIf (cfg.enable) {
 
@@ -38,6 +39,9 @@ in {
               command = "waybar";
             }
           ];
+
+          # fix tiny cursor on hi-dpi screen
+          seat."*".xcursor_theme = "Vanilla-DMZ ${builtins.toString cursor-size}";
         };
 
         extraSessionCommands = ''
@@ -48,6 +52,19 @@ in {
         '';
     };
 
+    # more hi-dpi cursor config
+    home.pointerCursor = {
+      package = pkgs.vanilla-dmz;
+      name = "Vanilla-DMZ";
+      size = cursor-size;
+      gtk.enable = true;
+    };
+
+    # yet more cursor stuff, this time for vscode
+    # see: https://github.com/microsoft/vscode/issues/136390#issuecomment-1340891893
+    programs.fish.shellAliases = {
+      code = "code --enable-features=WaylandWindowDecorations --ozone-platform=wayland";
+    };
 
     # waybar
     programs.waybar = {
@@ -62,7 +79,7 @@ in {
           ];
           modules-left = [ "sway/workspaces" "sway/mode" "wlr/taskbar" ];
           modules-center = [ "sway/window" ];
-          modules-right = ["clock" "mpd" "tray" ];
+          modules-right = ["clock" "battery" "tray" ];
 
           "sway/workspaces" = {
             disable-scroll = true;
