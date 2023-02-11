@@ -25,12 +25,18 @@ if [ $(uname) = "Darwin" ]; then
 fi
 
 
+rebuild_flags=""
+# Apple silicon needs to read firmware from /boot & do other "impure" stuff
+if [ -d "/boot/asahi" ]; then
+  rebuild_flags="--impure"
+fi
+
 target=${1:-".#"}
 
 # tell our hacky kvm script to ignore events while we switch over
 touch /tmp/yusef-kvm-ignore
 delete_kvm_ignore_file=1
 
-sudo nixos-rebuild switch --flake $target
+sudo nixos-rebuild switch --flake $target $rebuild_flags
 
 

@@ -26,9 +26,14 @@
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    apple-silicon = {
+      url = "github:tpwrules/nixos-apple-silicon";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, vscode-server, agenix, nix-darwin, ... }: 
+  outputs = inputs@{ self, nixpkgs, home-manager, vscode-server, agenix, nix-darwin, apple-silicon, ... }: 
   let
     inherit (nixpkgs.lib) nixosSystem lists;
     inherit (nix-darwin.lib) darwinSystem;
@@ -48,7 +53,7 @@
                  services.vscode-server.enable = true;
                })
 
-               agenix.nixosModule
+               agenix.nixosModules.default
              ] 
           ++ lists.optionals (useHomeManager) [
               home-manager.nixosModules.home-manager {
@@ -111,6 +116,12 @@
       nux = mkSystemConfig {
         system = "x86_64-linux";
         modules = [ ./system/hosts/nux.nix ];
+      };
+
+      # Asahi on 14" M1 Macbook pro
+      asahi = mkSystemConfig {
+        system = "aarch64-linux";
+        modules = [ ./system/hosts/asahi.nix ];
       };
 
     };

@@ -100,7 +100,7 @@ let
       name = "volar";
       publisher = "Vue";
       version = "1.0.11";
-      sha256 = "sha256-8WTYrg2PcTR/824KZJXvmHamwI1kf2I8d3qgA2NjlQ0=";
+      sha256 = "sha256-vMbbRuoB/vbqq72C8phZgr0eGTYlHKJk7hbhg73YlwQ=";
     }
 
     { # nim

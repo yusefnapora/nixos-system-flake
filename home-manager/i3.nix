@@ -31,7 +31,7 @@ in
 
             keybindings = mkOptionDefault {
                 # terminal
-                "${mod}+Return" = "exec kitty";
+                "${mod}+Return" = "exec ${cfg.terminal}";
 
                 # rofi drun on Mod+d and Mod+Space
                 "${mod}+d" = "exec --no-startup-id rofi -show drun";
@@ -120,11 +120,12 @@ in
 
       activeOpacity = 1.0;
 
-      # set kitty (terminal) windows to 80% opacity when unfocused.
+      # set terminal windows to 80% opacity when unfocused.
       # using this instead of inactiveOpacity, since the latter is
       # too distracting when e.g. coding with a web-browser in split screen
       opacityRules = [
        "80: class_i = 'kitty' && focused != 1"
+       "80: class_i = 'Alacritty' && focused != 1"
       
        # don't render hidden windows (prevents semi-transparent tabbed windows)
        "0:_NET_WM_STATE@[0]:32a *= '_NET_WM_STATE_HIDDEN'"

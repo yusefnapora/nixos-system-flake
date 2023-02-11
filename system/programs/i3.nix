@@ -8,6 +8,12 @@ in
   options.yusef.i3 = {
     enable = mkEnableOption "Use i3 as X11 window manager";
 
+    terminal = mkOption {
+      type = types.str;
+      description = "default terminal emulator";
+      default = "kitty";
+    };
+
     startup = mkOption {
       type = types.listOf types.attrs;
       description = "startup commands for i3 config";

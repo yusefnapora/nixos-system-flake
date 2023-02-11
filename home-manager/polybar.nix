@@ -26,7 +26,7 @@ in
         enable = true;
         package = (pkgs.polybar.override { 
           i3Support = true;
-          i3GapsSupport = true; 
+          #i3GapsSupport = true; 
         });
         script = ''
         #!/usr/bin/env bash
