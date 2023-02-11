@@ -92,7 +92,7 @@ in {
           ];
           modules-left = [ "sway/workspaces" "sway/mode" "wlr/taskbar" ];
           modules-center = [ "sway/window" ];
-          modules-right = ["clock" "battery" "tray" ];
+          modules-right = ["clock" "battery" "pulseaudio" "tray" ];
 
           "sway/workspaces" = {
             disable-scroll = true;
