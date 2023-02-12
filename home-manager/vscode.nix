@@ -183,6 +183,16 @@ in
         # svelte
         "svelte.ask-to-enable-ts-plugin" = false;
         "svelte.enable-ts-plugin" = true;
+
+        # spellcheck ignore list
+        "spellchecker.ignoreWordsList" = [
+          "Yusef"
+          "Yusef's"
+          "Napora"
+          "Blog"
+          "blog"
+          "html"
+        ];
       }; 
     };
   };
