@@ -75,32 +75,11 @@ let
       sha256 = "sha256-53WN/6TSgSqiKZ+cG0U7oSyo4H3etRQihLhZ0H14a6k=";
     }
 
-#    { # marp (markdown presentation thing)
-#      name = "marp-vscode";
-#      publisher = "marp-team";
-#      version = "2.3.0";
-#      sha256 = "sha256-sQdzMTZA0ZCwzU/+r2f88qIHBjj+Qvlrsa92bGbx2XA=";
-#    }
-
     { # nushell
       name = "vscode-nushell-lang";
       publisher = "TheNuProjectContributors";
       version = "0.7.0";
       sha256 = "sha256-+AGJkFx/uzgQzuRnRBZ44xGNQ6a/QWt7SNiQgwPTZxo=";
-    }
-
-    { # Storyteller (code walkthrough thing: https://markm208.github.io/)
-      name = "storyteller";
-      publisher = "markm208";
-      version = "1.1.0";
-      sha256 = "sha256-y51Hpo6m/G6ZSRlU4go3Q+la2+uVEcmm1zRodsphgws=";
-    }
-
-    { # Vue
-      name = "volar";
-      publisher = "Vue";
-      version = "1.0.11";
-      sha256 = "sha256-vMbbRuoB/vbqq72C8phZgr0eGTYlHKJk7hbhg73YlwQ=";
     }
 
     { # nim
