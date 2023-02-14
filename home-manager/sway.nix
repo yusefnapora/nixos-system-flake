@@ -110,7 +110,7 @@ in {
         exec = "env OBSIDIAN_USE_WAYLAND=1 obsidian -enable-features=UseOzonePlatform -ozone-platform=wayland";
       };
 
-      chromium = {
+      chromium-browser = {
         name = "Chromium";
         terminal = false;
         icon = "${pkgs.chromium}/share/icons/hicolor/256x256/apps/chromium.png";
