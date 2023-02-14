@@ -84,8 +84,11 @@ in {
     programs.fish.shellAliases = {
       code = "code --enable-features=WaylandWindowDecorations --ozone-platform=wayland";
       obsidian = "OBSIDIAN_USE_WAYLAND=1 obsidian -enable-features=UseOzonePlatform -ozone-platform=wayland";
-      "1password" = "1password -enable-features=UseOzonePlatform -ozone-platform=wayland";
       chromium = "chromium --ozone-platform=wayland";
+
+      # leave 1password in Xwayland mode, since the clipboard is broken in wayland:
+      # https://1password.community/discussion/121681/copy-passwords-under-pure-wayland
+      # "1password" = "1password -enable-features=UseOzonePlatform -ozone-platform=wayland";
     };
 
     # apply hi-dpi hacks to desktop entries
@@ -102,18 +105,22 @@ in {
         icon = "${pkgs.obsidian}/share/icons/hicolor/256x256/apps/obsidian.png";        
         exec = "env OBSIDIAN_USE_WAYLAND=1 obsidian -enable-features=UseOzonePlatform -ozone-platform=wayland";
       };
-      "1password" = { 
-        name = "1Password";
-        terminal = false;
-        icon = "${pkgs._1password-gui}/share/1password/resources/icons/hicolor/256x256/apps/1password.png";
-        exec = "1password -enable-features=UseOzonePlatform -ozone-platform=wayland";
-      };
+
       chromium = {
         name = "Chromium";
         terminal = false;
         icon = "${pkgs.chromium}/share/icons/hicolor/256x256/apps/chromium.png";
         exec = "chromium --ozone-platform=wayland";
       };
+      
+      # use xwayland until clipboard bug is fixed: 
+      # https://1password.community/discussion/121681/copy-passwords-under-pure-wayland 
+      # "1password" = { 
+      #   name = "1Password";
+      #   terminal = false;
+      #   icon = "${pkgs._1password-gui}/share/1password/resources/icons/hicolor/256x256/apps/1password.png";
+      #   exec = "1password -enable-features=UseOzonePlatform -ozone-platform=wayland";
+      # };   
     };
 
     # waybar
