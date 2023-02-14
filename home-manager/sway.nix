@@ -8,7 +8,7 @@ let
     set -x WLR_NO_HARDWARE_CURSORS 1
   '';
 
-  cursor-size = builtins.ceil (32 * cfg.dpi-scale);
+  cursor-size = 24;
 in {
   config = mkIf (cfg.enable) {
 
@@ -59,7 +59,7 @@ in {
             }
           ];
 
-          # fix tiny cursor on hi-dpi screen
+          # set cursor size
           seat."*".xcursor_theme = "Vanilla-DMZ ${builtins.toString cursor-size}";
         };
 
@@ -71,7 +71,11 @@ in {
         '';
     };
 
-    # more hi-dpi cursor config
+    
+    # xsettingsd is needed to set the cursor size for XWayland apps
+    services.xsettingsd.enable = true;
+
+    # more cursor config
     home.pointerCursor = {
       package = pkgs.vanilla-dmz;
       name = "Vanilla-DMZ";
@@ -79,7 +83,7 @@ in {
       gtk.enable = true;
     };
 
-    # yet more hidpi stuff, this time for electron apps (vscode, obsidian, etc)
+    # start electron apps in native wayland mode
     # see: https://github.com/microsoft/vscode/issues/136390#issuecomment-1340891893
     programs.fish.shellAliases = {
       code = "code --enable-features=WaylandWindowDecorations --ozone-platform=wayland";
@@ -91,7 +95,7 @@ in {
       # "1password" = "1password -enable-features=UseOzonePlatform -ozone-platform=wayland";
     };
 
-    # apply hi-dpi hacks to desktop entries
+    # apply wayland mode hacks to desktop entries for electron apps
     xdg.desktopEntries = {
       code = {
         name = "VSCode";

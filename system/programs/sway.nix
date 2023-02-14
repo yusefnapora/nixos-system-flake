@@ -20,12 +20,6 @@ in {
       default = false;
     };
 
-    dpi-scale = mkOption {
-      type = types.float;
-      description = "dpi scale factor (affects polybar fonts, etc)";
-      default = 1.0;
-    };
-    
     no-hardware-cursors-fix = mkOption {
       type = types.bool;
       description = "Set WLR_NO_HARDWARE_CURSORS to fix issues with rendering in VM guests";

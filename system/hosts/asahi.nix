@@ -24,7 +24,6 @@
       enable = true;
       natural-scrolling = true;
       terminal = "alacritty";
-      dpi-scale = 2.0;
       output = {
         eDP-1 = {
           scale = "2";
