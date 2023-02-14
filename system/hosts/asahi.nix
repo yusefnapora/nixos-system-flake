@@ -19,6 +19,7 @@
     system = "aarch64-linux";
     gui.enable = true;
     sound.enable = true;
+    bluetooth.enable = true;
     sway = {
       enable = true;
       natural-scrolling = true;
