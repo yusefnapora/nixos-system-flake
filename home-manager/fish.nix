@@ -6,8 +6,6 @@ let
   systemConfig = nixosConfig // darwinConfig;
   cfg = systemConfig.yusef.fish;
   isLinux = lib.strings.hasSuffix "linux" system;
-
-  linuxGUI = isLinux && systemConfig.yusef.gui.enable;
 in
 {
 
@@ -15,8 +13,6 @@ in
       exa
       starship
       any-nix-shell
-  ] ++ optionals (linuxGUI) [
-    xclip
   ];
 
   programs.fish = {
@@ -25,9 +21,6 @@ in
       shellAliases = {
           ls = "${pkgs.exa}/bin/exa";
           nix-search = "nix-env -qaP"; 
-      } // optionalAttrs (linuxGUI) {
-          pbcopy = "xclip -selection clipboard";
-          pbpaste = "xclip -selection clipboard -o";
       };
 
       shellInit = ''

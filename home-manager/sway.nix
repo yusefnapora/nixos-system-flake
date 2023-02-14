@@ -19,6 +19,12 @@ in {
     [ "$TTY1" = "/dev/tty1" ] && exec sway
     '';
 
+    # add pbcopy & pbpaste aliases for clipboard
+    programs.fish.shellAliases = {
+      pbcopy = "${pkgs.wl-clipboard}/bin/wl-copy";
+      pbpaste = "${pkgs.wl-clipboard}/bin/wl-paste";
+    };
+
     wayland.windowManager.sway = {
         enable = true;
         wrapperFeatures.gtk = true;

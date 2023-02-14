@@ -16,6 +16,12 @@ in
         pkgs.flameshot
       ];
 
+      # add pbcopy & pbpaste aliases for clipboard
+      programs.fish.shellAliases = {
+        pbcopy = "${pkgs.xclip}/bin/xclip -selection clipboard";
+        pbpaste = "${pkgs.xclip}/bin/xclip -selection clipboard -o";      
+      };
+
       programs.feh.enable = true;
 
       xsession.enable = true;
