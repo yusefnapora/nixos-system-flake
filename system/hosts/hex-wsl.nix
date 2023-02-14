@@ -48,7 +48,8 @@
   security.pam.services.xdm.enableGnomeKeyring = true;
 
   programs.ssh.startAgent = true;
-
+  services.openssh.ports = [ 2022 ];
+  
   networking.hostName = "Hex";
 
   system.stateVersion = lib.mkForce "22.05";
