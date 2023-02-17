@@ -19,6 +19,7 @@ in
             alsa.enable = true;
             alsa.support32Bit = true;
             pulse.enable = true;
+            wireplumber.enable = true;
         };
 
         environment.etc."wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
