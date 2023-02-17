@@ -124,6 +124,11 @@
         modules = [ ./system/hosts/asahi.nix ];
       };
 
+      # NAS box
+      nasty = mkSystemConfig {
+        system = "x86_64-linux";
+        modules = [ ./system/hosts/nasty.nix ];
+      };
     };
 
     ### --- nix-darwin configs
