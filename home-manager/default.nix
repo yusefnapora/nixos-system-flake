@@ -12,7 +12,7 @@ let
   packages = with pkgs; [
     nixFlakes
     jq
-    cht-sh
+    tealdeer
     unzip
     deno
     nushell
