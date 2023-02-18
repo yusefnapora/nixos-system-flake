@@ -22,6 +22,12 @@ let
     killall
     tree
     lnav
+    duf
+    ripgrep
+    fd
+    atool
+    bat
+    gron
   ];
 
   guiPackages = with pkgs; [
