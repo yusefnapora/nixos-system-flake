@@ -147,7 +147,8 @@ in
 
         # set the os for some remote hosts I use
         "remote.SSH.remotePlatform" = {
-          "hex.lan" =  "linux";
+          "hex-wsl" =  "linux";
+          "hex-win" = "windows";
           "nasty.lan" =  "linux";
           "asahi.lan" = "linux";
           "sef-macbook.lan" = "macOS";
