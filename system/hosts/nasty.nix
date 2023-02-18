@@ -29,6 +29,23 @@
   # import pools on boot
   boot.zfs.extraPools = [ "ocean" ];
 
+  # enable Plex server
+  services.plex = let
+    plexpass = pkgs.plex.override {
+      plexRaw = pkgs.plexRaw.overrideAttrs (old: rec {
+        version = "1.31.0.6654-02189b09f";
+        src = pkgs.fetchurl {
+          url = "https://downloads.plex.tv/plex-media-server-new/${version}/debian/plexmediaserver_${version}_amd64.deb";
+          sha256 = "sha256-TTEcyIBFiuJTNHeJ9wu+4o2ol72oCvM9FdDPC83J3Mc=";
+        };
+      });
+    };
+  in {
+    enable = true;
+    openFirewall = true;
+    package = plexpass;
+  };
+
   systemd.targets.hibernate.enable = false;
 
   # Samba config
