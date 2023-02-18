@@ -20,7 +20,16 @@ in
 
       shellAliases = {
           ls = "${pkgs.exa}/bin/exa";
-          nix-search = "nix-env -qaP"; 
+          nix-search = "nix-env -qaP";
+      };
+
+      functions = {
+        # get the current nix store path for the given binary
+        nix-which = "readlink -e (which $argv[1])";
+
+        # like nix-which, but stripping out the /bin/$program_name bit
+        # useful for checking out other files in the same package
+        nix-which-dir = "nix-which $argv[1] | sed -e 's/\\/bin\\/.*$//'";
       };
 
       shellInit = ''
