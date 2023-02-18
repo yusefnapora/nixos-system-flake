@@ -16,7 +16,7 @@ in {
     # if running from tty1, start sway
     set TTY1 (tty)
     ${hardwareCursorsFix}
-    [ "$TTY1" = "/dev/tty1" ] && exec sway
+    [ "$TTY1" = "/dev/tty1" ] && exec ${pkgs.dbus}/bin/dbus-run-session sway
     '';
 
     # add pbcopy & pbpaste aliases for clipboard

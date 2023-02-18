@@ -43,7 +43,7 @@ in
   };
 
   config = mkIf cfg.enable {
-     services.xserver = {
+    services.xserver = {
       enable = true;
 
       libinput = {
@@ -68,14 +68,18 @@ in
       windowManager.i3 = { 
         enable = true;
       };
-     };
+    };
 
-     # enable gnome-keyring, so 1password, etc can use it
-      services.gnome = {
-        gnome-keyring.enable = true;
-      };
+    # enable gnome-keyring, so 1password, etc can use it
+    services.gnome = {
+      gnome-keyring.enable = true;
+    };
 
-      programs.dconf.enable = true;
-      security.pam.services.xdm.enableGnomeKeyring = true;
+    programs.dconf.enable = true;
+    security.pam.services.xdm.enableGnomeKeyring = true;
+
+    # enable browsing smb shares in thunar, etc
+    # see: https://nixos.wiki/wiki/Samba#Browsing_samba_shares_with_GVFS
+    services.gvfs.enable = true;    
   };
 }

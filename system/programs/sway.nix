@@ -40,7 +40,17 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ wdisplays xorg.xcursorthemes vanilla-dmz ];
+    environment.systemPackages = with pkgs; [ 
+      wdisplays 
+      xorg.xcursorthemes 
+      vanilla-dmz
+      xfce.thunar
+      lxqt.lxqt-policykit # provides a default authentification client for policykit    
+    ];
     programs.sway.enable = true;
+
+    # enable browsing smb shares in thunar, etc
+    # see: https://nixos.wiki/wiki/Samba#Browsing_samba_shares_with_GVFS
+    services.gvfs.enable = true;  
   };
 }
