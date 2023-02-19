@@ -40,10 +40,23 @@
         };
       });
     };
+
+    audnexus-plugin = pkgs.fetchFromGitHub {
+      owner = "djdembeck";
+      repo = "Audnexus.bundle";
+      rev = "v1.1.0";
+      sha256 = "sha256-eylY/fOfMRiDBFaFN1DUyISm/8FO9tRTGE6J/Owkqds=";
+    };
   in {
     enable = true;
     openFirewall = true;
     package = plexpass;
+    extraPlugins = [
+      (builtins.path {
+        name = "Audnexus.bundle";
+        path = audnexus-plugin;
+      })
+    ];
   };
 
   systemd.targets.hibernate.enable = false;
