@@ -42,6 +42,8 @@ let
     tigervnc
     obsidian
     _1password-gui
+    vlc
+    mpv
   ]
   ++ lists.optionals (isX86 && isLinux) [
     calibre
