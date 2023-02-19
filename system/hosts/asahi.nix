@@ -20,6 +20,7 @@
     gui.enable = true;
     sound.enable = true;
     bluetooth.enable = true;
+    droidcam.enable = true;
     sway = {
       enable = true;
       natural-scrolling = true;
