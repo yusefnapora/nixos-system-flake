@@ -37,6 +37,18 @@ in {
       description = "Sway output config (see home-manager docs)";
       default = {};
     };
+
+    lock-timeout = mkOption {
+      type = types.int;
+      description = "Idle time in seconds before locking session";
+      default = 600;
+    };
+
+    suspend-timeout = mkOption {
+      type = types.int;
+      description = "Idle time in seconds before suspending system";
+      default = 1200;
+    };
   };
 
   config = mkIf cfg.enable {

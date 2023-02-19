@@ -9,6 +9,9 @@ let
   '';
 
   cursor-size = 24;
+  
+  background-image = (builtins.path { name = "jwst-carina.jpg"; path = ./backgrounds/jwst-carina.jpg; });
+  lock-cmd = "${pkgs.swaylock}/bin/swaylock --daemonize --image ${background-image}";
 in {
   config = mkIf (cfg.enable) {
 
@@ -47,10 +50,19 @@ in {
               modifier = config.wayland.windowManager.sway.config.modifier;
             in lib.mkOptionDefault {
               "${modifier}+space" = "exec ${pkgs.albert}/bin/albert show";
+              "${modifier}+Shift+slash" = "exec ${lock-cmd}";
             };
           
           startup = [
             { command = "${pkgs.albert}/bin/albert"; }
+            { command = ''
+                ${pkgs.swayidle}/bin/swayidle -w \
+                  timeout ${builtins.toString cfg.lock-timeout} '${lock-cmd}' \
+                  timeout ${builtins.toString cfg.suspend-timeout} 'sudo systemctl suspend' \
+                  before-sleep '${lock-cmd}' \
+                  lock '${lock-cmd}'
+              ''; 
+            }
           ] ++ cfg.startup-commands;
 
           bars = [
