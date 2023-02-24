@@ -39,6 +39,9 @@ require('ide').setup({
 				Explorer = {
 					show_file_permissions = false,
 				},
+				TerminalBrowser = { 
+					default_height = 2,
+				},
     },
     -- default panel groups to display on left and right.
     panels = {

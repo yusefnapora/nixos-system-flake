@@ -25,6 +25,10 @@
         "<C-H>" = "<C-W><C-H>";
         "<C-K>" = "<C-W><C-K>";
         "<C-L>" = "<C-W><C-L>";
+
+        # toggle nvim-ide panels
+        "<leader>tr" = "<cmd>Workspace RightPanelToggle<CR>";
+        "<leader>tl" = "<cmd>Workspace LeftPanelToggle<CR>";
       };
     };
 
@@ -54,6 +58,21 @@
           { name = "path"; }
           { name = "buffer"; }
         ];
+        mapping = {
+          "<CR>" = "cmp.mapping.confirm({ select = true })";
+          "<Tab>" = {
+            modes = [ "i" "s" ];
+            action = ''
+              function(fallback)
+                if cmp.visible() then
+                  cmp.select_next_item()
+                else
+                  fallback()
+                end
+              end
+            '';
+          };
+        };
       };
 
       telescope = {
