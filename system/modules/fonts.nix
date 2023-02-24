@@ -2,7 +2,6 @@
 let
   inherit (lib) mkIf;
   
-  enable = config.yusef.gui.enable;
   nerd-fonts = [
     "FiraCode"
     "DroidSansMono"
@@ -12,20 +11,20 @@ let
   ];
 in
 {
-  config = mkIf (enable) {
-    fonts.fontconfig.enable = lib.mkForce true;
-    fonts.fonts = with pkgs; [
-      (nerdfonts.override { fonts = nerd-fonts; })
+  fonts.fontconfig.enable = lib.mkForce true;
+  fonts.fonts = [
+    (pkgs.nerdfonts.override { fonts = nerd-fonts; })
+  ] ++ builtins.attrValues {
+    inherit (pkgs)
       fira-code
       noto-fonts
       open-fonts
       powerline-fonts
       helvetica-neue-lt-std
       liberation_ttf
+      ;
 
       # custom fonts from this repo (see system/packages/overlay.nix)
-      yusef.fonts.material-icons
-      yusef.fonts.feather-icons
-    ];
+      inherit (pkgs.yusef.fonts) material-icons feather-icons;
   };
 }

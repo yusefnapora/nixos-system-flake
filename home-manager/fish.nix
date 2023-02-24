@@ -9,11 +9,13 @@ let
 in
 {
 
-  home.packages = with pkgs; [
+  home.packages = builtins.attrValues {
+    inherit (pkgs)
       exa
       starship
       any-nix-shell
-  ];
+      ;
+  };
 
   programs.fish = {
       enable = true;

@@ -9,49 +9,55 @@ let
 
   withGUI = systemConfig.yusef.gui.enable;
 
-  packages = with pkgs; [
-    nixFlakes
-    jq
-    tealdeer
-    unzip
-    deno
-    nushell
-    fossil
-    sqlite
-    htop
-    killall
-    tree
-    lnav
-    duf
-    ripgrep
-    fd
-    atool
-    bat
-    gron
-  ];
+  packages = builtins.attrValues {
+    inherit (pkgs)
+      nixFlakes
+      jq
+      tealdeer
+      unzip
+      deno
+      nushell
+      fossil
+      sqlite
+      htop
+      killall
+      tree
+      lnav
+      duf
+      ripgrep
+      fd
+      atool
+      bat
+      gron
+      ;
+  };
 
-  guiPackages = with pkgs; [
-    kitty
-  ] 
-  ++ lists.optionals isLinux [
-    dmenu
-    firefox
-    chromium
-    zeal
-    tigervnc
-    obsidian
-    _1password-gui
-    vlc
-    mpv
-  ]
-  ++ lists.optionals (isX86 && isLinux) [
-    calibre
-    zoom-us
-    slack
-    logseq
-    simplescreenrecorder
-    jetbrains.idea-ultimate
-  ];
+  guiPackages = builtins.attrValues {
+    inherit (pkgs) kitty;
+  }
+  ++ lists.optionals isLinux (builtins.attrValues {
+    inherit (pkgs)
+      dmenu
+      firefox
+      chromium
+      zeal
+      tigervnc
+      obsidian
+      _1password-gui
+      vlc
+      mpv
+      ;
+  })
+  ++ lists.optionals (isX86 && isLinux) (builtins.attrValues {
+    inherit (pkgs)
+      calibre
+      zoom-us
+      slack
+      logseq
+      simplescreenrecorder
+      ;
+    inherit (pkgs.jetbrains) idea-ultimate;
+  });
 in
 {
   imports = [

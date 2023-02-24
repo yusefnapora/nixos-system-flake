@@ -11,12 +11,12 @@ in
       enable = true;
     };    
 
-    home.packages = with pkgs; [
+    home.packages = [
       # also install shotcut video editor for simple edits
-      shotcut
+      pkgs.shotcut
 
       # and the obs-cli utility so we can script things
-      yusef.obs-cli
+      pkgs.yusef.obs-cli
     ];
 
   };

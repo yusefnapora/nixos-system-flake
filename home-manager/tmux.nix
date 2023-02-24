@@ -12,8 +12,8 @@ let
   tmux-conf = "${oh-my-tmux}/.tmux-${oh-my-tmux.rev}/.tmux.conf";
 in
 {
-  home.packages = with pkgs; [
-    tmux
+  home.packages = [
+    pkgs.tmux
   ];
 
   home.file.tmux-conf = {

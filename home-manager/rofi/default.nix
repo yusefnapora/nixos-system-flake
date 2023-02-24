@@ -10,11 +10,13 @@ in
     programs.rofi = {
       enable = true;
 
-      plugins = with pkgs; [ rofi-emoji rofi-calc ];
+      plugins = builtins.attrValues {
+        inherit (pkgs) rofi-emoji rofi-calc;
+      };
 
       terminal = "${pkgs.kitty}/bin/kitty";
 
-      theme = (import ./theme.nix { inherit scaled; inherit config; }); 
+      theme = (import ./theme.nix { inherit scaled; inherit config; });
 
       extraConfig = {
         modi = "drun,run,emoji,calc,ssh,combi,window";

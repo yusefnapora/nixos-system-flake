@@ -6,26 +6,28 @@ let
   systemConfig = nixosConfig // darwinConfig;
   guiEnabled = systemConfig.yusef.gui.enable;
 
-  home.packages = with pkgs; [ rust-analyzer ];
+  home.packages = [ pkgs.rust-analyzer ];
 
-  extensions = (with pkgs.vscode-extensions; [
-    bbenoist.nix
-    ms-azuretools.vscode-docker
-    ms-vscode-remote.remote-ssh
-    github.vscode-pull-request-github
-    skyapps.fish-vscode
-    rust-lang.rust-analyzer
-    golang.go
-    denoland.vscode-deno
-    jnoortheen.nix-ide
-    tamasfe.even-better-toml
-    yzhang.markdown-all-in-one
-    mhutchie.git-graph
-  ]) 
-  ++ lists.optionals (system == "x86_64-linux") (with pkgs.vscode-extensions; [
-    ms-vsliveshare.vsliveshare
-    ms-vscode.cpptools
-  ])
+  ext = pkgs.vscode-extensions;
+
+  extensions = [
+    ext.bbenoist.nix
+    ext.ms-azuretools.vscode-docker
+    ext.ms-vscode-remote.remote-ssh
+    ext.github.vscode-pull-request-github
+    ext.skyapps.fish-vscode
+    ext.rust-lang.rust-analyzer
+    ext.golang.go
+    ext.denoland.vscode-deno
+    ext.jnoortheen.nix-ide
+    ext.tamasfe.even-better-toml
+    ext.yzhang.markdown-all-in-one
+    ext.mhutchie.git-graph
+  ] 
+  ++ lists.optionals (system == "x86_64-linux") [
+    ext.ms-vsliveshare.vsliveshare
+    ext.ms-vscode.cpptools
+  ]
   ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
     { # helix-like keybindings
       name = "dancehelix";

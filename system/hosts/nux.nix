@@ -60,10 +60,10 @@
     ];
   };
 
-  environment.systemPackages = with pkgs; [
-    yusef.lgtv
-    yusef.trim-screencast
-    libva-utils # for sanity-checking video acceleration
+  environment.systemPackages = [
+    pkgs.yusef.lgtv
+    pkgs.yusef.trim-screencast
+    pkgs.libva-utils # for sanity-checking video acceleration
   ];
 
   # doesn't seem to want to wake from hibernate...
@@ -93,12 +93,14 @@
     enable = true;
     driSupport = true;
     # driSupport32Bit = true;
-    extraPackages = with pkgs; [
-      intel-media-driver
-      vaapiIntel
-      vaapiVdpau
-      libvdpau-va-gl
-    ];
+    extraPackages = builtins.attrValues {
+      inherit (pkgs)
+        intel-media-driver
+        vaapiIntel
+        vaapiVdpau
+        libvdpau-va-gl
+        ;
+    };
   };
 
   # Use the systemd-boot EFI boot loader.

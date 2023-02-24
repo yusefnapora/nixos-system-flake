@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 let
-  scriptDeps = with pkgs; [ xdotool coreutils util-linux ];
+  scriptDeps = builtins.attrValues { inherit (pkgs) xdotool coreutils util-linux; };
 
   mkScriptPackage = name:
     let

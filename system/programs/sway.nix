@@ -52,12 +52,12 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ 
-      wdisplays 
-      xorg.xcursorthemes 
-      vanilla-dmz
-      xfce.thunar
-      lxqt.lxqt-policykit # provides a default authentification client for policykit    
+    environment.systemPackages = [ 
+      pkgs.wdisplays 
+      pkgs.xorg.xcursorthemes 
+      pkgs.vanilla-dmz
+      pkgs.xfce.thunar
+      pkgs.lxqt.lxqt-policykit # provides a default authentification client for policykit    
     ];
     programs.sway.enable = true;
 

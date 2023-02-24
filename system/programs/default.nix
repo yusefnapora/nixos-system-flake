@@ -14,12 +14,13 @@ let
       sqlite
       htop
       killall
-      tree;
-    };
+      tree
+    ;
+  };
 
-  guiPackages = with pkgs; [
-      firefox
-  ];
+  guiPackages = builtins.attrValues {
+    inherit (pkgs) firefox;
+  };
 
   guiEnabled = config.yusef.gui.enable;
 in

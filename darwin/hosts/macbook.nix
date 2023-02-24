@@ -19,7 +19,7 @@
   ];
 
   programs.fish.enable = true;
-  environment.shells = with pkgs; [ bashInteractive zsh fish ];
+  environment.shells = builtins.attrValues { inherit (pkgs) bashInteractive zsh fish; };
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;

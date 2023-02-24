@@ -31,6 +31,6 @@ in
             }
         '';
 
-        environment.systemPackages = with pkgs; [ pavucontrol alsa-utils ];
+        environment.systemPackages = builtins.attrValues { inherit (pkgs) pavucontrol alsa-utils; };
     };
 }
