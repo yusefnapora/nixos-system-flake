@@ -34,7 +34,6 @@ let
     kitty
   ] 
   ++ lists.optionals isLinux [
-    alacritty
     dmenu
     firefox
     chromium
@@ -61,7 +60,9 @@ in
     ./vscode.nix
     ./helix.nix
     ./tmux.nix
+    ./nvim
   ] ++ lists.optionals isLinux [
+    ./alacritty.nix
     ./i3.nix
     ./sway.nix
     ./polybar.nix

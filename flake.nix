@@ -31,9 +31,14 @@
       url = "github:tpwrules/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixvim = {
+      url = "github:pta2002/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, vscode-server, agenix, nix-darwin, apple-silicon, ... }: 
+  outputs = inputs@{ self, nixpkgs, home-manager, vscode-server, agenix, nix-darwin, apple-silicon, nixvim, ... }: 
   let
     inherit (nixpkgs.lib) nixosSystem lists;
     inherit (nix-darwin.lib) darwinSystem;
@@ -62,6 +67,7 @@
 
                 home-manager.users.yusef = {
                   imports = [
+                    nixvim.homeManagerModules.nixvim
                     ./home-manager
                   ];
                 };

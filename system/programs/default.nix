@@ -3,7 +3,8 @@ let
   inherit (lib) mkEnableOption mkOption mkIf types;
   inherit (lib.lists) optionals;
 
-  packages = with pkgs; [
+  packages = builtins.attrValues {
+    inherit (pkgs)
       vim 
       wget
       fish
@@ -13,8 +14,8 @@ let
       sqlite
       htop
       killall
-      tree
-  ];
+      tree;
+    };
 
   guiPackages = with pkgs; [
       firefox
