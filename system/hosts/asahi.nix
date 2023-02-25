@@ -35,7 +35,7 @@
       # since it seems to reset to zero on boot.
       # The actual volume will be controlled by pulseaudio / pipewire
       startup-commands = [
-        { command = "${pkgs.alsa-utils}/bin/amixer -c 0 cset numid=3 100%"; }
+        { command = "${pkgs.alsa-utils}/bin/amixer -c 1 set 'Jack DAC' 100%"; }
       ];
     };
     docker.enable = true;
