@@ -31,6 +31,7 @@
     obs.enable = true;
     streamdeck.enable = true;
     kindle.enable = true;
+    kvm-host.enable = true;
     usb-wake.devices = [
       { # ms keyboard receiver
         vendor-id = "045e";
@@ -75,7 +76,13 @@
   #  ${pkgs.yusef.lgtv}/bin/lgtv -c /root/.config/lgtv/config wakeonlan
   #  '';
 
-  # TODO: gpu drivers & such
+  # enable iommu for GPU passthrough
+  boot.kernelParams = [ "intel_iommu=on" "iommu=pt" ];
+
+  # use vfio-pci for Nvidia GPU, so we can pass it through to windows VM
+  boot.extraModprobeConfig = ''
+    options vfio-pci ids=10de:2208,10de:1aef
+  '';
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;

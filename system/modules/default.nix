@@ -7,5 +7,6 @@
         ./bluetooth.nix
         ./kvm-switch
         ./usb-wake.nix
+        ./kvm-host.nix
     ];
 }
