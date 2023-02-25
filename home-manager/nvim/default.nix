@@ -39,7 +39,7 @@
       airline = {
         enable = true;
         powerline = true;
-        theme = "powerlineish";
+        theme = "deus";
       };
 
       packer = {
