@@ -148,7 +148,7 @@ in {
           position = "top";
           height = 30;
           output = [
-            "eDP-1"
+            cfg.waybar-output
           ];
           modules-left = [ "sway/workspaces" "sway/mode" "wlr/taskbar" ];
           modules-center = [ "sway/window" ];

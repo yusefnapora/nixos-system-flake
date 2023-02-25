@@ -38,6 +38,12 @@ in {
       default = {};
     };
 
+    waybar-output = mkOption {
+      type = types.str;
+      description = "Output to show waybar on";
+      default = "eDP-1";
+    };
+
     lock-timeout = mkOption {
       type = types.int;
       description = "Idle time in seconds before locking session";

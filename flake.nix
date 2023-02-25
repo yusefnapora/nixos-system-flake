@@ -124,6 +124,14 @@
         ];
       };
 
+      # bare-metal on intel (dual boot to Hex windows install)
+      nobby = mkSystemConfig {
+        system = "x86_64-linux";
+        modules = [
+          ./system/hosts/nobby.nix
+        ];
+      };
+
       # Intel NUC (11th gen)
       nux = mkSystemConfig {
         system = "x86_64-linux";
