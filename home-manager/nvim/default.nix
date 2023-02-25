@@ -61,20 +61,45 @@
           { name = "path"; }
           { name = "buffer"; }
         ];
-        mapping = {
-          "<CR>" = "cmp.mapping.confirm({ select = true })";
-          "<Tab>" = {
-            modes = [ "i" "s" ];
-            action = ''
-              function(fallback)
-                if cmp.visible() then
-                  cmp.select_next_item()
-                else
-                  fallback()
-                end
+        mapping = let 
+          if-visible = (action: ''
+            function(fallback)
+              if cmp.visible() then
+                ${action}
+              else
+                fallback()
               end
-            '';
+            end
+          '');
+          select-next = {
+            modes = [ "i" "s" "c" ];
+            action = if-visible "cmp.select_next_item()";
           };
+          select-prev = {
+            modes = [ "i" "s" "c" ];
+            action = if-visible "cmp.select_prev_item()";
+          };
+          scroll-next = {
+            modes = [ "i" "s" "c" ];
+            action = if-visible "cmp.scroll_docs(4)"; 
+          };
+          scroll-prev = { 
+            modes = [ "i" "s" "c" ];
+            action = if-visible "cmp.scroll_docs(-4)"; 
+          };
+        in {
+          "<CR>" = "cmp.mapping.confirm({ select = true })";
+          "<Tab>" = select-next;
+          "<C-n>" = select-next;
+          "<Down>" = select-next;
+          "<C-p>" = select-prev;
+          "<Up>" = select-prev;
+
+          # scroll inside the popup view
+          "<C-Up>" = scroll-prev;
+          "<C-b>" = scroll-prev;
+          "<C-Down>" = scroll-next;
+          "<C-f>" = scroll-next;
         };
       };
 
