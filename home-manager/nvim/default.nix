@@ -1,4 +1,10 @@
-{ lib, pkgs, nixvim, ...}:
+{ lib, pkgs, nixvim, inputs, ...}:
+let
+  nvim-ide = pkgs.vimUtils.buildVimPlugin {
+    name = "nvim-ide";
+    src = inputs.nvim-ide;
+  };
+in
 {
 
   programs.nixvim = {
@@ -35,20 +41,15 @@
       };
     };
 
+    # nvim-ide
+    extraPlugins = [ nvim-ide ];
+    extraConfigLua = builtins.readFile ./ide-setup.lua;
+
     plugins = {
       airline = {
         enable = true;
         powerline = true;
         theme = "deus";
-      };
-
-      packer = {
-        enable = true;
-        plugins = [
-          { name = "ldelossa/nvim-ide";
-            config = (builtins.readFile ./ide-setup.lua);
-          }
-        ];
       };
 
       barbar.enable = true;
@@ -61,7 +62,7 @@
           { name = "path"; }
           { name = "buffer"; }
         ];
-        mapping = let 
+        mapping = let
           if-visible = (action: ''
             function(fallback)
               if cmp.visible() then
@@ -81,11 +82,11 @@
           };
           scroll-next = {
             modes = [ "i" "s" "c" ];
-            action = if-visible "cmp.scroll_docs(4)"; 
+            action = if-visible "cmp.scroll_docs(4)";
           };
-          scroll-prev = { 
+          scroll-prev = {
             modes = [ "i" "s" "c" ];
-            action = if-visible "cmp.scroll_docs(-4)"; 
+            action = if-visible "cmp.scroll_docs(-4)";
           };
         in {
           "<CR>" = "cmp.mapping.confirm({ select = true })";

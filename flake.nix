@@ -36,9 +36,15 @@
       url = "github:pta2002/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nvim-ide = {
+      url = "github:yusefnapora/nvim-ide?ref=fix-duplicate-help-tag";
+      # url = "github:ldelossa/nvim-ide";
+      flake = false;
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, vscode-server, agenix, nix-darwin, apple-silicon, nixvim, ... }: 
+  outputs = inputs@{ self, nixpkgs, home-manager, vscode-server, agenix, nix-darwin, apple-silicon, nixvim, nvim-ide, ... }: 
   let
     inherit (nixpkgs.lib) nixosSystem lists;
     inherit (nix-darwin.lib) darwinSystem;
