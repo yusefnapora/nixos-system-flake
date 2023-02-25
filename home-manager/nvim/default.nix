@@ -29,6 +29,9 @@
         # toggle nvim-ide panels
         "<leader>tr" = "<cmd>Workspace RightPanelToggle<CR>";
         "<leader>tl" = "<cmd>Workspace LeftPanelToggle<CR>";
+
+        # focus the nvim-ide explorer panel
+        "<C-\\>" = "<cmd>Workspace Explorer Focus<CR>";
       };
     };
 

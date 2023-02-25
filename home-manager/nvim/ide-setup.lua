@@ -27,8 +27,8 @@ require('ide').setup({
         -- If a more specific keymap override is defined for a specific Component
         -- this takes precedence.
         global_keymaps = {
-            -- example, change all Component's hide keymap to "h"
-            -- hide = h
+            -- Change hide to Ctrl+] since the default hides on escape
+						hide = "<C-]>"
         },
         -- example, prefer "x" for hide only for Explorer component.
         -- Explorer = {
