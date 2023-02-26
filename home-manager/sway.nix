@@ -45,6 +45,10 @@ in {
             natural_scroll = "enabled";
           };
 
+          input."type:mouse" = mkIf cfg.natural-scrolling {
+            natural_scroll = "enabled";
+          };
+
           keybindings = 
             let
               modifier = config.wayland.windowManager.sway.config.modifier;
