@@ -12,6 +12,7 @@
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII280YRFMNNpVO7qxroCmuodMY5Hzo4UwTPoXuukU4tW"
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAtGHkPPabyi3Ea1X5qKpOVyzAmkDTf7zHXs7PzIRQjq"
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIzG8UeYjCrGGSg/Qc0BAfGJnEhg83pjAVzwMJE9RMWU yusef@asahi"
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICRYSwy0c0OZ+ZhmZja6o8ZM7gETNAW0b0La5gSrcNhI yusef@nobby"
         ];
     };
 
