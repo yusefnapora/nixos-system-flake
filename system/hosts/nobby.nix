@@ -19,7 +19,7 @@
     sway = {
       enable = true; 
       natural-scrolling = true;
-      waybar-output = "DP-1";
+      waybar-output = "HDMI-A-1";
     };
     key-remap = { 
       enable = true; 
@@ -32,40 +32,22 @@
     streamdeck.enable = true;
     kindle.enable = true;
     kvm-host.enable = true;
-    usb-wake.devices = [
-      { # ms keyboard receiver
-        vendor-id = "045e";
-        product-id = "07a5"; 
-      }
-      { # logitech mouse receiver
-        vendor-id = "046d";
-        product-id = "c52b";
-      }
-      { # streamdeck 
-        vendor-id = "0fd9";
-        product-id = "0080";
-      }
-      # somewhat annoyingly, you need to enable wakeup for the usb host controller & the hub they're plugged into also
-      { # usb1 and usb3 xHCI controller
-        vendor-id = "1d6b";
-        product-id = "0002";
-      }
-      { # usb2 and usb4 xHCI controller
-        vendor-id = "1d6b";
-        product-id = "0003";
-      }
-      { # usb 2.0 hub (assuming this is the usb switch) 
-        vendor-id = "2109";
-        product-id = "2817";
-      }
-    ];
+    win-vm = {
+      enable = true;
+      vfio-pci-ids = [
+        "10de:2208" # nvidia display device
+        "10de:1aef" # nvidia audio device
+      ];
+      vfio-runtime-pci-devices = [
+        "0000:05:00.0" # device path of nvme controller for windows SSD 
+      ];
+    };
   };
 
-  environment.systemPackages = [
-    pkgs.yusef.lgtv
-    pkgs.yusef.trim-screencast
-    pkgs.libva-utils # for sanity-checking video acceleration
-  ];
+  environment.systemPackages = builtins.attrValues {
+    inherit (pkgs.yusef) lgtv trim-screencast;
+    # inherit (pkgs) looking-glass-client;
+  };
 
   # doesn't seem to want to wake from hibernate...
   # systemd.targets.hibernate.enable = false;
@@ -77,13 +59,46 @@
   #  '';
 
   # enable iommu for GPU passthrough
-  boot.kernelParams = [ "intel_iommu=on" "iommu=pt" ];
+  #boot.kernelParams = [ 
+  #  "intel_iommu=on"
+  #  "iommu=pt"
+  #  "vfio-pci.ids=10de:2208,10de:1aef"
+  #];
 
-  # use vfio-pci for Nvidia GPU, so we can pass it through to windows VM
-  boot.extraModprobeConfig = ''
-    options vfio-pci ids=10de:2208,10de:1aef
-  '';
+  #boot.initrd.kernelModules = [
+  #  "vfio"
+  #  "vfio_pci"
+  #  "kvmfr"
+  #];
 
+
+  # add the kernel module for Looking Glass shared mem
+  #boot.extraModulePackages = [
+  #  config.boot.kernelPackages.kvmfr
+  #];
+
+  #boot.extraModprobeConfig = ''
+  #  options kvmfr static_size_mb=128 
+  #'';
+
+  # allow access to the /dev/kvmfr0 shared memory device
+  #services.udev.extraRules = ''
+  #  SUBSYSTEM=="kvmfr", OWNER="yusef", GROUP="qemu-libvirtd", MODE="0660"
+  #'';
+
+  # configure looking-glass-client to use /dev/kvmfr0 
+  #environment.etc."looking-glass-client.ini" = {
+  #  user = "yusef";
+  #  group = "kvm";
+
+  #  text = ''
+  #    [app]
+  #    shmFile=/dev/kvmfr0
+  #  '';
+  #};
+
+
+  
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
