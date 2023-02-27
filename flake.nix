@@ -44,7 +44,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, vscode-server, agenix, nix-darwin, apple-silicon, nixvim, nvim-ide, ... }: 
+  outputs = inputs@{ self, nixpkgs, home-manager, vscode-server, agenix, nix-darwin, apple-silicon, nixvim, ... }: 
   let
     inherit (nixpkgs.lib) nixosSystem lists;
     inherit (nix-darwin.lib) darwinSystem;
@@ -92,29 +92,6 @@
   {
     ### --- nixos configs
     nixosConfigurations = {
-      # macbook via UTM virtual machine (TODO: change hostname)
-      nixos = mkSystemConfig {
-        system = "aarch64-linux";
-        modules = [
-          ./system/hosts/macbook-vm.nix
-        ];
-      };
-
-      # macbook via Parallels VM
-      parallels = mkSystemConfig { 
-        system = "aarch64-linux";
-        modules = [
-          ./system/hosts/parallels-guest.nix
-        ];
-      };
-
-      # VMWare guest (windows 11 host)
-      virtualboy = mkSystemConfig { 
-        system = "x86_64-linux";
-        modules = [
-          ./system/hosts/vmware-guest.nix
-        ];
-      };
 
       # WSL2 on Win11
       Hex = mkSystemConfig {
@@ -130,12 +107,6 @@
         modules = [
           ./system/hosts/nobby.nix
         ];
-      };
-
-      # Intel NUC (11th gen)
-      nux = mkSystemConfig {
-        system = "x86_64-linux";
-        modules = [ ./system/hosts/nux.nix ];
       };
 
       # Asahi on 14" M1 Macbook pro
