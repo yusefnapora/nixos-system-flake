@@ -3,7 +3,9 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { lib, config, pkgs, ... }:
-{
+let 
+  eth-interface = "enp0s20f0u7u2u1";
+in {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware/nobby.nix
@@ -61,7 +63,7 @@
   # setup a bridge network for libvirt, so we can use scream for audio
   virtualisation.libvirtd.networking = {
     enable = true;
-    externalInterface = "eno1";
+    externalInterface = eth-interface;
   };
 
   # open UDP 4010 to receive audio from scream
@@ -75,8 +77,9 @@
 
   networking.hostName = "nobby"; # Define your hostname.
 
+
   networking.useDHCP = false;
-  networking.interfaces.eno1.useDHCP = true;
+  networking.interfaces.${eth-interface}.useDHCP = true;
 
   system.stateVersion = lib.mkForce "22.11";
 }
