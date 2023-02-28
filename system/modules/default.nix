@@ -10,5 +10,6 @@
         ./kvm-host.nix
         ./win-vm.nix
         ./libvirt-bridge-net.nix
+        ./nixpkgs-wayland.nix
     ];
 }

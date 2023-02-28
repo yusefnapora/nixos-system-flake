@@ -19,6 +19,7 @@ in {
     gui.enable = true;
     sound.enable = true;
     bluetooth.enable = true;
+    nixpkgs-wayland.enable = true;
     sway = {
       enable = true; 
       natural-scrolling = true;
@@ -69,7 +70,7 @@ in {
   # see: https://wiki.hyprland.org/hyprland-wiki/pages/Nvidia/
   #boot.extraModprobeConfig = ''
   #  options nvidia NVreg_RegistryDwords="PowerMizerEnable=0x1; PerfLevelSrc=0x2222; PowerMizerLevel=0x3; PowerMizerDefault=0x3; PowerMizerDefaultAC=0x3"
-  #'';
+  ##'';
 
   # turn off hi-dpi console mode
   hardware.video.hidpi.enable = false;

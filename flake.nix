@@ -45,7 +45,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, vscode-server, agenix, nix-darwin, apple-silicon, nixvim, nixpkgs-wayland, ... }: 
+  outputs = inputs@{ self, nixpkgs, home-manager, vscode-server, agenix, nix-darwin, apple-silicon, nixvim, ... }: 
   let
     inherit (nixpkgs.lib) nixosSystem lists;
     inherit (nix-darwin.lib) darwinSystem;
@@ -66,28 +66,6 @@
                })
 
                agenix.nixosModules.default
-
-               # add nixpkgs-wayland overlay
-               ({ config, pkgs, ... }: {
-                  config = {
-                    nix.settings = {
-                      # add binary caches
-                      trusted-public-keys = [
-                        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-                        "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
-                        # ...
-                      ];
-                      substituters = [
-                        "https://cache.nixos.org"
-                        "https://nixpkgs-wayland.cachix.org"
-                        # ...
-                      ];
-                    };
-
-                    # use it as an overlay
-                    nixpkgs.overlays = [ inputs.nixpkgs-wayland.overlay ];
-                  };
-               })
              ]
           ++ lists.optionals (useHomeManager) [
               home-manager.nixosModules.home-manager {
@@ -106,11 +84,8 @@
                   darwinConfig = {};
                 };
               }
-      
             ];
       };
-
-
   in
   {
     ### --- nixos configs
