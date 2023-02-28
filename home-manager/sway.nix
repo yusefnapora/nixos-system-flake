@@ -38,6 +38,10 @@ in {
       end
     '';
 
+    home.packages = builtins.attrValues {
+      inherit (pkgs) wl-clipboard;
+    };
+
     # add pbcopy & pbpaste aliases for clipboard
     programs.fish.shellAliases = {
       pbcopy = "${pkgs.wl-clipboard}/bin/wl-copy";
