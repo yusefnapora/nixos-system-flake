@@ -16,7 +16,7 @@ in {
         ];
         modules-left = [ "sway/workspaces" "sway/mode" "wlr/taskbar" ];
         modules-center = [ "sway/window" ];
-        modules-right = [ "pulseaudio" "battery" "clock" "tray" ];
+        modules-right = [ "tray" "clock" "pulseaudio" "battery" ];
 
         "sway/workspaces" = {
           disable-scroll = true;
@@ -24,7 +24,8 @@ in {
         };
 
         clock = {
-          format = "{:%I:%M %p}";       
+          format = "{:%I:%M %p}";
+          tooltip-format = "{:%A, %B %m, %Y}";
         };
 
         "wlr/taskbar" = {

@@ -31,14 +31,21 @@ tooltip label {
     border-bottom: 3px solid white;
 }
 
-#mode, #clock, #battery {
-    padding: 0 10px;
-		margin: 0 5px;
+#mode, #clock, #battery, #tray {
+    padding: 0 15px;
+		border-top: 2px solid transparent;
 }
 
-#tray {
-	padding: 0 10px;
-	margin-left: 5px;
+#battery.charging { 
+	border-top: 2px solid #48cf7e;
+}
+
+#battery.warning { 
+	border-top: 2px solid #dbc740;
+}
+
+#battery.critical {
+	border-top: 2px solid #cf5a48;
 }
 
 #mode {
