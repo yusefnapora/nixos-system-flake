@@ -25,7 +25,7 @@ in {
 
         clock = {
           format = "{:%I:%M %p}";
-          tooltip-format = "{:%A, %B %m, %Y}";
+          tooltip-format = "{:%A, %B %d, %Y}";
         };
 
         "wlr/taskbar" = {
