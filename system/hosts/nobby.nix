@@ -4,7 +4,8 @@
 
 { lib, config, pkgs, ... }:
 let 
-  eth-interface = "enp0s20f0u7u2u1";
+  # eth-interface = "enp0s20f0u7u2u1";
+  eth-interface = "enp0s20f0u2";
 in {
   imports =
     [ # Include the results of the hardware scan.
@@ -39,9 +40,10 @@ in {
       vfio-pci-ids = [
         "10de:2208" # nvidia display device
         "10de:1aef" # nvidia audio device
+        "1b21:1042" # pcie USB card
       ];
       vfio-runtime-pci-devices = [
-        "0000:05:00.0" # device path of nvme controller for windows SSD 
+        "0000:06:00.0" # device path of nvme controller for windows SSD 
       ];
     };
   };
