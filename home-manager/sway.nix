@@ -12,16 +12,30 @@ let
   
   background-image = (builtins.path { name = "jwst-carina.jpg"; path = ./backgrounds/jwst-carina.jpg; });
   lock-cmd = "${pkgs.swaylock}/bin/swaylock --daemonize --image ${background-image}";
+
+  nvidia-env-vars = lib.strings.optionalString cfg.nvidia ''
+    set -x GBM_BACKEND nvidia-drm
+    set -x __GLX_VENDOR_LIBRARY_NAME nvidia
+    set -x __GL_GSYNC_ALLOWED 0
+    set -x __GL_VRR_ALLOWED 0
+    set -x WLR_DRM_NO_ATOMIC 1
+  '';
+
+  sway-cmd = if cfg.nvidia then "sway --unsupported-gpu" else "sway";
 in {
   imports = [ ./waybar ];
 
   config = mkIf (cfg.enable) {
 
     programs.fish.loginShellInit = ''
-    # if running from tty1, start sway
-    set TTY1 (tty)
-    ${hardwareCursorsFix}
-    [ "$TTY1" = "/dev/tty1" ] && exec ${pkgs.dbus}/bin/dbus-run-session sway
+      # if running from tty1, start sway
+      set TTY1 (tty)
+      
+      if [ "$TTY1" = "/dev/tty1" ]
+        ${nvidia-env-vars}
+        ${hardwareCursorsFix}
+        exec ${pkgs.dbus}/bin/dbus-run-session ${sway-cmd}
+      end
     '';
 
     # add pbcopy & pbpaste aliases for clipboard
@@ -82,10 +96,15 @@ in {
         };
 
         extraSessionCommands = ''
-        export XDG_SESSION_TYPE=wayland
-        export XDG_SESSION_DESKTOP=sway
-        export XDG_CURRENT_DESKTOP=sway
-        export _JAVA_AWT_WM_NONREPARENTING=1
+          export QT_AUTO_SCREN_SCALING_FACTOR=1 
+          export QT_QPA_PLATFORM=wayland
+          export QT_WAYLAND_DISABLE_WINDOW_DECORATIONS=1
+          export GDK_BACKEND=wayland
+          export MOZ_ENABLE_WAYLAND=1
+          export XDG_SESSION_TYPE=wayland
+          export XDG_SESSION_DESKTOP=sway
+          export XDG_CURRENT_DESKTOP=sway
+          export _JAVA_AWT_WM_NONREPARENTING=1
         '';
     };
 

@@ -55,6 +55,12 @@ in {
       description = "Idle time in seconds before suspending system";
       default = 1200;
     };
+
+    nvidia = mkOption {
+      type = types.bool;
+      description = "Apply nvidia-specific hacks";
+      default = false;
+    };
   };
 
   config = mkIf cfg.enable {
