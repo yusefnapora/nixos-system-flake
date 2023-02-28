@@ -1,0 +1,50 @@
+* {
+	border: none;
+	border-radius: 0;
+	font-family: FiraCode Nerd Font;
+}
+
+window#waybar {
+	background: #16191C;
+	color: #AAB2BF;
+}
+
+tooltip {
+  background: rgba(43, 48, 59, 0.5);
+  border: 1px solid rgba(100, 114, 125, 0.5);
+	border-radius: 10px;
+}
+tooltip label {
+  color: white;
+}
+
+
+#workspaces button {
+    padding: 0 5px;
+    background: transparent;
+    color: white;
+    border-bottom: 3px solid transparent;
+}
+
+#workspaces button.focused {
+    background: #64727D;
+    border-bottom: 3px solid white;
+}
+
+#mode, #clock, #battery {
+    padding: 0 10px;
+		margin: 0 5px;
+}
+
+#tray {
+	padding: 0 10px;
+	margin-left: 5px;
+}
+
+#mode {
+    background: #64727D;
+    border-bottom: 3px solid white;
+}
+
+
+

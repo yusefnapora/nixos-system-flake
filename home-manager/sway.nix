@@ -13,6 +13,8 @@ let
   background-image = (builtins.path { name = "jwst-carina.jpg"; path = ./backgrounds/jwst-carina.jpg; });
   lock-cmd = "${pkgs.swaylock}/bin/swaylock --daemonize --image ${background-image}";
 in {
+  imports = [ ./waybar ];
+
   config = mkIf (cfg.enable) {
 
     programs.fish.loginShellInit = ''
@@ -143,62 +145,5 @@ in {
       # };   
     };
 
-    # waybar
-    programs.waybar = {
-      enable = true;
-      settings = {
-        mainBar = {
-          layer = "top";
-          position = "top";
-          height = 30;
-          output = [
-            cfg.waybar-output
-          ];
-          modules-left = [ "sway/workspaces" "sway/mode" "wlr/taskbar" ];
-          modules-center = [ "sway/window" ];
-          modules-right = ["clock" "battery" "pulseaudio" "tray" ];
-
-          "sway/workspaces" = {
-            disable-scroll = true;
-            all-outputs = true;
-          };
-
-          clock = {
-            format = "{:%I:%M %p}";       
-          };
-
-          "wlr/taskbar" = {
-            on-click = "activate";
-          };
-
-          battery = {
-            interval = 60;
-            states = {
-              warning = 20;
-              critical = 10;
-            };
-            format = "{capacity}% {icon}";
-            format-icons = ["" "" "" "" ""];
-          };
-
-          pulseaudio = {
-            format = "{volume}% {icon}";
-            format-bluetooth = "{volume}% {icon}";
-            format-muted = "";
-            format-icons = {
-              headphone =  "";
-              hands-free = "";
-              headset = "";
-              phone = "";
-              portable = "";
-              car = "";
-              default = ["" ""];
-            };
-            scroll-step = 1;
-            on-click = "pavucontrol";
-          };
-        };
-      };
-    };
   };
 }
