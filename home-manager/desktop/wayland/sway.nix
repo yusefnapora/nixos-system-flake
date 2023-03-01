@@ -10,7 +10,7 @@ let
   cursor-size = 24;
   
   background-image = (builtins.path { name = "jwst-carina.jpg"; path = ../backgrounds/jwst-carina.jpg; });
-  lock-cmd = "${pkgs.swaylock}/bin/swaylock --daemonize --image ${background-image}";
+  lock-cmd = "${pkgs.swaylock-effects}/bin/swaylock -S --daemonize";
 
   nvidia-env-vars = optionalString cfg.nvidia ''
     export GBM_BACKEND=nvidia-drm
