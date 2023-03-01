@@ -61,6 +61,8 @@ in {
       description = "Apply nvidia-specific hacks";
       default = false;
     };
+
+    swaymonad = mkEnableOption "Enable swaymonad auto-tiling support";
   };
 
   config = mkIf cfg.enable {

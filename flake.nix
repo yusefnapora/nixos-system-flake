@@ -43,6 +43,11 @@
       # url = "github:ldelossa/nvim-ide";
       flake = false;
     };
+
+    swaymonad = {
+      url = "github:nicolasavru/swaymonad";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, vscode-server, agenix, nix-darwin, apple-silicon, nixvim, ... }: 

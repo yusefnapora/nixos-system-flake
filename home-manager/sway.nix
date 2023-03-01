@@ -1,27 +1,43 @@
-{ config, nixosConfig, lib, pkgs, ... }:
-with lib;
+{ config, nixosConfig, lib, pkgs, inputs, ... }:
 let
-  cfg = nixosConfig.yusef.sway;
+  inherit (lib) mkIf;
+  inherit (lib.attrsets) optionalAttrs;
+  inherit (lib.lists) optionals;
+  inherit (lib.strings) optionalString;
 
-  # fix for invisible cursor when running in vmware
-  hardwareCursorsFix = strings.optionalString cfg.no-hardware-cursors-fix ''
-    set -x WLR_NO_HARDWARE_CURSORS 1
-  '';
+  cfg = nixosConfig.yusef.sway;
 
   cursor-size = 24;
   
   background-image = (builtins.path { name = "jwst-carina.jpg"; path = ./backgrounds/jwst-carina.jpg; });
   lock-cmd = "${pkgs.swaylock}/bin/swaylock --daemonize --image ${background-image}";
 
-  nvidia-env-vars = lib.strings.optionalString cfg.nvidia ''
-    set -x GBM_BACKEND nvidia-drm
-    set -x __GLX_VENDOR_LIBRARY_NAME nvidia
-    set -x __GL_GSYNC_ALLOWED 0
-    set -x __GL_VRR_ALLOWED 0
-    set -x WLR_DRM_NO_ATOMIC 1
+  nvidia-env-vars = optionalString cfg.nvidia ''
+    export GBM_BACKEND=nvidia-drm
+    export __GLX_VENDOR_LIBRARY_NAME=nvidia
+    export __GL_GSYNC_ALLOWED=0
+    export __GL_VRR_ALLOWED=0
+    export WLR_DRM_NO_ATOMIC=1
+  '';
+
+  # fix for invisible cursor when running in vmware or nvida gpus
+  hardwareCursorsFix = optionalString cfg.no-hardware-cursors-fix ''
+    export WLR_NO_HARDWARE_CURSORS=1
   '';
 
   sway-cmd = if cfg.nvidia then "sway --unsupported-gpu" else "sway";
+
+  start-sway = pkgs.writeShellScriptBin "start-sway" ''
+    ${nvidia-env-vars}
+    ${hardwareCursorsFix}
+    exec ${pkgs.dbus}/bin/dbus-run-session ${sway-cmd}
+  '';
+
+  swaymonad = inputs.swaymonad.defaultPackage.${pkgs.system};
+  restart-swaymonad = pkgs.writeShellScriptBin "restart-swaymonad" ''
+    pkill -f 'python3 .+/swaymonad'
+    ${swaymonad}/bin/swaymonad
+  '';
 in {
   imports = [ ./waybar ];
 
@@ -32,15 +48,17 @@ in {
       set TTY1 (tty)
       
       if [ "$TTY1" = "/dev/tty1" ]
-        ${nvidia-env-vars}
-        ${hardwareCursorsFix}
-        exec ${pkgs.dbus}/bin/dbus-run-session ${sway-cmd}
+        exec start-sway 
       end
     '';
 
     home.packages = builtins.attrValues {
       inherit (pkgs) wl-clipboard;
-    };
+    } 
+    ++ [ start-sway ]
+    ++ optionals cfg.swaymonad [
+      swaymonad
+    ];
 
     # add pbcopy & pbpaste aliases for clipboard
     programs.fish.shellAliases = {
@@ -72,11 +90,40 @@ in {
           keybindings = 
             let
               modifier = config.wayland.windowManager.sway.config.modifier;
-            in lib.mkOptionDefault {
+            in lib.mkOptionDefault ({
               "${modifier}+space" = "exec ${pkgs.albert}/bin/albert show";
               "${modifier}+Shift+slash" = "exec ${lock-cmd}";
+            } // optionalAttrs cfg.swaymonad {
+              "${modifier}+j" = "nop focus_next_window";
+              "${modifier}+k" = "nop focus_prev_window";
+              "${modifier}+Shift+Left" = "nop move left";
+              "${modifier}+Shift+Down" = "nop move down";
+              "${modifier}+Shift+Up" = "nop move up";
+              "${modifier}+Shift+Right" = "nop move right";
+              "${modifier}+Shift+j" = "nop swap_with_next_window";
+              "${modifier}+Shift+k" = "nop swap_with_prev_window";
+              "${modifier}+x" = "nop reflectx";
+              "${modifier}+y" = "nop reflecty";
+              "${modifier}+t" = "nop transpose";
+              "${modifier}+f" = "nop fullscreen";
+              "${modifier}+Comma" = "nop increment_masters";
+              "${modifier}+Period" = "nop decrement_masters";
+              "${modifier}+l" = "mode \"layout\"";
+            });
+
+          modes = lib.mkOptionDefault (optionalAttrs cfg.swaymonad {
+            layout = {
+              "t" = "nop set_layout tall";
+              "3" = "nop set_layout 3_col";
+              "n" = "nop set_layout nop";
+              "Return" = "mode \"default\"";
+              "Escape" = "mode \"default\"";
             };
-          
+          });
+
+
+          focus.wrapping = "no";
+
           startup = [
             { command = "${pkgs.albert}/bin/albert"; }
             { command = ''
@@ -87,7 +134,11 @@ in {
                   lock '${lock-cmd}'
               ''; 
             }
-          ] ++ cfg.startup-commands;
+          ] 
+          ++ cfg.startup-commands
+          ++ optionals cfg.swaymonad [
+            { command = "${restart-swaymonad}/bin/restart-swaymonad"; always = true; }
+          ];
 
           bars = [
             {

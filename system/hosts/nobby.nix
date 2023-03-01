@@ -26,6 +26,7 @@ in {
       waybar-output = "HDMI-A-2";
       nvidia = true;
       no-hardware-cursors-fix = true;
+      swaymonad = true;
     };
     key-remap = { 
       enable = true; 

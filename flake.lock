@@ -448,6 +448,7 @@
         "nixpkgs-wayland": "nixpkgs-wayland",
         "nixvim": "nixvim",
         "nvim-ide": "nvim-ide",
+        "swaymonad": "swaymonad",
         "vscode-server": "vscode-server"
       }
     },
@@ -464,6 +465,27 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "swaymonad": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "utils": "utils_3"
+      },
+      "locked": {
+        "lastModified": 1663174532,
+        "narHash": "sha256-5/kO/djvWT48SnlWxGthv9ZKNHCt/qEhpu7G/MJI8nw=",
+        "owner": "nicolasavru",
+        "repo": "swaymonad",
+        "rev": "ad2ff53b2d6b80bee665436331c43d71d89ad2f1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nicolasavru",
+        "repo": "swaymonad",
         "type": "github"
       }
     },
@@ -489,6 +511,21 @@
         "owner": "numtide",
         "repo": "flake-utils",
         "rev": "5aed5285a952e0b949eb3ba02c12fa4fcfef535f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "utils_3": {
+      "locked": {
+        "lastModified": 1653893745,
+        "narHash": "sha256-0jntwV3Z8//YwuOjzhV2sgJJPt+HY6KhU7VZUL0fKZQ=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "1ed9fb1935d260de5fe1c2f7ee0ebaae17ed2fa1",
         "type": "github"
       },
       "original": {
