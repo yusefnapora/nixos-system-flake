@@ -10,7 +10,7 @@ in {
       mainBar = {
         layer = "top";
         position = "top";
-        height = 30;
+        height = 32;
         output = [
           output
         ];
@@ -30,6 +30,10 @@ in {
 
         "wlr/taskbar" = {
           on-click = "activate";
+        };
+
+        tray = {
+          spacing = 10;
         };
 
         battery = {
