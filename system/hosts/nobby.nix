@@ -19,6 +19,7 @@ in {
     gui.enable = true;
     sound.enable = true;
     bluetooth.enable = true;
+    nixpkgs-wayland.enable = true;
     sway = {
       enable = true; 
       natural-scrolling = true;
