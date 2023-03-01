@@ -5,7 +5,7 @@ let
   cfg = nixosConfig.yusef.i3;
   mod = "Mod4";
   alt = "Mod1";
-  backgroundImage = (builtins.path { name = "jwst-carina.jpg"; path = ./backgrounds/jwst-carina.jpg; });
+  backgroundImage = (builtins.path { name = "jwst-carina.jpg"; path = ../backgrounds/jwst-carina.jpg; });
 
   # TODO: make an option for this?
   screenshots-dir = "/home/yusef/Screenshots";

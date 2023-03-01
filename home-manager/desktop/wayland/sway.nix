@@ -9,7 +9,7 @@ let
 
   cursor-size = 24;
   
-  background-image = (builtins.path { name = "jwst-carina.jpg"; path = ./backgrounds/jwst-carina.jpg; });
+  background-image = (builtins.path { name = "jwst-carina.jpg"; path = ../backgrounds/jwst-carina.jpg; });
   lock-cmd = "${pkgs.swaylock}/bin/swaylock --daemonize --image ${background-image}";
 
   nvidia-env-vars = optionalString cfg.nvidia ''

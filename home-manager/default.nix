@@ -68,11 +68,8 @@ in
     ./tmux.nix
     ./nvim
   ] ++ lists.optionals isLinux [
+    ./desktop
     ./alacritty.nix
-    ./i3.nix
-    ./sway.nix
-    ./polybar.nix
-    ./rofi
     ./npm.nix
     ./obs.nix
     ./ssh.nix
