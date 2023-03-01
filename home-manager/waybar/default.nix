@@ -1,7 +1,6 @@
 { lib, config, pkgs, nixosConfig, ... }:
 let 
   cfg = nixosConfig.yusef.sway;
-  output = cfg.waybar-output;
 in {
   programs.waybar = {
     enable = cfg.enable;
@@ -11,9 +10,6 @@ in {
         layer = "top";
         position = "top";
         height = 32;
-        output = [
-          output
-        ];
         modules-left = [ "sway/workspaces" "sway/mode" "wlr/taskbar" ];
         modules-center = [ "sway/window" ];
         modules-right = [ "tray" "clock" "pulseaudio" "battery" ];

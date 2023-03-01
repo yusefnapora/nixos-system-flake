@@ -19,14 +19,11 @@ in {
     gui.enable = true;
     sound.enable = true;
     bluetooth.enable = true;
-    nixpkgs-wayland.enable = true;
     sway = {
       enable = true; 
       natural-scrolling = true;
-      waybar-output = "HDMI-A-2";
       nvidia = true;
       no-hardware-cursors-fix = true;
-      swaymonad = true;
     };
     key-remap = { 
       enable = true; 
