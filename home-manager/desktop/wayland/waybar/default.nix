@@ -8,7 +8,7 @@ in {
     settings = {
       mainBar = {
         layer = "top";
-        position = "top";
+        position = "bottom";
         height = 32;
         modules-left = [ "sway/workspaces" "sway/mode" "wlr/taskbar" ];
         modules-center = [ "sway/window" ];
