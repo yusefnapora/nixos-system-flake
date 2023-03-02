@@ -48,6 +48,8 @@
       url = "github:nicolasavru/swaymonad";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-colors.url = "github:misterio77/nix-colors";
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, vscode-server, agenix, nix-darwin, apple-silicon, nixvim, ... }: 
