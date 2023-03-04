@@ -25,7 +25,6 @@
     sway = {
       enable = true;
       natural-scrolling = true;
-      terminal = "alacritty";
       output = {
         eDP-1 = {
           scale = "2";
