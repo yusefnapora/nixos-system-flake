@@ -72,5 +72,20 @@ in {
     # enable browsing smb shares in thunar, etc
     # see: https://nixos.wiki/wiki/Samba#Browsing_samba_shares_with_GVFS
     services.gvfs.enable = true;  
+
+    # Enable XDG portal for screen capture
+    xdg.portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-wlr
+        xdg-desktop-portal-kde
+        xdg-desktop-portal-gtk
+      ];
+      wlr = {
+        enable = true;
+      };
+    };
   };
+
+
 }

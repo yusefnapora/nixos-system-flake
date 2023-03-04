@@ -150,6 +150,12 @@ in {
           seat."*".xcursor_theme = "Vanilla-DMZ ${builtins.toString cursor-size}";
         };
 
+        extraConfig = ''
+          # announce a running sway session to systemd
+          exec systemctl --user import-environment XDG_SESSION_TYPE XDG_CURRENT_DESKTOP
+          exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+        '';
+
         extraSessionCommands = ''
           export QT_AUTO_SCREN_SCALING_FACTOR=1 
           export QT_QPA_PLATFORM=wayland
