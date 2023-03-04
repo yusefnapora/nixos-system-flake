@@ -9,7 +9,7 @@ let
 
 
   common-packages = attrValues {
-    inherit (pkgs) kitty;
+    inherit (pkgs) kitty treesheets;
   };
 
   linux-packages = attrValues {
