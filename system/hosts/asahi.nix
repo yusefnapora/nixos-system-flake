@@ -21,6 +21,7 @@
     sound.enable = true;
     bluetooth.enable = true;
     droidcam.enable = true;
+    obs.enable = true;
     sway = {
       enable = true;
       natural-scrolling = true;
