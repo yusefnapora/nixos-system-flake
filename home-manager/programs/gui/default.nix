@@ -7,10 +7,13 @@ let
   inherit (pkgs.stdenv) isLinux isx86_64;
   gui-enabled = config.yusef.system.config.yusef.gui.enable;
 
+  mkAsahiWrapper = (import ./asahi-wrapper.nix { inherit lib pkgs; });
+  kitty = mkAsahiWrapper { name = "kitty"; package = pkgs.kitty; };
 
-  common-packages = attrValues {
-    inherit (pkgs) kitty treesheets;
-  };
+  common-packages = [ kitty ] 
+    ++ attrValues {
+      inherit (pkgs) treesheets;
+    };
 
   linux-packages = attrValues {
     inherit (pkgs)

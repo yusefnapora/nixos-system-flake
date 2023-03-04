@@ -5,20 +5,8 @@ let
 
   cfg = nixosConfig.yusef.obs;
 
-  asahi-wrapper = pkgs.symlinkJoin {
-    name = "obs";
-    paths = [ pkgs.obs-studio ];
-    buildInputs = [ pkgs.makeWrapper ];
-    postBuild = ''
-      wrapProgram $out/bin/obs \
-        --set "MESA_GL_VERSION_OVERRIDE" "3.3" \
-        --set "MESA_GLES_VERSION_OVERRIDE" "3.0" \
-        --set "MESA_GLSL_VERSION_OVERRIDE" "330"
-    '';
-  };
-
-  isAsahi = (isAarch64 && isLinux);
-  obs-package = if isAsahi then asahi-wrapper else pkgs.obs-studio;
+  mkAsahiWrapper = (import ./asahi-wrapper.nix { inherit lib pkgs; });
+  obs-package = mkAsahiWrapper { name = "obs"; package = pkgs.obs-studio; };
 in {
   config = mkIf cfg.enable {
 
