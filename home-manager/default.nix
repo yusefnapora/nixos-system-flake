@@ -14,7 +14,7 @@ in {
     home-manager.enable = true;
   };
 
-  colorScheme = nix-colors.colorSchemes.gruvbox-dark-soft;
+  colorScheme = nix-colors.colorSchemes.spaceduck;
 
   home = {
     stateVersion = "21.11";
