@@ -7,7 +7,6 @@ let
 
   cfg = nixosConfig.yusef.sway;
 
-  colors = config.colorScheme.colors;
   cursor-size = 24;
   
   background-image = (builtins.path { name = "jwst-carina.jpg"; path = ../backgrounds/jwst-carina.jpg; });
@@ -39,6 +38,18 @@ let
     pkill -f 'python3 .+/swaymonad'
     ${swaymonad}/bin/swaymonad
   '';
+
+  color-config = with config.colorScheme.colors; ''
+    # class                 border     backgr.    text       indicator    child_border
+    client.focused          #${base04} #${base0D} #${base07} #${base0E}   #${base0D}
+    client.focused_inactive #${base02} #${base02} #${base06} #${base0E}   #${base0E}
+    client.unfocused        #${base02} #${base01} #${base07} #${base04}   #${base04}
+    client.urgent           #${base0A} #${base09} #${base01} #${base04}   #${base0A}
+    client.placeholder      #${base00} #${base04} #${base07} #${base00}   #${base04}
+
+    client.background       #${base00}
+  '';
+
 in {
   imports = [ ./waybar ];
 
@@ -80,6 +91,11 @@ in {
             };
           };
           window.hideEdgeBorders = "both";
+          fonts = {
+            names = [ "FiraCode Nerd Font" ];
+            style = "Regular";
+            size = 12.0;
+          };
 
           input."type:pointer" = mkIf cfg.natural-scrolling { 
             natural_scroll = "enabled";
@@ -156,11 +172,9 @@ in {
           seat."*".xcursor_theme = "Vanilla-DMZ ${builtins.toString cursor-size}";
         };
 
-        extraConfig = ''
-          # announce a running sway session to systemd
-          exec systemctl --user import-environment XDG_SESSION_TYPE XDG_CURRENT_DESKTOP
-          exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-        '';
+        systemdIntegration = true;
+
+        extraConfig = color-config;
 
         extraSessionCommands = ''
           export QT_AUTO_SCREN_SCALING_FACTOR=1 
