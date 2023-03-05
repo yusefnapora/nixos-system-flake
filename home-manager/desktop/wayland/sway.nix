@@ -74,6 +74,7 @@ in {
           modifier = "Mod4";
           terminal = cfg.terminal;
           output = cfg.output;
+          window.hideEdgeBorders = "both";
 
           input."type:pointer" = mkIf cfg.natural-scrolling { 
             natural_scroll = "enabled";

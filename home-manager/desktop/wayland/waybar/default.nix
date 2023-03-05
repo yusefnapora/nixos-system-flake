@@ -1,10 +1,12 @@
 { lib, config, pkgs, nixosConfig, ... }:
 let 
   cfg = nixosConfig.yusef.sway;
+  gtk-colors = import ./colors-gtk-css.nix { inherit config; };
+  style = gtk-colors + builtins.readFile ./style.css;
 in {
   programs.waybar = {
     enable = cfg.enable;
-    style = ./style.css;
+    style = style;
     settings = {
       mainBar = {
         layer = "top";

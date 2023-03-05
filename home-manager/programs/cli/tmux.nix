@@ -11,12 +11,17 @@ let
   };
   tmux-conf = "${oh-my-tmux}/.tmux-${oh-my-tmux.rev}/.tmux.conf";
 
+  window-rename-plugin-deps = [
+    pkgs.python3
+    pkgs.python3Packages.libtmux
+  ];
+
   inherit (config.colorScheme) colors;
 in
 {
   home.packages = [
     pkgs.tmux
-  ];
+  ] ++ window-rename-plugin-deps;
 
   home.file.tmux-conf = {
     target = ".tmux.conf";
@@ -36,10 +41,13 @@ in
       # customize status bar
       # removes uptime and battery info from default config
       tmux_conf_theme_status_left=" ❐ #S"
-      tmux_conf_theme_status_right=" #{prefix}#{mouse}#{pairing}#{synchronized}, %I:%M %p | #{username}#{root} | #{hostname} "
+      tmux_conf_theme_status_right=" #{prefix}#{mouse}#{pairing}#{synchronized} | #{username}#{root} | #{hostname} "
+
+      # show bar at top of window instead of bottom
+      set -g status-position top
 
       # use 12 hour time format for big clock view
-      tmux_conf_them_clock_style="12"
+      tmux_conf_theme_clock_style="12"
 
       # copy mouse-mode selections to system clipboard
       tmux_conf_copy_to_os_clipboard=true
@@ -59,6 +67,7 @@ in
 
       # plugins
       set -g @plugin 'jabirali/tmux-tilish'
+      set -g @plugin 'ofirgall/tmux-window-name'
 
       # create a session called "main" if none exists
       # ref: https://gist.github.com/chakrit/5004006

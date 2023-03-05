@@ -5,13 +5,13 @@
 }
 
 window#waybar {
-	background: #16191C;
-	color: #AAB2BF;
+	background: @base00;
+	color: @base06;
 }
 
 tooltip {
-  background: rgba(43, 48, 59, 0.5);
-  border: 1px solid rgba(100, 114, 125, 0.5);
+  background: @base03;
+  border: 1px solid @base02;
 	border-radius: 10px;
 }
 tooltip label {
@@ -27,7 +27,8 @@ tooltip label {
 }
 
 #workspaces button.focused {
-    background: #64727D;
+    background: @base0B;
+		color: @base01;
     border-bottom: 2px solid white;
 }
 
@@ -37,36 +38,36 @@ tooltip label {
 }
 
 #tray {
-	border-bottom: 2px solid #1fa1c4;
+	border-bottom: 2px solid @base0C;
 }
 
 #clock {
-  border-bottom: 2px solid #7a34eb;
+  border-bottom: 2px solid @base0D;
 }
 
 #pulseaudio {
-	border-bottom: 2px solid #c41f9b;
+	border-bottom: 2px solid @base0D;
 }
 
 #battery {
-	border-bottom: 2px solid #c23a77;
+	border-bottom: 2px solid @base0F;
 }
 
 #battery.charging { 
-	border-bottom: 2px solid #48cf7e;
+	border-bottom: 2px solid @base0B;
 }
 
 #battery.warning { 
-	border-bottom: 2px solid #dbc740;
+	border-bottom: 2px solid @base0A;
 }
 
 #battery.critical {
-	border-bottom: 2px solid #cf5a48;
+	border-bottom: 2px solid @base08;
 }
 
 #mode {
 	padding: 0 15px;
-  background: #64727D;
+  background: @base04;
   border-bottom: 2px solid white;
 }
 
