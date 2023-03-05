@@ -1,4 +1,4 @@
-{ lib, pkgs, nixvim, inputs, ...}:
+{ lib, pkgs, config, nixvim, inputs, ...}:
 let
   nvim-ide = pkgs.vimUtils.buildVimPlugin {
     name = "nvim-ide";
@@ -9,8 +9,6 @@ in
 
   programs.nixvim = {
     enable = true;
-
-    colorschemes.gruvbox.enable = true;
 
     globals = {
       mapleader = ";";
@@ -45,6 +43,9 @@ in
     # nvim-ide
     extraPlugins = [ nvim-ide ];
     extraConfigLua = builtins.readFile ./ide-setup.lua;
+
+    # color scheme config
+    extraConfigVim = import ./theme.nix config.colorScheme;
 
     plugins = {
       airline = {
