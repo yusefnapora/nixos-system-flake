@@ -5,6 +5,7 @@ in {
   programs.alacritty = {
     enable = true;
     settings = {
+      font.size = 13;
       font.normal.family = "FiraCode Nerd Font Mono";
       font.bold.family = "FiraCode Nerd Font Mono";
 
