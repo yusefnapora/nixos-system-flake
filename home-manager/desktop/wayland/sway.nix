@@ -7,6 +7,7 @@ let
 
   cfg = nixosConfig.yusef.sway;
 
+  colors = config.colorScheme.colors;
   cursor-size = 24;
   
   background-image = (builtins.path { name = "jwst-carina.jpg"; path = ../backgrounds/jwst-carina.jpg; });
@@ -73,7 +74,11 @@ in {
         config = { 
           modifier = "Mod4";
           terminal = cfg.terminal;
-          output = cfg.output;
+          output = cfg.output // {
+            "*" = {
+              bg = "${background-image} fill";
+            };
+          };
           window.hideEdgeBorders = "both";
 
           input."type:pointer" = mkIf cfg.natural-scrolling { 
