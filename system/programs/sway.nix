@@ -10,7 +10,7 @@ in {
     terminal = mkOption {
       type = types.str;
       description = "default terminal emulator";
-      default = "kitty";
+      default = "alacritty";
     };
     
     # options below are used in home-manager config
