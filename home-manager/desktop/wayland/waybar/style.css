@@ -29,7 +29,7 @@ tooltip label {
 #workspaces button.focused {
     background: @base0B;
 		color: @base01;
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid @base06;
 }
 
 #clock, #battery, #pulseaudio, #tray {
