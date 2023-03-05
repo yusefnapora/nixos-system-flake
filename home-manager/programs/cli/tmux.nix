@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, config, ... }:
 let
   oh-my-tmux = pkgs.fetchFromGitHub {
     owner = "gpakosz";
@@ -10,6 +10,8 @@ let
     stripRoot = false;
   };
   tmux-conf = "${oh-my-tmux}/.tmux-${oh-my-tmux.rev}/.tmux.conf";
+
+  inherit (config.colorScheme) colors;
 in
 {
   home.packages = [
@@ -58,6 +60,27 @@ in
       # create a session called "main" if none exists
       # ref: https://gist.github.com/chakrit/5004006
       new-session -s main
+
+      # use colors from current color color scheme
+      # based on default ansi theme for "oh my tmux" config,
+      # with colors from current "base 16" color scheme 
+      tmux_conf_theme_colour_1="#${colors.base00}"
+      tmux_conf_theme_colour_2="#${colors.base08}"
+      tmux_conf_theme_colour_3="#${colors.base08}"
+      tmux_conf_theme_colour_4="#${colors.base0D}"
+      tmux_conf_theme_colour_5="#${colors.base0B}"
+      tmux_conf_theme_colour_6="#${colors.base00}"
+      tmux_conf_theme_colour_7="#${colors.base0F}"
+      tmux_conf_theme_colour_8="#${colors.base00}"
+      tmux_conf_theme_colour_9="#${colors.base0B}"
+      tmux_conf_theme_colour_10="#${colors.base0D}"
+      tmux_conf_theme_colour_11="#${colors.base0A}"
+      tmux_conf_theme_colour_12="#${colors.base08}"
+      tmux_conf_theme_colour_13="#${colors.base0F}"
+      tmux_conf_theme_colour_14="#${colors.base00}"
+      tmux_conf_theme_colour_15="#${colors.base00}"
+      tmux_conf_theme_colour_16="#${colors.base01}"
+      tmux_conf_theme_colour_17="#${colors.base0F}"
     '';
   };
 
