@@ -36,7 +36,10 @@ in
       # customize status bar
       # removes uptime and battery info from default config
       tmux_conf_theme_status_left=" ❐ #S"
-      tmux_conf_theme_status_right=" #{prefix}#{mouse}#{pairing}#{synchronized}, %R , %d %b | #{username}#{root} | #{hostname} "
+      tmux_conf_theme_status_right=" #{prefix}#{mouse}#{pairing}#{synchronized}, %I:%M %p | #{username}#{root} | #{hostname} "
+
+      # use 12 hour time format for big clock view
+      tmux_conf_them_clock_style="12"
 
       # copy mouse-mode selections to system clipboard
       tmux_conf_copy_to_os_clipboard=true
