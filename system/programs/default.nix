@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, nur, ... }:
 let
   inherit (lib) mkEnableOption mkOption mkIf types;
   inherit (lib.lists) optionals;
@@ -40,8 +40,9 @@ in
     config = { 
 
       nixpkgs = {
-        # add our custom packages as an overlay
         overlays = [
+          nur.overlay
+          # add our custom packages as an overlay
           (import ../packages/overlay.nix)
         ];
 

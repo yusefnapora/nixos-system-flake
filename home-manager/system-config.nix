@@ -1,10 +1,7 @@
 { config, pkgs, lib, nixosConfig ? {}, darwinConfig ? {}, ...}:
 let
   inherit (lib) mkOption types;
-
-  cfg = config.yusef.system-config;
-  system = pkgs.system;
-
+  inherit (pkgs) system;
 in {
   options.yusef.system = with types; {
     config = mkOption {

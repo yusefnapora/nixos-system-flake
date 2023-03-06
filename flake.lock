@@ -443,6 +443,21 @@
         "type": "github"
       }
     },
+    "nur": {
+      "locked": {
+        "lastModified": 1678056369,
+        "narHash": "sha256-uTm5WNE6u3cjSmAbqV3WVt7vIYkJ8Tg6fgYmjYRPYtA=",
+        "owner": "nix-community",
+        "repo": "nur",
+        "rev": "716074f750700c6e2917017c9d51e494babf58ff",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nur",
+        "type": "github"
+      }
+    },
     "nvim-ide": {
       "flake": false,
       "locked": {
@@ -498,6 +513,7 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-wayland": "nixpkgs-wayland",
         "nixvim": "nixvim",
+        "nur": "nur",
         "nvim-ide": "nvim-ide",
         "swaymonad": "swaymonad",
         "vscode-server": "vscode-server"

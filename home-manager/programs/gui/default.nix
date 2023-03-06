@@ -18,7 +18,6 @@ let
   linux-packages = attrValues {
     inherit (pkgs)
       dmenu
-      firefox # TODO: use home-manager for firefox config
       chromium
       zeal
       tigervnc
@@ -41,6 +40,7 @@ let
 in {
   imports = [
     ./alacritty.nix
+    ./firefox.nix
     ./obs.nix
     ./vscode.nix
   ];
