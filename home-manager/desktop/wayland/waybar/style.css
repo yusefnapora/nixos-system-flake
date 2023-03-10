@@ -62,7 +62,36 @@ tooltip label {
 }
 
 #battery.critical {
-	border-bottom: 2px solid @base08;
+	border-bottom: 2px solid @base09;
+}
+
+@keyframes blinkWarning {
+    to {
+        border-bottom: 2px solid @base08;
+    }
+}
+
+@keyframes blinkCritical {
+	to {
+		color: @base08;
+		border-bottom: 2px solid @base08;
+	}
+}
+
+#battery.warning:not(.charging) {
+	animation-name: blinkWarning;
+	animation-duration: 1.5s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+#battery.critical:not(.charging) {
+	animation-name: blinkCritical;
+	animation-duration: 1.0s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
 }
 
 #mode {
