@@ -8,12 +8,12 @@ in {
     fade-in = 0.1;
 
     font = config.fontProfiles.regular.family;
-    font-size = 15;
+    font-size = 32;
 
     line-uses-inside = true;
     disable-caps-lock-text = true;
     indicator-caps-lock = true;
-    indicator-radius = 40;
+    indicator-radius = 100;
     indicator-idle-visible = true;
 
     ring-color = "#${colors.base02}";
