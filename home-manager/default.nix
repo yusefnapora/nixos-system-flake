@@ -14,7 +14,7 @@ in {
     home-manager.enable = true;
   };
 
-  colorScheme = nix-colors.colorSchemes.spaceduck;
+  colorScheme = nix-colors.colorSchemes.harmonic16-dark;
 
   # write the color scheme to a CSS file for future reference
   home.file.".config/colorscheme.css".text = let 

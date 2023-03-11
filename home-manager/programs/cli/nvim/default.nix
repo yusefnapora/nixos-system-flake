@@ -4,6 +4,7 @@ let
     name = "nvim-ide";
     src = inputs.nvim-ide;
   };
+
 in
 {
 
@@ -21,6 +22,11 @@ in
       tabstop = 2;
       shiftwidth = 2;
       clipboard = "unnamedplus";
+
+      # hide the native status line, since airline makes it redundant
+      showmode = false;
+      ruler = false;
+      laststatus = 0;
     };
 
     maps = {
@@ -51,7 +57,7 @@ in
       airline = {
         enable = true;
         powerline = true;
-        theme = "deus";
+        theme = "base16";
       };
 
       barbar.enable = true;
