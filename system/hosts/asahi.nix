@@ -43,6 +43,7 @@
     key-remap = { 
       enable = true;
       caps-to-ctrl-esc = true;
+      right-alt-to-ctrl-b = true;
     };
   };
 

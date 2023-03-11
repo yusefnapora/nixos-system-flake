@@ -25,15 +25,18 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.etc."dual-function-keys.yaml".text = '' 
+    environment.etc."dual-function-keys.yaml".text = ''
+      ---
       MAPPINGS:
       '' + optionalString cfg.caps-to-ctrl-esc 
-      ''# capslock to ctrl when held, esc when tapped
+      ''
+      # capslock to ctrl when held, esc when tapped
         - KEY: KEY_CAPSLOCK
           TAP: KEY_ESC
           HOLD: KEY_LEFTCTRL
       '' + optionalString cfg.swap-left-alt-and-super 
-      ''# swap left alt and super keys
+      ''
+      # swap left alt and super keys
         - KEY: KEY_LEFTALT
           TAP: KEY_LEFTMETA
           HOLD: KEY_LEFTMETA
@@ -44,9 +47,15 @@ in
           HOLD_START: BEFORE_CONSUME
       '' + optionalString cfg.right-alt-to-ctrl-b
       ''
-        # send ctrl-b when right alt is tapped
+      # send ctrl-b when right alt is tapped
         - KEY: KEY_RIGHTALT
-          TAP: [ KEY_LEFTCTRL, KEY_B ]
+          TAP:
+            - KEY_LEFTCTRL
+            - KEY_B
+          HOLD:
+            - KEY_LEFTCTRL
+            - KEY_B
+          HOLD_START: BEFORE_CONSUME
       '';
 
     services.interception-tools = { 
