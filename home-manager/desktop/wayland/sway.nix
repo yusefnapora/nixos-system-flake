@@ -115,6 +115,8 @@ in {
             in lib.mkOptionDefault ({
               "${modifier}+space" = "exec ${pkgs.albert}/bin/albert show";
               "${modifier}+Shift+slash" = "exec ${lock-cmd}";
+              "${modifier}+n" = "exec firefox";
+              "${modifier}+Shift+n" = "exec firefox --private-window";
             } // optionalAttrs cfg.swaymonad {
               "${modifier}+j" = "nop focus_next_window";
               "${modifier}+k" = "nop focus_prev_window";
