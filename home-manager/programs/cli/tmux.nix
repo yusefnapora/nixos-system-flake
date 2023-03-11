@@ -93,6 +93,13 @@ in
       tmux_conf_theme_colour_15="#${colors.base00}"
       tmux_conf_theme_colour_16="#${colors.base01}"
       tmux_conf_theme_colour_17="#${colors.base0F}"
+
+      # switch windows with <leader>-n and <leader>-p,
+      # or <leader>-Left or <leader>-Right
+      bind -r n next-window
+      bind -r Right next-window
+      bind -r p previous-window
+      bind -r Left previous-window
     '';
   };
 
