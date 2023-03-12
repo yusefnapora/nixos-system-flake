@@ -32,6 +32,10 @@ in
         # like nix-which, but stripping out the /bin/$program_name bit
         # useful for checking out other files in the same package
         nix-which-dir = "nix-which $argv[1] | sed -e 's/\\/bin\\/.*$//'";
+
+        # shortcut to trick lazy brain into using `nix shell` instead of
+        # `nix-shell -p`
+        ns = "nix shell nixpkgs#$argv[1]";
       };
 
       shellInit = ''
