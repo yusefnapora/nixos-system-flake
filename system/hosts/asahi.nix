@@ -73,6 +73,6 @@
   networking.hostName = "asahi"; # Define your hostname.
   networking.networkmanager.enable = true;
 
-  system.stateVersion = lib.mkForce "23.05";
+  system.stateVersion = "23.05";
 }
 

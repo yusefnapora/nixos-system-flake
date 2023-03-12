@@ -110,5 +110,6 @@
   networking.interfaces.enp2s0.useDHCP = true;
   networking.interfaces.enp3s0.useDHCP = true;
 
+  system.stateVersion = "22.11";
 }
 
