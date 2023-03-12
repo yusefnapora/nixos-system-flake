@@ -25,7 +25,7 @@
   services.nix-daemon.enable = true;
   nix.package = pkgs.nix;
   nix.extraOptions = ''
-    experimental-features = nix-command flakes
+    experimental-features = nix-command flakes repl-flake
   ''+ lib.optionalString (pkgs.system == "aarch64-darwin") ''
     extra-platforms = x86_64-darwin aarch64-darwin
   '';
