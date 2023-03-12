@@ -25,6 +25,7 @@ let
       _1password-gui
       vlc
       mpv
+      bookworm
       ;
     };
 
