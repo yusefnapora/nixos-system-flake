@@ -33,6 +33,9 @@
     # enable ssh server
     services.openssh.enable = true;
 
+    # enable tailscale (each host needs to be authenticated manualy)
+    yusef.tailscale.enable = true;
+
     # Select internationalisation properties.
     i18n.defaultLocale = "en_US.UTF-8";
 
