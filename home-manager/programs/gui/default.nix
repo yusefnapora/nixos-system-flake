@@ -44,6 +44,7 @@ in {
     ./firefox.nix
     ./obs.nix
     ./vscode.nix
+    ./wezterm.nix
   ];
 
   config = mkIf gui-enabled {
