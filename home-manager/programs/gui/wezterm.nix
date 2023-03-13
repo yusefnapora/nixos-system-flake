@@ -63,11 +63,11 @@ in {
             },
           },
 
-          leader = { key="a", mods="CTRL" },
+          leader = { key="b", mods="CTRL" },
           disable_default_key_bindings = true,
           keys = {
-              -- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
-              { key = "a", mods = "LEADER|CTRL",  action=wezterm.action{SendString="\x01"}},
+              -- Send "CTRL-B" to the terminal when pressing CTRL-B, CTRL-B
+              { key = "b", mods = "LEADER|CTRL",  action=wezterm.action.SendKey{ key="b", mods="CTRL" }},
               { key = "-", mods = "LEADER",       action=wezterm.action{SplitVertical={domain="CurrentPaneDomain"}}},
               { key = "\\",mods = "LEADER",       action=wezterm.action{SplitHorizontal={domain="CurrentPaneDomain"}}},
               { key = "z", mods = "LEADER",       action="TogglePaneZoomState" },
