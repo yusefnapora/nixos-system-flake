@@ -63,8 +63,15 @@ in
       barbar.enable = true;
       rust-tools.enable = true;
       nix.enable = true;
-      nvim-cmp = {
+
+      coq-nvim = {
         enable = true;
+        installArtifacts = true;
+      };
+
+      # disabled while I play with coq
+      nvim-cmp = {
+        enable = false;
         sources = [
           { name = "nvim_lsp"; }
           { name = "path"; }
