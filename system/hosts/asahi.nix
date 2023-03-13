@@ -63,8 +63,10 @@
     ];
   };
 
-  # enable automatic power tuning via powertop
-  powerManagement.powertop.enable = true;
+  # use TLP for power management
+  services.tlp = {
+    enable = true;
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
