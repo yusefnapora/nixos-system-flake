@@ -103,14 +103,14 @@ in
     '';
   };
 
-  programs.fish.interactiveShellInit = 
-  ''
-    # auto-start tmux, if we're not already in a tmux session.
-    # the destroy-unattached option prevents stale sessions from
-    # piling up when you detach (ref: https://unix.stackexchange.com/a/222843)
-
-    if not set -q TMUX
-      tmux new-session -t main \; set-option destroy-unattached
-    end    
-  '';
+  #programs.fish.interactiveShellInit = 
+  #''
+  #  # auto-start tmux, if we're not already in a tmux session.
+  #  # the destroy-unattached option prevents stale sessions from
+  #  # piling up when you detach (ref: https://unix.stackexchange.com/a/222843)
+  #
+  #  if not set -q TMUX
+  #    tmux new-session -t main \; set-option destroy-unattached
+  #  end    
+  #'';
 }
