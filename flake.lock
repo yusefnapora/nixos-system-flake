@@ -458,23 +458,6 @@
         "type": "github"
       }
     },
-    "nvim-ide": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1677293076,
-        "narHash": "sha256-Nx+ryxWez2yVrksdqcyC7oeJKzDaz7NwbLtYCsYSUTw=",
-        "owner": "yusefnapora",
-        "repo": "nvim-ide",
-        "rev": "f879e802a2991138c81b225d1f3186d44bbd71e1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "yusefnapora",
-        "ref": "fix-duplicate-help-tag",
-        "repo": "nvim-ide",
-        "type": "github"
-      }
-    },
     "poetry2nix": {
       "inputs": {
         "flake-utils": [
@@ -514,7 +497,6 @@
         "nixpkgs-wayland": "nixpkgs-wayland",
         "nixvim": "nixvim",
         "nur": "nur",
-        "nvim-ide": "nvim-ide",
         "swaymonad": "swaymonad",
         "vscode-server": "vscode-server"
       }

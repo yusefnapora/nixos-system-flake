@@ -39,12 +39,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nvim-ide = {
-      url = "github:yusefnapora/nvim-ide?ref=fix-duplicate-help-tag";
-      # url = "github:ldelossa/nvim-ide";
-      flake = false;
-    };
-
     swaymonad = {
       url = "github:nicolasavru/swaymonad";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -1,11 +1,4 @@
 { lib, pkgs, config, nixvim, inputs, ...}:
-let
-  nvim-ide = pkgs.vimUtils.buildVimPlugin {
-    name = "nvim-ide";
-    src = inputs.nvim-ide;
-  };
-
-in
 {
 
   programs.nixvim = {
@@ -37,18 +30,10 @@ in
         "<C-K>" = "<C-W><C-K>";
         "<C-L>" = "<C-W><C-L>";
 
-        # toggle nvim-ide panels
-        "<leader>tr" = "<cmd>Workspace RightPanelToggle<CR>";
-        "<leader>tl" = "<cmd>Workspace LeftPanelToggle<CR>";
-
-        # focus the nvim-ide explorer panel
-        "<C-\\>" = "<cmd>Workspace Explorer Focus<CR>";
+        # toggle nvim-tree
+        "<leader>t" = "<cmd>NvimTreeToggle<CR>";
       };
     };
-
-    # nvim-ide
-    extraPlugins = [ nvim-ide ];
-    extraConfigLua = builtins.readFile ./ide-setup.lua;
 
     # color scheme config
     extraConfigVim = import ./theme.nix config.colorScheme;
@@ -63,6 +48,13 @@ in
       barbar.enable = true;
       rust-tools.enable = true;
       nix.enable = true;
+
+      nvim-tree = {
+        enable = true;
+        openOnSetup = true;
+        respectBufCwd = true;
+        updateFocusedFile.enable = true;
+      };
 
       coq-nvim = {
         enable = true;
