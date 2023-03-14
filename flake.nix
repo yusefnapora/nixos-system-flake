@@ -141,7 +141,8 @@
 
                 home-manager.users.yusef = {
                   imports = [
-                    ./home-manager
+                    nixvim.homeManagerModules.nixvim
+                    ./home-manager/darwin.nix
                   ];
                 };
 

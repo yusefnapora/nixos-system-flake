@@ -3,12 +3,10 @@ let
   inherit (lib) mkIf;
   inherit (pkgs.stdenv) isAarch64 isLinux;
 
-  cfg = nixosConfig.yusef.obs;
-
   mkAsahiWrapper = (import ./asahi-wrapper.nix { inherit lib pkgs; });
   obs-package = mkAsahiWrapper { name = "obs"; package = pkgs.obs-studio; };
 in {
-  config = mkIf cfg.enable {
+  config = mkIf (isLinux && nixosConfig.yusef.obs.enable) {
 
     programs.obs-studio = {
       enable = true;

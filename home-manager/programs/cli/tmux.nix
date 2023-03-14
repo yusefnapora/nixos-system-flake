@@ -11,17 +11,12 @@ let
   };
   tmux-conf = "${oh-my-tmux}/.tmux-${oh-my-tmux.rev}/.tmux.conf";
 
-  window-rename-plugin-deps = [
-    pkgs.python3
-    pkgs.python3Packages.libtmux
-  ];
-
   inherit (config.colorScheme) colors;
 in
 {
   home.packages = [
     pkgs.tmux
-  ] ++ window-rename-plugin-deps;
+  ];
 
   home.file.tmux-conf = {
     target = ".tmux.conf";
@@ -67,7 +62,7 @@ in
 
       # plugins
       set -g @plugin 'jabirali/tmux-tilish'
-      set -g @plugin 'ofirgall/tmux-window-name'
+      # set -g @plugin 'ofirgall/tmux-window-name'
 
       # create a session called "main" if none exists
       # ref: https://gist.github.com/chakrit/5004006
