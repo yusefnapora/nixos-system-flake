@@ -11,6 +11,6 @@ in
     config = mkIf cfg.enable {
         virtualisation.docker.enable = true;
         virtualisation.oci-containers.backend = "docker";
-        environment.systemPackages = [ pkgs.docker-compose ];
+        environment.systemPackages = [ pkgs.docker-compose pkgs.distrobox ];
     };
 }
