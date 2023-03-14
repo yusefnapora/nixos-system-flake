@@ -56,6 +56,8 @@
         updateFocusedFile.enable = true;
       };
 
+      comment-nvim.enable = true;
+
       coq-nvim = {
         enable = true;
         installArtifacts = true;
