@@ -29,7 +29,7 @@ in
         ./i3.nix
         ./sway.nix
         ./droidcam.nix
-        ./docker.nix
+        ./podman.nix
         ./obs.nix
         ./v4l2loopback.nix
         ./streamdeck

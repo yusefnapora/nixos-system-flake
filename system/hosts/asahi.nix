@@ -39,7 +39,7 @@
         { command = "${pkgs.alsa-utils}/bin/amixer -c 1 set 'Jack DAC' 100%"; }
       ];
     };
-    docker.enable = true;
+    podman.enable = true;
     key-remap = { 
       enable = true;
       caps-to-ctrl-esc = true;

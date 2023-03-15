@@ -31,7 +31,7 @@ in {
       caps-to-ctrl-esc= true; 
       swap-left-alt-and-super = true;
     };
-    docker.enable = true;
+    podman.enable = true;
     droidcam.enable = true;
     obs.enable = true;
     streamdeck.enable = true;
