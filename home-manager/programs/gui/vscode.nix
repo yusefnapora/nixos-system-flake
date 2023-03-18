@@ -23,18 +23,14 @@ let
     ext.tamasfe.even-better-toml
     ext.yzhang.markdown-all-in-one
     ext.mhutchie.git-graph
+    ext.ms-python.python
+    ext.vscodevim.vim
   ] 
   ++ lists.optionals (system == "x86_64-linux") [
     ext.ms-vsliveshare.vsliveshare
     ext.ms-vscode.cpptools
   ]
   ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-    { # helix-like keybindings
-      name = "dancehelix";
-      publisher = "silverquark";
-      version = "0.5.16";
-      sha256 = "sha256-oHwtlbB18ctEnfStDOpJ+2/Kq41JZog8FVhTa1/s7m0=";
-    }
     { # spacemacs color theme
       name = "spacemacs";
       publisher = "rkwan94";
@@ -187,6 +183,9 @@ in
         # svelte
         "svelte.ask-to-enable-ts-plugin" = false;
         "svelte.enable-ts-plugin" = true;
+
+        # vim 
+        "vim.useSystemClipboard" = true;
 
         # spellcheck ignore list
         "spellchecker.ignoreWordsList" = [
