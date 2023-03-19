@@ -1,7 +1,7 @@
 { config, system, nixosConfig ? {}, darwinConfig ? {}, lib, pkgs, ... }:
 let
   inherit (lib) mkIf lists;
-  inherit (pkgs.stdenv) isDarwin;
+  inherit (pkgs.stdenv) isDarwin isLinux;
 
   systemConfig = nixosConfig // darwinConfig;
   guiEnabled = systemConfig.yusef.gui.enable;
@@ -23,9 +23,11 @@ let
     ext.tamasfe.even-better-toml
     ext.yzhang.markdown-all-in-one
     ext.mhutchie.git-graph
-    ext.ms-python.python
     ext.vscodevim.vim
-  ] 
+  ]
+  ++ lists.optionals isLinux [
+    ext.ms-python.python # currently broken on darwin :(
+  ]
   ++ lists.optionals (system == "x86_64-linux") [
     ext.ms-vsliveshare.vsliveshare
     ext.ms-vscode.cpptools
