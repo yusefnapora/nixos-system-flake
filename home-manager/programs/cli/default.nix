@@ -27,6 +27,7 @@
       atool
       bat
       gron
+      xh
       ;
     };
 

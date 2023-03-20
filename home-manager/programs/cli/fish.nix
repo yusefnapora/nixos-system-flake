@@ -23,6 +23,7 @@ in
       shellAliases = {
           ls = "${pkgs.exa}/bin/exa";
           nix-search = "nix-env -qaP";
+          http = "${pkgs.xh}/bin/xh";
         }
         // optionalAttrs isDarwin {
           idea = "open -an 'IntelliJ IDEA.app'";
