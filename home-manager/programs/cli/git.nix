@@ -9,6 +9,7 @@
             head-branch = "!basename $(git symbolic-ref refs/remotes/$(git upstream-name)/HEAD)";
             cm = "!git checkout $(git head-branch)";
             co = "checkout";
+            cob = "checkout -b";
         };
 
         ignores = [
@@ -25,7 +26,7 @@
 
         difftastic = { 
           enable = true;
-          background = "dark"; 
+          background = "${config.colorScheme.kind}"; 
         };
     };
 }
