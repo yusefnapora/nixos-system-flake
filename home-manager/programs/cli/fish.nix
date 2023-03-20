@@ -2,10 +2,10 @@
 let
   inherit (lib.lists) optionals;
   inherit (lib.attrsets) optionalAttrs;
+  inherit (pkgs.stdenv) isLinux isDarwin;
 
   systemConfig = nixosConfig // darwinConfig;
   cfg = systemConfig.yusef.fish;
-  isLinux = lib.strings.hasSuffix "linux" system;
 in
 {
 
@@ -23,7 +23,10 @@ in
       shellAliases = {
           ls = "${pkgs.exa}/bin/exa";
           nix-search = "nix-env -qaP";
-      };
+        }
+        // optionalAttrs isDarwin {
+          idea = "open -an 'IntelliJ IDEA.app'";
+        };
 
       functions = {
         # get the current nix store path for the given binary
@@ -35,6 +38,9 @@ in
 
         # shortcut to trick lazy brain into using `nix shell` instead of
         # `nix-shell -p`
+        # TODO: would be cool to pin it to the commit of nixpkgs used to
+        # build this flake. That would skip a bunch of downloads & pull
+        # dependencies from the local store.
         ns = "nix shell nixpkgs#$argv[1]";
       };
 
