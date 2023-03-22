@@ -25,11 +25,9 @@ let
     ext.mhutchie.git-graph
     ext.vscodevim.vim
   ]
-  ++ lists.optionals isLinux [
-    ext.ms-python.python # currently broken on darwin :(
-  ]
   ++ lists.optionals (system == "x86_64-linux") [
     ext.ms-vsliveshare.vsliveshare
+    ext.ms-python.python # currently broken on darwin & unsupported on aarch64-linux :(
     ext.ms-vscode.cpptools
   ]
   ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
