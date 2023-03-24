@@ -39,9 +39,6 @@ in
 
         # shortcut to trick lazy brain into using `nix shell` instead of
         # `nix-shell -p`
-        # TODO: would be cool to pin it to the commit of nixpkgs used to
-        # build this flake. That would skip a bunch of downloads & pull
-        # dependencies from the local store.
         ns = "nix shell nixpkgs#$argv[1]";
       };
 
