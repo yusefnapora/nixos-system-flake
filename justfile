@@ -1,4 +1,5 @@
-
+# Build the system config and switch to it when running `just` with no args
+default: switch
 
 hostname := `hostname | cut -d "." -f 1`
 
