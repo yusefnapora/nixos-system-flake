@@ -8,6 +8,10 @@ build target_host=hostname flags="":
   @echo "Building nix-darwin config..."
   nix --extra-experimental-features 'nix-command flakes'  build ".#darwinConfigurations.{{target_host}}.system" {{flags}}
 
+# Build the nix-darwin config with the --show-trace flag set
+[macos]
+trace target_host=hostname: (build target_host "--show-trace")
+
 # Build the nix-darwin configuration and switch to it
 [macos]
 switch target_host=hostname: (build target_host) && pin-nixpkgs
@@ -18,10 +22,15 @@ switch target_host=hostname: (build target_host) && pin-nixpkgs
 # on asahi linux, we need to pass the --impure flag to read in firmware files
 rebuild_flags := `if [ -d /boot/asahi ]; then echo "--impure"; else echo ""; fi`
 
+
 # Build the NixOS configuration without switching to it
 [linux]
 build target_host=hostname flags="":
 	nixos-rebuild build --flake .#{{target_host}} {{rebuild_flags}} {{flags}}
+
+# Build the NixOS config with the --show-trace flag set
+[linux]
+trace target_host=hostname: (build target_host "--show-trace")
 
 # Build the NixOS configuration and switch to it. Also pins nixpkgs to rev in flake.lock
 [linux]

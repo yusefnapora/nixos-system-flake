@@ -10,7 +10,7 @@ I use [just](https://github.com/casey/just) to manage housekeeping tasks like bu
 
 When installing to a brand new machine without `just` in the path, you can run `nix shell nixpkgs#just` or `nix-shell -p just` to get it, then `just --list` to list the build tasks.
 
-The most important are `just switch`, which rebuilds the config and switches to it, and `just update`, which updates flake inputs. If the build fails, try running `just build $hostname --show-trace`, where `$hostname` is the hostname of the machine you're building.
+The most important are `just switch`, which rebuilds the config and switches to it, and `just update`, which updates flake inputs. If the build fails, try running `just trace`, which builds the config with the `--show-trace` flag set.
 
 ## Organization
 
