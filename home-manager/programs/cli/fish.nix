@@ -31,7 +31,7 @@ in
 
       functions = {
         # get the current nix store path for the given binary
-        nix-which = "readlink -e (which $argv[1])";
+        nix-which = if isDarwin then "readlink (which $argv[1])" else "readlink -e (which $argv[1])";
 
         # like nix-which, but stripping out the /bin/$program_name bit
         # useful for checking out other files in the same package
