@@ -28,6 +28,7 @@
       bat
       gron
       xh
+      just
       ;
     };
 
