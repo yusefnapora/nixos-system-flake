@@ -6,7 +6,11 @@ It's still a work in progress, and if anyone stumbles across it and has ideas to
 
 ## Usage
 
-`./switch.sh` is a little wrapper around `sudo nixos-rebuild switch --flake`, defaulting to `.#` if you don't give it an argument.
+I use [just](https://github.com/casey/just) to manage housekeeping tasks like building the config and switching to it.
+
+When installing to a brand new machine without `just` in the path, you can run `nix shell nixpkgs#just` or `nix-shell -p just` to get it, then `just --list` to list the build tasks.
+
+The most important are `just switch`, which rebuilds the config and switches to it, and `just update`, which updates flake inputs. If the build fails, try running `just build $hostname --show-trace`, where `$hostname` is the hostname of the machine you're building.
 
 ## Organization
 
