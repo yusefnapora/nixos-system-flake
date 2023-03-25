@@ -10,7 +10,7 @@ build target_host=hostname flags="":
 
 # Build the nix-darwin configuration and switch to it
 [macos]
-switch target_host=hostname: (build target_host)
+switch target_host=hostname: (build target_host) && pin-nixpkgs
   @echo "switching to new config for {{target_host}}"
   ./result/sw/bin/darwin-rebuild switch --flake ".#{{target_host}}"
 
@@ -21,18 +21,20 @@ rebuild_flags := `if [ -d /boot/asahi ]; then echo "--impure"; else echo ""; fi`
 # Build the NixOS configuration without switching to it
 [linux]
 build target_host=hostname flags="":
-	nixos-rebuild build .#{{target_host}} {{rebuild_flags}} {{flags}}
+	nixos-rebuild build --flake .#{{target_host}} {{rebuild_flags}} {{flags}}
 
-# Build the NixOS configuration and switch to it
+# Build the NixOS configuration and switch to it. Also pins nixpkgs to rev in flake.lock
 [linux]
-switch target_host=hostname:
-  sudo nixos-rebuild switch .#{{target_host}} {{rebuild_flags}}
+switch target_host=hostname: && pin-nixpkgs
+  sudo nixos-rebuild switch --flake .#{{target_host}} {{rebuild_flags}}
 
-# Update flake inputs to their latest revisions and pin the local nixpkgs flake reference
+# Update flake inputs to their latest revisions
 update:
   nix flake update
-  nix registry add nixpkgs "github:NixOS/nixpkgs/$(jq -r '.nodes.nixpkgs.locked.rev' flake.lock)"
 
+# Pin the revision of nixpkgs in the local flake registry to the rev from flake.lock
+pin-nixpkgs:
+  nix registry add nixpkgs "github:NixOS/nixpkgs/$(jq -r '.nodes.nixpkgs.locked.rev' flake.lock)"
 
 # Garbage collect old OS generations and remove stale packages from the nix store
 gc generations="5d":
