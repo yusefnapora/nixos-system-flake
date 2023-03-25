@@ -58,14 +58,8 @@
 
       comment-nvim.enable = true;
 
-      coq-nvim = {
-        enable = true;
-        installArtifacts = true;
-      };
-
-      # disabled while I play with coq
       nvim-cmp = {
-        enable = false;
+        enable = true;
         sources = [
           { name = "nvim_lsp"; }
           { name = "path"; }
@@ -98,7 +92,7 @@
             action = if-visible "cmp.scroll_docs(-4)";
           };
         in {
-          "<CR>" = "cmp.mapping.confirm({ select = true })";
+          "<CR>" = "cmp.mapping.confirm({ select = false })";
           "<Tab>" = select-next;
           "<C-n>" = select-next;
           "<Down>" = select-next;
@@ -131,6 +125,11 @@
           rust-analyzer.enable = true;
           rnix-lsp.enable = true;
         };
+      };
+
+      treesitter = {
+        enable = true;
+        ensureInstalled = "all";
       };
     };
 
