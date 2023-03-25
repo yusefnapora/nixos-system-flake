@@ -1,4 +1,15 @@
 { lib, pkgs, config, nixvim, inputs, ...}:
+let
+  vim-just = pkgs.vimUtils.buildVimPluginFrom2Nix {
+    name = "vim-just";
+    src = pkgs.fetchFromGitHub {
+      owner = "NoahTheDuke";
+      repo = "vim-just";
+      rev = "adf500b84eb98ba56ad3f10672e1b2dc1de47b5f";
+      sha256 = "sha256-YxqFZNtv7naC3faI1kPYI2pnzX8sm3akMBydZrYLHgM=";
+    };
+  };
+in  
 {
 
   programs.nixvim = {
@@ -37,6 +48,8 @@
 
     # color scheme config
     extraConfigVim = import ./theme.nix config.colorScheme;
+
+    extraPlugins = [ vim-just ];
 
     plugins = {
       airline = {
