@@ -11,7 +11,34 @@ let
   ];
 in
 {
-  fonts.fontconfig.enable = lib.mkForce true;
+  # enableDefaultFonts = false;
+
+  fonts.fontconfig = {
+    enable = lib.mkForce true;
+
+    defaultFonts = {
+      serif = [ "Liberation Serif" "Joypixels" ];
+      sansSerif = [ "SF Pro Display" "Joypixels" ];
+      monospace = [ "FiraCode Nerd Font Mono" ];
+      emoji = [ "Joypixels" ];
+    };
+
+    # fix pixelation
+    antialias = true;
+
+    # fix antialiasing blur
+    hinting = {
+      enable = true;
+      style = "hintfull";
+      autohint = true;
+    };
+
+    subpixel = {
+      rgba = "rgb";
+      lcdfilter = "default";
+    };
+  };
+
   fonts.fonts = [
     (pkgs.nerdfonts.override { fonts = nerd-fonts; })
   ] ++ builtins.attrValues {
@@ -22,9 +49,11 @@ in
       powerline-fonts
       helvetica-neue-lt-std
       liberation_ttf
+      iosevka
+      joypixels
       ;
 
       # custom fonts from this repo (see system/packages/overlay.nix)
-      inherit (pkgs.yusef.fonts) material-icons feather-icons;
+      inherit (pkgs.yusef.fonts) material-icons feather-icons sf-pro;
   };
 }

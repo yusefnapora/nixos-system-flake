@@ -48,6 +48,8 @@ in
 
         # allow unfree (vscode, etc)
         config.allowUnfree = true;
+        # accept joypixels emoji font license
+        config.joypixels.acceptLicense = true;
       };
 
       # enable nix flakes
