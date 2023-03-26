@@ -49,7 +49,10 @@ in
     # color scheme config
     extraConfigVim = import ./theme.nix config.colorScheme;
 
-    extraPlugins = [ vim-just ];
+    extraPlugins = [ 
+      vim-just
+      pkgs.vimPlugins.cheatsheet-nvim
+    ];
 
     plugins = {
       airline = {
