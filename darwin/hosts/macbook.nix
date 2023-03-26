@@ -1,4 +1,7 @@
-{ pkgs, lib, nixpkgs, ... }:
+{ pkgs, lib, inputs, ... }:
+let
+  inherit (inputs) nixpkgs;
+in
 {
   imports = [
     ../options.nix
