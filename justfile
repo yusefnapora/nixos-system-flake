@@ -15,7 +15,7 @@ trace target_host=hostname: (build target_host "--show-trace")
 
 # Build the nix-darwin configuration and switch to it
 [macos]
-switch target_host=hostname: (build target_host) && pin-nixpkgs
+switch target_host=hostname: (build target_host)
   @echo "switching to new config for {{target_host}}"
   ./result/sw/bin/darwin-rebuild switch --flake ".#{{target_host}}"
 
@@ -33,18 +33,15 @@ build target_host=hostname flags="":
 [linux]
 trace target_host=hostname: (build target_host "--show-trace")
 
-# Build the NixOS configuration and switch to it. Also pins nixpkgs to rev in flake.lock
+# Build the NixOS configuration and switch to it.
 [linux]
-switch target_host=hostname: && pin-nixpkgs
+switch target_host=hostname:
   sudo nixos-rebuild switch --flake .#{{target_host}} {{rebuild_flags}}
 
 # Update flake inputs to their latest revisions
 update:
   nix flake update
 
-# Pin the revision of nixpkgs in the local flake registry to the rev from flake.lock
-pin-nixpkgs:
-  nix registry add nixpkgs "github:NixOS/nixpkgs/$(jq -r '.nodes.nixpkgs.locked.rev' flake.lock)"
 
 # Garbage collect old OS generations and remove stale packages from the nix store
 gc generations="5d":

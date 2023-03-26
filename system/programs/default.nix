@@ -1,4 +1,4 @@
-{ config, pkgs, lib, nur, ... }:
+{ config, pkgs, lib, nur, nixpkgs, ... }:
 let
   inherit (lib) mkEnableOption mkOption mkIf types;
   inherit (lib.lists) optionals;
@@ -50,6 +50,8 @@ in
         config.allowUnfree = true;
         # accept joypixels emoji font license
         config.joypixels.acceptLicense = true;
+
+
       };
 
       # enable nix flakes
@@ -57,6 +59,13 @@ in
       nix.extraOptions = ''
       experimental-features = nix-command flakes repl-flake
       '';
+
+      # set the flake registry entry for nixpkgs to current revision
+      # used to build the config
+      nix.registry = {
+        nixpkgs.flake = nixpkgs;
+      };
+
 
       programs.fish.enable = true;
 
