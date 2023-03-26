@@ -1,6 +1,10 @@
 {
   inputs = { 
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # nixpkgs is currently pinned to a version that's compatible with
+    # nixos-apple-silicon - later revs have issues with the GPU driver
+    # that cause sway to run with software rendering.
+    nixpkgs.url = "github:NixOS/nixpkgs/1603d11595a232205f03d46e635d919d1e1ec5b9";
+
     nur.url = "github:nix-community/nur";
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
 
@@ -30,7 +34,7 @@
     };
 
     apple-silicon = {
-      url = "github:tpwrules/nixos-apple-silicon/release-2023-02-23";
+      url = "github:tpwrules/nixos-apple-silicon/release-2023-03-21";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
 
