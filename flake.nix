@@ -30,7 +30,7 @@
     };
 
     apple-silicon = {
-      url = "github:tpwrules/nixos-apple-silicon";
+      url = "github:tpwrules/nixos-apple-silicon/release-2023-02-23";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
 
