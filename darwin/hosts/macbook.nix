@@ -30,6 +30,10 @@
     extra-platforms = x86_64-darwin aarch64-darwin
   '';
 
+  # pin nixpkgs in the system flake registry to the revision used
+  # to build the config
+  nix.registry.nixpkgs.flake = nixpkgs;
+
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.overlays = [
     (final: prev: lib.optionalAttrs (prev.stdenv.system == "aarch64-darwin") {
