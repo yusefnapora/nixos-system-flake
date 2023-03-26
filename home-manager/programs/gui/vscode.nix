@@ -8,6 +8,11 @@ let
 
   home.packages = [ pkgs.rust-analyzer ];
 
+  colors = config.colorScheme.colors;
+
+
+
+
   ext = pkgs.vscode-extensions;
 
   extensions = [
@@ -152,7 +157,30 @@ in
           "sef-macbook.lan" = "macOS";
         };
 
-        "workbench.colorTheme" = "${defaultTheme}";
+        # "workbench.colorTheme" = "${defaultTheme}";
+
+        "workbench.colorCustomizations" = with colors; {
+          "terminal.background" = "#${base00}";
+          "terminal.foreground" = "#${base05}";
+          "terminalCursor.background" = "#${base05}";
+          "terminalCursor.foreground" = "#${base05}";
+          "terminal.ansiBlack" = "#${base00}";
+          "terminal.ansiBlue" = "#${base0D}";
+          "terminal.ansiBrightBlack" = "#${base03}";
+          "terminal.ansiBrightBlue" = "#${base0D}";
+          "terminal.ansiBrightCyan" = "#${base0C}";
+          "terminal.ansiBrightGreen" = "#${base0B}";
+          "terminal.ansiBrightMagenta" = "#${base0E}";
+          "terminal.ansiBrightRed" = "#${base08}";
+          "terminal.ansiBrightWhite" = "#${base07}";
+          "terminal.ansiBrightYellow" = "#${base0A}";
+          "terminal.ansiCyan" = "#${base0C}";
+          "terminal.ansiGreen" = "#${base0B}";
+          "terminal.ansiMagenta" = "#${base0E}";
+          "terminal.ansiRed" = "#${base08}";
+          "terminal.ansiWhite" = "#${base05}";
+          "terminal.ansiYellow" = "#${base0A}";
+        };
 
         "editor.tabSize" = 2;
         "editor.fontFamily" = "'Fira Code'";

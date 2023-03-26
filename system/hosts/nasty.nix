@@ -18,7 +18,7 @@
       caps-to-ctrl-esc= true; 
       # swap-left-alt-and-super= true; 
     };
-    docker.enable = true;
+    podman.enable = true;
   };
 
   # enable ZFS
