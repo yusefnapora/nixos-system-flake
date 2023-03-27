@@ -17,6 +17,7 @@
   # custom options
   yusef = {
     system = "aarch64-linux";
+    hidpi = true;
     gui.enable = true;
     sound.enable = true;
     bluetooth.enable = true;
