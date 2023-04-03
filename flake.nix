@@ -92,6 +92,35 @@
               }
             ];
       };
+
+  mkDarwinConfig = {
+   system,
+   modules,
+   ...
+  }: darwinSystem { 
+    inherit system;
+
+    inputs = { inherit nix-darwin home-manager nixpkgs; };
+    modules = modules 
+    ++ [
+      home-manager.darwinModules.home-manager {
+	home-manager.useGlobalPkgs = true;
+	# home-manager.useUserPackages = true;
+
+	home-manager.users.yusef = {
+	  imports = [
+	    nixvim.homeManagerModules.nixvim
+	    ./home-manager/darwin.nix
+	  ];
+	};
+
+	home-manager.extraSpecialArgs = {
+	  inherit inputs system;
+	  nixosConfig = {};
+	};
+      }
+    ];
+  };
   in
   {
     ### --- nixos configs
@@ -128,6 +157,16 @@
 
     ### --- nix-darwin configs
     darwinConfigurations = {
+      # Intel MBP for work (ShareFile)
+      yusef-sharefile-macbook = mkDarwinConfig {
+        system = "x86_64-darwin";
+        modules = [
+          ./darwin/hosts/work-macbook.nix
+        ];
+      };
+
+      # Personal M1 Pro 14" MBP
+      # TODO: convert to mkDarwinConfig
       sef-macbook = darwinSystem {
         system = "aarch64-darwin";
         modules = [ 
