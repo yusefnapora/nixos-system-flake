@@ -93,34 +93,34 @@
             ];
       };
 
-  mkDarwinConfig = {
-   system,
-   modules,
-   ...
-  }: darwinSystem { 
-    inherit system;
+    mkDarwinConfig = {
+     system,
+     modules,
+     ...
+    }: darwinSystem { 
+      inherit system;
 
-    inputs = { inherit nix-darwin home-manager nixpkgs; };
-    modules = modules 
-    ++ [
-      home-manager.darwinModules.home-manager {
-	home-manager.useGlobalPkgs = true;
-	# home-manager.useUserPackages = true;
+      inputs = { inherit nix-darwin home-manager nixpkgs; };
+      modules = modules 
+      ++ [
+        home-manager.darwinModules.home-manager {
+          home-manager.useGlobalPkgs = true;
+          # home-manager.useUserPackages = true;
 
-	home-manager.users.yusef = {
-	  imports = [
-	    nixvim.homeManagerModules.nixvim
-	    ./home-manager/darwin.nix
-	  ];
-	};
+          home-manager.users.yusef = {
+            imports = [
+              nixvim.homeManagerModules.nixvim
+              ./home-manager/darwin.nix
+            ];
+          };
 
-	home-manager.extraSpecialArgs = {
-	  inherit inputs system;
-	  nixosConfig = {};
-	};
-      }
-    ];
-  };
+          home-manager.extraSpecialArgs = {
+            inherit inputs system;
+            nixosConfig = {};
+          };
+        }
+      ];
+    };
   in
   {
     ### --- nixos configs
@@ -166,7 +166,6 @@
       };
 
       # Personal M1 Pro 14" MBP
-      # TODO: convert to mkDarwinConfig
       sef-macbook = mkDarwinConfig {
         system = "aarch64-darwin";
         modules = [ 
