@@ -32,6 +32,7 @@ let
     ext.dbaeumer.vscode-eslint
     ext.esbenp.prettier-vscode
     ext.humao.rest-client
+    ext.ms-dotnettools.csharp
   ]
   ++ lists.optionals (system == "x86_64-linux") [
     ext.ms-vsliveshare.vsliveshare
