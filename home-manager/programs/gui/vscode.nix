@@ -31,6 +31,7 @@ let
     ext.vscodevim.vim
     ext.dbaeumer.vscode-eslint
     ext.esbenp.prettier-vscode
+    ext.humao.rest-client
   ]
   ++ lists.optionals (system == "x86_64-linux") [
     ext.ms-vsliveshare.vsliveshare
