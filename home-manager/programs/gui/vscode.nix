@@ -29,6 +29,8 @@ let
     ext.yzhang.markdown-all-in-one
     ext.mhutchie.git-graph
     ext.vscodevim.vim
+    ext.dbaeumer.vscode-eslint
+    ext.esbenp.prettier-vscode
   ]
   ++ lists.optionals (system == "x86_64-linux") [
     ext.ms-vsliveshare.vsliveshare
@@ -96,6 +98,12 @@ let
       publisher = "DavidAnson";
       version = "0.49.0";
       sha256 = "sha256-Mh/OoRK410aXEr3sK2CYFDsXGSqFT+JOWi9jHOdK01Y=";
+    }
+    { # terraform
+      name = "terraform";
+      publisher = "4ops";
+      version = "0.2.5";
+      sha256 = "sha256-y5LljxK8V9Fir9EoG8g9N735gISrlMg3czN21qF/KjI=";
     }
   ];
 
