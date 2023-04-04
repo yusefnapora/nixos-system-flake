@@ -1,7 +1,11 @@
-{ config, lib, ... }:
-let 
+{ config, lib, pkgs, ... }:
+let
+  inherit (pkgs.stdenv) isDarwin;
+
   theme-name = "nix-${config.colorScheme.slug}";
   colors = config.colorScheme.colors;
+
+  clipboard_key_mods = if isDarwin then "CMD" else "SHIFT|CTRL";
 in {
   config = {
     programs.wezterm = {
@@ -93,8 +97,8 @@ in {
               { key = "x", mods = "LEADER",       action=wezterm.action{CloseCurrentPane={confirm=true}}},
 
               { key = "n", mods="SHIFT|CTRL",     action="ToggleFullScreen" },
-              { key = "v",   mods="SHIFT|CTRL",     action=wezterm.action.PasteFrom 'Clipboard'},
-              { key = "c",   mods="SHIFT|CTRL",     action=wezterm.action.CopyTo 'Clipboard'},
+              { key = "v",   mods="${clipboard_key_mods}",     action=wezterm.action.PasteFrom 'Clipboard'},
+              { key = "c",   mods="${clipboard_key_mods}",     action=wezterm.action.CopyTo 'Clipboard'},
           },
         }
       '';
