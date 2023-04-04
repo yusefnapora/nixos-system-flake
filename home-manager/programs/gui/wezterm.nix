@@ -67,6 +67,15 @@ in {
             },
           },
 
+          mouse_bindings = {
+            -- Ctrl-click will open the link under the mouse cursor
+            {
+              event = { Up = { streak = 1, button = 'Left' } },
+              mods = 'CTRL',
+              action = wezterm.action.OpenLinkAtMouseCursor,
+            },
+          },
+
           leader = { key="b", mods="CTRL" },
           disable_default_key_bindings = true,
           keys = {
