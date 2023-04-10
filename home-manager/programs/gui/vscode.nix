@@ -234,6 +234,10 @@ in
           "blog"
           "html"
         ];
+
+        # use mono instead of .net core for csharp
+        # would be nice to make this a per-project setting...
+        "omnisharp.useModernNet" = false;
       }; 
     };
   };
