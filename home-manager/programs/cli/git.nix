@@ -1,5 +1,10 @@
 { config, pkgs, ... }:
 {
+    home.file.".config/git/config-sharefile.inc".text = ''
+      [user]
+        email = "yusef.napora@citrix.com"
+    '';
+
     programs.git = { 
         enable = true;
         userName = "Yusef Napora";
@@ -11,6 +16,12 @@
             co = "checkout";
             cob = "checkout -b";
         };
+
+        includes = [
+            { path = "~/.config/git/config-sharefile.inc"; 
+              condition = "gitdir:~/work";
+            }
+        ];
 
         ignores = [
             ".env"
