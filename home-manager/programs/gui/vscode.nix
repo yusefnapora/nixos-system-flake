@@ -33,6 +33,7 @@ let
     ext.esbenp.prettier-vscode
     ext.humao.rest-client
     ext.ms-dotnettools.csharp
+    ext.eamodio.gitlens
   ]
   ++ lists.optionals (system == "x86_64-linux") [
     ext.ms-vsliveshare.vsliveshare
