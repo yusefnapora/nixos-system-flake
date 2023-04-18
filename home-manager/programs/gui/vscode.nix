@@ -138,7 +138,7 @@ let
   defaultTheme = "Spacemacs";
 in
 {
-  config = mkIf (guiEnabled) {
+  config = mkIf (guiEnabled && isLinux) {
     programs.vscode = {
       enable = true;
 
