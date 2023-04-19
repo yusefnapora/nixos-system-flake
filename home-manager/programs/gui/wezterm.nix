@@ -77,7 +77,7 @@ in {
           },
 
           leader = { key="b", mods="CTRL" },
-          disable_default_key_bindings = true,
+          -- disable_default_key_bindings = true,
           keys = {
               -- Send "CTRL-B" to the terminal when pressing CTRL-B, CTRL-B
               { key = "b", mods = "LEADER|CTRL",  action=wezterm.action.SendKey{ key="b", mods="CTRL" }},
