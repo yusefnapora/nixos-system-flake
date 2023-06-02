@@ -155,9 +155,6 @@
       router = mkSystemConfig {
         system = "x86_64-linux";
         modules = [ ./system/hosts/router.nix ];
-
-        # TODO: enable home manager once we figure out how to stop installing gui stuff when yusef.gui.enable == false.
-        useHomeManager = false; 
       };
     };
 
