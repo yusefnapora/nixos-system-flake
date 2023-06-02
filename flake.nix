@@ -1,9 +1,6 @@
 {
   inputs = { 
-    # nixpkgs is currently pinned to a version that's compatible with
-    # nixos-apple-silicon - later revs have issues with the GPU driver
-    # that cause sway to run with software rendering.
-    nixpkgs.url = "github:NixOS/nixpkgs/1603d11595a232205f03d46e635d919d1e1ec5b9";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     nur.url = "github:nix-community/nur";
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
@@ -152,6 +149,15 @@
       nasty = mkSystemConfig {
         system = "x86_64-linux";
         modules = [ ./system/hosts/nasty.nix ];
+      };
+
+      # Router box
+      router = mkSystemConfig {
+        system = "x86_64-linux";
+        modules = [ ./system/hosts/router.nix ];
+
+        # TODO: enable home manager once we figure out how to stop installing gui stuff when yusef.gui.enable == false.
+        useHomeManager = false; 
       };
     };
 
