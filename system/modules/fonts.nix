@@ -10,7 +10,7 @@ let
     "Iosevka"
   ];
 
-  console-font = if config.yusef.hidpi then "ter-powerline-v32n.psf.gz" else "ter-powerline-v16.psf.gz";
+  console-font = if config.yusef.hidpi then "ter-powerline-v32n.psf.gz" else "ter-powerline-v16n.psf.gz";
 in
 {
   options.yusef.hidpi = lib.mkEnableOption "Enable hi-dpi console fonts";
