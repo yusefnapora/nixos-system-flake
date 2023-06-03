@@ -1,13 +1,18 @@
 { config, system, pkgs, nixpkgs, lib, nixosConfig ? {}, darwinConfig ? {}, inputs, ... }:
 let
   inherit (inputs) nix-colors;
+
+  systemConfig = nixosConfig // darwinConfig;
 in {
   imports = [
     nix-colors.homeManagerModule
 
     ./system-config.nix
-    ./programs
+    ./programs/cli
+  ]
+  ++ lib.lists.optionals systemConfig.yusef.gui.enable [
     ./desktop
+    ./programs/gui
   ];
 
   programs = {
