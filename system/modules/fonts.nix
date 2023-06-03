@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf mkOption types;
   
   nerd-fonts = [
     "FiraCode"
@@ -13,9 +13,15 @@ let
   console-font = if config.yusef.hidpi then "ter-powerline-v32n.psf.gz" else "ter-powerline-v16n.psf.gz";
 in
 {
+  options.yusef.fonts.enable = mkOption {
+    type = types.bool;
+    default = true;
+    description = "Install custom fonts.";
+  };
+
   options.yusef.hidpi = lib.mkEnableOption "Enable hi-dpi console fonts";
 
-  config = {
+  config = mkIf config.yusef.fonts.enable {
 
     # set the console font
     i18n.defaultLocale = "en_US.UTF-8";

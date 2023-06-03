@@ -7,6 +7,11 @@
       ../default.nix
     ];
 
+  # custom options
+  yusef = {
+    fonts.enable = false;
+  };
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = false;

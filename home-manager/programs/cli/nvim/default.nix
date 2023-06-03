@@ -145,7 +145,7 @@ in
 
       treesitter = {
         enable = true;
-        ensureInstalled = "all";
+        # ensureInstalled = "all";
       };
     };
 
