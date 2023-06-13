@@ -19,6 +19,9 @@ switch target_host=hostname: (build target_host)
   @echo "switching to new config for {{target_host}}"
   ./result/sw/bin/darwin-rebuild switch --flake ".#{{target_host}}"
 
+[macos]
+reload-skhd:
+  launchctl stop org.nixos.skhd && launchctl start org.nixos.skhd && sleep 1 && skhd -r
 
 # on asahi linux, we need to pass the --impure flag to read in firmware files
 rebuild_flags := `if [ -d /boot/asahi ]; then echo "--impure"; else echo ""; fi`

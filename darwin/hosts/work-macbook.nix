@@ -9,4 +9,9 @@ in
   ];
 
   system.stateVersion = 4;
+
+  yusef.yabai = {
+    enable = true;
+    scriptingAdditions = true;
+  };
 }

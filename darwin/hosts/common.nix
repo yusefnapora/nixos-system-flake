@@ -4,6 +4,7 @@ let
 in
 {
   imports = [
+    ./yabai.nix
     ../options.nix
     ../fonts.nix
   ];
