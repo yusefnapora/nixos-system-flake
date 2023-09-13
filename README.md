@@ -1,8 +1,12 @@
 # nixos-system-flake
 
-My [NixOS](https://nixos.org) configuration. 
+My (old) [NixOS](https://nixos.org) configuration. 
 
-It's still a work in progress, and if anyone stumbles across it and has ideas to make it better, please let me know with an issue or something.
+**Deprecated**
+
+I ended up "rebooting" this config, based on [a template from Misterio77](https://github.com/Misterio77/nix-starter-configs). It's much nicer now!
+
+The new one is at https://github.com/yusefnapora/nix-config and has my NixOS, nix-darwin and home-manager configs.
 
 ## Usage
 
